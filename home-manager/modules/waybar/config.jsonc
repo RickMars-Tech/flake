@@ -7,6 +7,7 @@
     "exclusive": true,
     "height": 45,
     "modules-left": [
+        "custom/nix",
         "hyprland/workspaces",
 	    "hyprland/window"
     ],
@@ -24,7 +25,6 @@
         "battery",
         "wireplumber",
         "backlight",
-        "bluetooth",
         "network"
     ],
 //--------------------------
@@ -46,8 +46,16 @@
         "on-scroll-up": "hyprctl dispatch workspace e+1",
         "on-scroll-down": "hyprctl dispatch workspace e-1",
         "format-icons": {
-		    "active": "󰮯",
-            "default": "󰊠"
+            "1": "",
+            "2": "󰊗",
+            "3": "",
+            "4": "",
+            "5": "",
+            "6": "",
+            "7": "",
+            "8": "󰋊",
+            "9": ""
+
 	    },
 	    "persistent-workspaces":  {
         "1": [],
@@ -158,7 +166,7 @@
 //--------------------------
     "clock": {
       "format": "  {:%I:%M}",
-      "format-alt": " {:%d/%m}",
+      "format-alt": " {:%d/%m/%y}",
       "tooltip": "true",
       "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
     },
@@ -190,11 +198,11 @@
 			"critical": 15
 		},
 		"format-time": "{H}:{M:02}",
-		"format": "{icon}  {capacity}% ({time} Hrs)",
-		"format-charging": "󰂄 {capacity}% ({time} Hrs)",
+		"format": "{icon}  {capacity}%",
+		"format-charging": "󰂄 {capacity}%",
 		"format-charging-full": " {capacity}%",
 		"format-full": "{icon} {capacity}%",
-		"format-alt": "{icon} {power}W",
+		"format-alt": "{icon} ({time}Hrs)",
 		"format-icons": [
 			"",
 			"",

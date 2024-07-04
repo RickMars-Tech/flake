@@ -10,8 +10,12 @@
         username = "rick";
         homeDirectory = "/home/rick";
         preferXdgDirectories = true;
-        stateVersion = "24.11";
+        enableNixpkgsReleaseCheck = true;
+        stateVersion = "24.05";
     };
+
+    programs.home-manager.enable = true;
+    programs.home-manager.path = "$HOME/devel/home-manager";
 
 #= Wallpapers
     home.file."wal" = {
