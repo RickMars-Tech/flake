@@ -26,7 +26,7 @@
     #gnome.gnome-calculator
     #gnome.dconf-editor
     #gnome.eog
-    gnome.nautilus
+    nautilus
  #= Hyprland
      #=> Hyprland
     # Terminal
@@ -108,7 +108,6 @@
     libgcc
     SDL2
  #= XDG
-    xdg-utils
     xdg-utils-cxx
     xdg-launch
  #= Cli Utilities
@@ -138,7 +137,7 @@
     cargo # PM for rust
     rustup # Rust toolchain installer
  #= Drives utilities
-    gnome.gnome-disk-utility # Disk Manager
+    gnome-disk-utility # Disk Manager
     ventoy # Flash OS images for Linux and another...
     woeusb # Flash OS images for Windows.
  #= Flatpak

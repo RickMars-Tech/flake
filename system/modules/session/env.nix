@@ -4,7 +4,7 @@
 #==> Environment Configs <==#
 
   environment = {
-    pathsToLink = [ "/share/X11" "/libexec" "/share/nix-ld" ];
+    #pathsToLink = [ "/share/X11" "/libexec" "/share/nix-ld" ];
     sessionVariables = rec {
 #=> Default's
       EDITOR = "nvim";

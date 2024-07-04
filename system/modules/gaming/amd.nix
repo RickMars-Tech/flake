@@ -27,16 +27,18 @@
       lact
   ];
 
-#= Update Microcode.
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault true;
-
 #= MSR.
   hardware.cpu.x86.msr.enable = true;
 
-#=> Firmware.
+#=> Firmware (mostly for battery life).
+  hardware.cpu.amd.updateMicrocode = lib.mkDefault true; # Update Microcode
   hardware.enableAllFirmware = lib.mkDefault true;
   hardware.enableRedistributableFirmware = lib.mkDefault true; # Lemme update my CPU Microcode, alr?!
+  hardware.firmware = with pkgs; [firmwareLinuxNonfree];
 
+  # Use https://github.com/fwupd/fwupd
+  # fwupdmgr get-updates # list updates
+  # fwupdmgr update # performs firmware update
   services.fwupd.enable = true;
 
 }

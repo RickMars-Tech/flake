@@ -14,8 +14,6 @@
 
         nix-flatpak.url = "github:gmodena/nix-flatpak";
 
-        prismlauncher.url = "github:PrismLauncher/PrismLauncher";
-
     };
 
     outputs = inputs@{
@@ -23,7 +21,6 @@
         hyprland,
         nixpkgs,
         nix-flatpak,
-        prismlauncher,
         self,
         ...
     }: let 
