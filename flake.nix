@@ -45,6 +45,7 @@
                 nix-flatpak.nixosModules.nix-flatpak
 
                 {
+                    _module.args = { inherit inputs; };
                     home-manager.useGlobalPkgs = true;
                     home-manager.useUserPackages = true;
                     home-manager.users.rick = import ./home-manager/home.nix;
