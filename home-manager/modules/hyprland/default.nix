@@ -1,0 +1,354 @@
+{ config, pkgs, lib, ... }:
+
+{
+
+    wayland.windowManager.hyprland = {
+        enable = true;
+        settings = {
+
+            env = [
+                #= Hyprland
+                "XDG_CURRENT_DESKTOP, Hyprland"
+                "XDG_SESSION_TYPE, Wayland"
+                "XDG_SESSION_DESKTOP, Hyprland"
+                "HYPRLAND_NO_RT, 1"
+                "CLUTTER_BACKEND, wayland"
+                #= XWayland
+                "GDK_SCALE, 1"
+                "XCURSOR_SIZE, 24"
+                #= Qt
+                "QT_AUTO_SCREEN_SCALE_FACTOR, 1"
+                "QT_QPA_PLATFORM, wayland;xcb"
+                "QT_WAYLAND_DISABLE_WINDOWDECORATION, 1"
+                #= Hyprcursor
+                "HYPRCURSOR_THEME, Bibata-Modern-Classic"
+                "HYPRCURSOR_SIZE, 24"
+            ];
+
+            exec-once = [
+                "exec-once = waybar && dbus-update-activation-environment --systemd --allx WAYLAND DISPLAY XDG_CURRENT_DESKTOP"
+                "exec-once = systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP" # for XDPH
+                "exec-once = hyprpaper #&& hypridle"
+                "exec-once = dunst"
+                "exec-once = systemctl --user restart pipewire # Restart pipewire to avoid bugs"
+                "exec-once = systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+                "exec-once = xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 2"
+                "exec-once = wl-clipboard-history -t"
+                "exec-once = wl-paste --type text --watch cliphist store"
+                "exec-once = wl-paste --type image --watch cliphist store"
+                "exec-once = $POLKIT_BIN"
+                "exec-once = /scripts/xdg-portal-hyprland"
+                "exec-once = systemctl --user import-environment PATH && systemctl --user restart xdg-desktop-portal.service"
+            ];
+
+            input = {
+                kb_model = "pc104";
+                kb_layout = "latam";
+                kb_options ="terminate:ctrl_alt_bksp";
+                accel_profile = "flat";
+                follow_mouse = 1;
+                sensitivity = 0;
+                float_switch_override_focus = 2;
+                touchpad = {
+                    disable_while_typing = 0;
+                    natural_scroll = 0;
+                    clickfinger_behavior = 0;
+                    tap-to-click = 1;
+                    drag_lock = 0;
+                };
+            };
+
+            general = {
+                "$mainMod" = "SUPER";
+                layout = "dwindle";
+                gaps_in = 1;
+                gaps_out = 5;
+                border_size = 2;
+                "col.active_border" = "0x66FFFFFFF";
+                "col.inactive_border" = "0x66333333";
+                border_part_of_window = false;
+                no_border_on_floating = false;
+            };
+
+            misc = {
+                disable_hyprland_logo = true;
+                mouse_move_enables_dpms = true;
+                animate_manual_resizes = true;
+                swallow_regex = "^(foot|kitty|Alacritty)$";
+                swallow_exception_regex = "^(foot|kitty|Alacritty)";
+                vrr = 2; # VRR (Adaptive Sync). 0 - Disabled, 1 - Enabled, 2 - Only FullScreen
+                vfr = true;
+                render_ahead_safezone = 1;
+                new_window_takes_over_fullscreen = 2;
+            };
+
+            decoration = {
+                rounding = 5;
+                # active_opacity = 0.90;
+                # inactive_opacity = 0.90;
+                # fullscreen_opacity = 1.0;
+
+                blur = {
+                    enabled = false;
+                    size = 3;
+                    passes = 1;
+                    # size = 4;
+                    # passes = 2;
+                    brightness = 1;
+                    contrast = 1.400;
+                    ignore_opacity = true;
+                    noise = 0;
+                    new_optimizations = true;
+                    xray = true;
+                };
+
+                drop_shadow = true;
+
+                shadow_ignore_window = true;
+                shadow_offset = "0 2";
+                shadow_range = 10;
+                shadow_render_power = 2;
+                "col.shadow" = "rgba(00000055)";
+            };
+
+            animations = {
+                enabled = true;
+                first_launch_animation = true;
+
+                bezier = [
+                    "myBezier, 0.05, 0.9, 0.1, 1.05"
+                ];
+
+                animation = [
+                    "windows, 1, 7, myBezier"
+                    "windowsOut, 1, 7, default, popin 80%"
+                    "border, 1, 10, default"
+                    "borderangle, 1, 8, default"
+                    # Fade
+                    "fadeIn, 1, 3, easeOutCubic" # fade in (open) -> layers and windows
+                    "fadeOut, 1, 2, easeOutCubic" # fade out (close) -> layers and windows
+                    "fadeSwitch, 0, 1, easeOutCirc" # fade on changing activewindow and its opacity
+                    "fadeShadow, 1, 10, easeOutCirc" # fade on changing activewindow for shadows
+                    "fadeDim, 1, 4, fluent_decel" # the easing of the dimming of inactive windows
+                    "border, 1, 2.7, easeOutCirc" # for animating the border's color switch speed
+                    "borderangle, 1, 30, fluent_decel, once" # for animating the border's gradient angle - styles: once (default), loop
+                    "workspaces, 1, 4, easeOutCubic, fade" # styles: slide, slidevert, fade, slidefade, slidefadevert
+                ];
+            };
+
+            dwindle = {
+                no_gaps_when_only = true;
+                force_split = 0;
+                special_scale_factor = 1.0;
+                split_width_multiplier = 1.0;
+                use_active_for_splits = true;
+                pseudotile = "yes";
+                preserve_split = "yes";
+            };
+
+            master = {
+                allow_small_split = true;
+                new_status = "master";
+                new_on_top = false;
+                special_scale_factor = 1;
+                no_gaps_when_only = false;
+                inherit_fullscreen = true;
+                always_center_master = true;
+                drop_at_cursor = true;
+            };
+
+            bind = [
+                # Screenshot
+                ", Print, exec, grimblast --notify copysave output"
+                "SHIFT, Print, exec, grimblast --notify --cursor copysave area"
+
+                # Gamemode
+                "SUPER, F1, exec, ~/.config/hypr/scripts/gamemode.sh"
+
+                # LaunchApps
+                "SUPER, T, exec, kitty"
+                "SUPER, B, exec, firefox"
+                "CTRL SHIFT, E, exec, nautilus"
+                "SUPER, E, exec, kitty -e yazi"
+                "SUPER, S, togglesplit, # dwindle"
+                "SUPER, R, exec, rofi -show drun -show-icons"
+                "CTRL SHIFT, H, exec, hyprpicker -r -a"
+
+                # Audio
+                ",XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+                ",XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+                ",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+
+                # Multimedia
+                ",XF86AudioPlay, exec, playerctl play-pause"
+                ",XF86AudioPause, exec, playerctl play-pause"
+
+                # Brightnes
+                ",XF86MonBrightnessUp, exec, brightnessctl set +5%"
+                ",XF86MonBrightnessDown, exec, brightnessctl set 5%-"
+
+                # Windows
+                "SUPER, V, togglefloating,"
+                "SUPER, P, pseudo," # dwindle
+                "SUPER, F, fullscreen"
+                "SUPER, left, movefocus, l"
+                "SUPER, right, movefocus, r"
+                "SUPER, up, movefocus, u"
+                "SUPER, down, movefocus, d"
+
+                # Close Windows
+                "SUPER, X, killactive,"
+
+                # Lock System
+                "SUPER, L, exec, hyprlock"
+
+                # Off
+                "SUPER, M, exec, wlogout"
+
+                "SUPER, mouse_down, workspace, e+1"
+                "SUPER, mouse_up, workspace, e-1"
+                "SUPER, 1, workspace,1"
+                "SUPER, 2, workspace,2"
+                "SUPER, 3, workspace,3"
+                "SUPER, 4, workspace,4"
+                "SUPER, 5, workspace,5"
+                "SUPER, 6, workspace,6"
+                "SUPER, 7, workspace,7"
+                "SUPER, 8, workspace,8"
+                "SUPER, 9, workspace,9"
+                "SUPER, 0, workspace,10"
+
+                "ALT, 1, movetoworkspace,1"
+                "ALT, 2, movetoworkspace,2"
+                "ALT, 3, movetoworkspace,3"
+                "ALT, 4, movetoworkspace,4"
+                "ALT, 5, movetoworkspace,5"
+                "ALT, 6, movetoworkspace,6"
+                "ALT, 7, movetoworkspace,7"
+                "ALT, 8, movetoworkspace,8"
+                "ALT, 9, movetoworkspace,9"
+                "ALT, 0, movetoworkspace,10"
+            ];
+
+            bindm = [
+                # Manage Workspaces
+                "SUPER, mouse:272, movewindow"
+                "SUPER, Control_L, movewindow"
+                "SUPER, mouse:273, resizewindow"
+            ];
+
+            bindl = [
+                # Clamshell mode configuration
+                # Lid is opened
+                ",switch:off:Lid Switch, exec, ~/.config/hypr/lid.sh open"
+                # Lid is closed
+                ",switch:on:Lid Switch, exec, ~/.config/hypr/lid.sh close"
+            ];
+
+            windowrulev2 = [
+                # Opacidad
+                "opacity 0.90 0.90,class:^(Firefox)$"
+                "opacity 0.80 0.80,class:^(Spotify)$"
+                "opacity 0.80 0.80,class:^(Code)$"
+                "opacity 0.80 0.80,class:^(file-roller)$"
+                "opacity 0.80 0.80,class:^(nwg-look)$"
+                "opacity 0.80 0.80,class:^(qt5ct)$"
+                "opacity 0.80 0.70,class:^(polkit-kde-authentication-agent-1)$"
+
+                # Posición
+                "float,class:^(org.kde.polkit-kde-authentication-agent-1)$"
+                "float,class:^(lxqt-policykit-agent)$"
+
+                "float,class:^(fragments)$"
+                "float,class:^(pavucontrol)$"
+                "float,class:^(et)$"
+                "float,class:^(org.gnome.Nautilus)$"
+                "float,class:^(xdg-desktop-portal-gtk)$"
+                "float, title:^(Library)$,class:^(firefox)$"
+                "float,class:^(pcmanfm)$"
+                "float,class:^(gnome-disks)$"
+                "float,class:^(Network)$"
+                "float,class:^(steamwebhelper)$"
+                "float,title:^(ProtonUp-Qt)$"
+                "float,class:^(fragments)$"
+                "float,title:^(Media viewer)$"
+                "float,title:^(Volume Control)$"
+                "float,title:^(Picture-in-Picture)$"
+                "float,title:^(DevTools)$"
+                "float,class:^(file_progress)$"
+                "float,class:^(confirm)$"
+                "float,class:^(dialog)$"
+                "float,class:^(download)$"
+                "float,class:^(notification)$"
+                "float,class:^(error)$"
+                "float,class:^(confirmreset)$"
+                "float,title:^(Open File)$"
+                "float,title:^(branchdialog)$"
+                "float,title:^(Confirm to replace files)$"
+                "float,title:^(File Operation Progress)$"
+                "nomaxsize,title:^(Waydroid)$"
+                
+                # Pipewire (Pwvucontrol).
+                "windowrulev2 = float,title:^(Pipewire Volume Control)$"
+                # PulseAudio (Pavucontrol).
+                "windowrulev2 = float,class:^(pavucontrol)$"
+
+                # Steam
+                "stayfocused, title:^()$,class:^(steam)$"
+                "minsize 1 1, title:^()$,class:^(steam)$"
+                "noblur,class:(steam)$"
+                "forcergbx,class:(steam)$"
+                "float,title:^(Configuraciones de Steam)$"
+
+                # Lutris
+                "float,class:^(lutris)$"
+
+                # Workspaces
+                "workspace 1, class: ^(kitty)$"
+                "workspace 2 silent, class: ^(steam)$"
+                "workspace 2 silent, class: ^(Lutris)$"
+                "workspace 3, class: ^(firefox)$"
+                "workspace 3, class: ^(floorp)$"
+                "workspace 4, class: ^(WebCord)$"
+                "workspace 5, class: ^(mpv)$"
+                "workspace 6, class: ^(imv)$"
+                "workspace 7, class: ^(org.gnome.Nautilus)$"
+                "workspace 8, class: ^(gnome-disks)$"
+                "workspace 9 silent, title: ^(Waydroid)$"
+
+                "idleinhibit focus,class:^(mpv)$"
+                "idleinhibit fullscreen,class:^(Firefox)$"
+
+                # xwaylandvideobridge
+                "opacity 0.0 override 0.0 override,class:^(xwaylandvideobridge)$"
+                "noanim,class:^(xwaylandvideobridge)$"
+                "noinitialfocus,class:^(xwaylandvideobridge)$"
+                "maxsize 1 1,class:^(xwaylandvideobridge)$"
+                "noblur,class:^(xwaylandvideobridge)$"
+            ];
+
+        };
+
+        extraConfig = "
+            monitor = HDMI-A-1, highres, auto, 1
+            monitor = eDP-1, highres, auto, 1, bitdepth, 10
+
+            xwayland {
+                force_zero_scaling = true
+            }
+
+        ";
+    };
+
+    xdg.configFile = {
+        "hypr/hypridle.conf".source = ./hypridle.conf;
+        "hypr/hyprlock.conf".source = ./hyprlock.conf;
+        "hypr/hyprpaper.conf".source = ./hyprpaper.conf;
+        "hypr/xdph.conf".source = ./xdph.conf;
+        "hypr/scripts" = {
+            source = ./scripts;
+            recursive = true;
+        };
+    };
+
+}
