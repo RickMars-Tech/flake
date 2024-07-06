@@ -12,6 +12,7 @@
       "video"
       "audio"
       "render"
+      "git"
       "games" # Access to some game software. /var/games.
       "gamemode" # Required for 'renicing' via gamemode.
       "storage" # Used to gain access to removable drives such as USB hard drives.

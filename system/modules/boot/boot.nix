@@ -4,8 +4,9 @@
 
 #=> SystemD-Boot.
   boot.loader.systemd-boot.enable = true;
-  boot.loader.systemd-boot.consoleMode = "auto";
-  boot.loader.efi.canTouchEfiVariables = false;
+  boot.loader.systemd-boot.consoleMode = "keep";
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.systemd-boot.configurationLimit = 20;
 
 #=> Enable "Silent Boot".
   boot.loader.timeout = 5;

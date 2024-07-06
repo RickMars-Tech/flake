@@ -28,8 +28,8 @@
 
   #system.copySystemConfiguration = true;
   #system.autoUpgrade.flake = "github:RickMars-Tech/NixOS-Mars";
-  system.autoUpgrade.enable = true;
-  system.autoUpgrade.allowReboot = false;
+  #system.autoUpgrade.enable = true;
+  #system.autoUpgrade.allowReboot = false;
 
   #documentation.nixos.enable = true;
 }

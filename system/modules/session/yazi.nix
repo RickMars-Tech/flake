@@ -5,7 +5,9 @@
   # Yazi
   programs.yazi = {
       enable = true;
-      settings.yazi = {};
+      settings.yazi = {
+        keymap = "la-latin1";
+      };
       package = pkgs.yazi;
   };
 }

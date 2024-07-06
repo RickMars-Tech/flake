@@ -33,6 +33,6 @@ services.greetd = {
   services.xserver.enable = false;
 
  #= Configure console keymap
-  console.keyMap = "es";
+  console.keyMap = "la-latin1";
   console.packages = with pkgs; [ terminus-nerdfont ];
 }
