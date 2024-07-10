@@ -45,10 +45,6 @@
                     "type" = "wm";
                     "key" = " ├─";
                 }
-                {
-                    "type" = "uptime";
-                    "key" = " ╰─󰅐";
-                }
 
                 {
                     "type" = "custom"; # HardwareStart

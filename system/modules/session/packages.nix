@@ -10,6 +10,7 @@
   nixpkgs.config.permittedInsecurePackages = [
       "electron-19.1.9"
       "openjdk-19-ga"
+      "temurin-bin-19.0.2"
   ];
 
  #=> Packages Installed in System Profile.
@@ -31,7 +32,6 @@
     alsa-plugins
     alsa-utils
     libsForQt5.ark
-    clamtk
     geogebra6
     webcord
     electron

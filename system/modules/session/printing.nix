@@ -1,9 +1,11 @@
 { config, pkgs, lib, ... }:
 
 {
-#= Printers
-  services.printing.enable = true;
-  services.printing.drivers = with pkgs; [
-    hplip
-  ];
+  #= Printers
+    services.printing = {
+        enable = true;
+        drivers = with pkgs; [
+            #hplip
+        ];
+    };
 }

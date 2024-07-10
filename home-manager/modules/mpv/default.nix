@@ -24,7 +24,7 @@
       vo = "gpu";
       hwdec = "auto-safe";
       pause = "no";
-      profile = "gpu-hq";
+      profile = "fast"; #"gpu-hq";
       gpu-context = "wayland";
       gpu-api = "vulkan";
       vulkan-queue-count = 4;

@@ -11,10 +11,9 @@
 
             url.osc8-underline = "always";
 
-
-
             cursor = {
                 style = "beam";
+                unfocused-style = "unchanged";
                 blink = "yes";
             };
 
@@ -37,20 +36,28 @@
                 foreground = "c4c5e6";
 
                 regular0 = "9c9db8";
+                bright0 = "9c9db8";
 
                 regular1 = "94594B";
-                
+                bright1 = "94594B";
+
                 regular2 = "C69E5B";
-                
+                bright2 = "C69E5B";
+
                 regular3 = "5F5B9D";
-                
+                bright3 = "5F5B9D";
+
                 regular4 = "445CAD";
-                
+                bright4 = "445CAD";
+
                 regular5 = "8D6FAE";
-                
+                bright5 = "8D6FAE";
+
                 regular6 = "5E95DD";
-                
+                bright6 = "5E95DD";
+
                 regular7 = "c4c5e6";
+                bright7 = "c4c5e6";
 
                 selection-background = "0E0E17";
                 selection-foreground = "0B0C17";

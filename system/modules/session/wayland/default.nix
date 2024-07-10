@@ -31,9 +31,16 @@
     mime = {
         enable = true;
         defaultApplications = {
-            "image/png" = [
-                "imv.desktop"
-            ];
+            "application/pdf" = "firefox.desktop";
+            "image/png" = "imv.desktop";
+            "image/jpg" = "imv.desktop";
+            "image/jpeg" = "imv.desktop";
+            "image/gif" = "imv.desktop";
+            "image/svg" = "imv.desktop";
+            "image/tiff" = "imv.desktop";
+            "video/avi" = "mpv.desktop";
+            "video/mp4" = "mpv.desktop";
+            "video/mkv" = "mpv.desktop";
         };
     };
   };

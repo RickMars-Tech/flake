@@ -11,26 +11,6 @@
 #= IRQBalance
   services.irqbalance.enable = lib.mkDefault true;
 
-#= Ananicy
-  services.ananicy = {
-      enable = lib.mkDefault true;
-      package = lib.mkDefault pkgs.ananicy-cpp;
-      rulesProvider = lib.mkDefault pkgs.ananicy-rules-cachyos; 
-      settings = {
-          apply_nice = true;
-          apply_ioclass = true;
-          apply_ionice = true;
-          apply_sched = true;
-          apply_oom_score_adj = true;
-          apply_cgroup = true;
-          check_disks_schedulers = true;
-          check_freq = 10;
-          cgroup_load = true;
-          type_load = true;
-          rule_load = true;
-      };
-  };
-
 #=> Gamemode
   programs.gamemode = {
     enable = true;
