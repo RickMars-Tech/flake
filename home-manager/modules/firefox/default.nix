@@ -6,28 +6,6 @@
     enable = true;
     profiles.rick = {
         isDefault = true;
-        search.default = "DuckDuckGo";
-        search.privateDefault = "DuckDuckGo";
-        containers = {
-            Usuario = {
-                color = "blue";
-                icon = "fingerprint";
-                id = 0;
-                name = "Usuario";
-            };
-            Privado = {
-                color = "pink";
-                icon = "briefcase";
-                id = 1;
-                name = "Privado";
-            };
-            Facebook = {
-                color = "toolbar";
-                icon = "fence";
-                id = 3;
-                name = "Facebook";
-            };
-        };
         # Install extensions from NUR
          /* extensions = with pkgs.nur.repos.rycee.firefox-addons; [
             decentraleyes

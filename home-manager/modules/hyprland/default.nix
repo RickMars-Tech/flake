@@ -26,20 +26,25 @@
             ];
 
             exec-once = [
-                "exec-once = waybar && dbus-update-activation-environment --systemd --allx WAYLAND DISPLAY XDG_CURRENT_DESKTOP"
-                "exec-once = systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP" # for XDPH
-                "exec-once = hyprpaper #&& hypridle"
-                "exec-once = dunst"
-                "exec-once = systemctl --user restart pipewire # Restart pipewire to avoid bugs"
-                "exec-once = systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-                "exec-once = xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 2"
-                "exec-once = wl-clipboard-history -t"
-                "exec-once = wl-paste --type text --watch cliphist store"
-                "exec-once = wl-paste --type image --watch cliphist store"
-                "exec-once = $POLKIT_BIN"
-                "exec-once = /scripts/xdg-portal-hyprland"
-                "exec-once = systemctl --user import-environment PATH && systemctl --user restart xdg-desktop-portal.service"
+                "dbus-update-activation-environment --systemd --allx WAYLAND DISPLAY XDG_CURRENT_DESKTOP"
+                "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP" # for XDPH
+                "hyprpaper && hypridle"
+                "dunst"
+                "systemctl --user restart pipewire # Restart pipewire to avoid bugs"
+                "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+                "xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 2"
+                "wl-clipboard-history -t"
+                "wl-paste --type text --watch cliphist store"
+                "wl-paste --type image --watch cliphist store"
+                "$POLKIT_BIN"
+                "/scripts/xdg-portal-hyprland"
+                "systemctl --user import-environment PATH && systemctl --user restart xdg-desktop-portal.service"
             ];
+
+            xwayland = {
+                use_nearest_neighbor = true;
+                force_zero_scaling = true;
+            };
 
             input = {
                 kb_model = "pc104";
@@ -60,7 +65,7 @@
 
             general = {
                 "$mainMod" = "SUPER";
-                layout = "dwindle";
+                layout = "master";
                 gaps_in = 1;
                 gaps_out = 5;
                 border_size = 2;
@@ -84,25 +89,15 @@
 
             decoration = {
                 rounding = 5;
-                # active_opacity = 0.90;
-                # inactive_opacity = 0.90;
-                # fullscreen_opacity = 1.0;
 
                 blur = {
                     enabled = false;
                     size = 3;
                     passes = 1;
-                    # size = 4;
-                    # passes = 2;
-                    brightness = 1;
-                    contrast = 1.400;
-                    ignore_opacity = true;
-                    noise = 0;
                     new_optimizations = true;
-                    xray = true;
                 };
 
-                drop_shadow = true;
+                drop_shadow = false;
 
                 shadow_ignore_window = true;
                 shadow_offset = "0 2";
@@ -114,26 +109,44 @@
             animations = {
                 enabled = true;
                 first_launch_animation = true;
-
                 bezier = [
-                    "myBezier, 0.05, 0.9, 0.1, 1.05"
+                    #"myBezier, 0.05, 0.9, 0.1, 1.05"
+                    "fluent_decel, 0, 0.2, 0.4, 1"
+                    "easeOutCirc, 0, 0.55, 0.45, 1"
+                    "easeOutCubic, 0.33, 1, 0.68, 1"
+                    "easeinoutsine, 0.37, 0, 0.63, 1"
                 ];
-
                 animation = [
-                    "windows, 1, 7, myBezier"
-                    "windowsOut, 1, 7, default, popin 80%"
-                    "border, 1, 10, default"
-                    "borderangle, 1, 8, default"
-                    # Fade
-                    "fadeIn, 1, 3, easeOutCubic" # fade in (open) -> layers and windows
-                    "fadeOut, 1, 2, easeOutCubic" # fade out (close) -> layers and windows
-                    "fadeSwitch, 0, 1, easeOutCirc" # fade on changing activewindow and its opacity
-                    "fadeShadow, 1, 10, easeOutCirc" # fade on changing activewindow for shadows
-                    "fadeDim, 1, 4, fluent_decel" # the easing of the dimming of inactive windows
-                    "border, 1, 2.7, easeOutCirc" # for animating the border's color switch speed
-                    "borderangle, 1, 30, fluent_decel, once" # for animating the border's gradient angle - styles: once (default), loop
-                    "workspaces, 1, 4, easeOutCubic, fade" # styles: slide, slidevert, fade, slidefade, slidefadevert
+                        #"windows, 1, 7, myBezier"
+                        #"windowsOut, 1, 7, default, popin 80%"
+                        #"border, 1, 10, default"
+                        #"borderangle, 1, 8, default"
+                        #"fade, 1, 7, default"
+                        #"workspaces, 1, 3, default"
+                        
+                        # Windows
+                        "windowsIn, 1, 3, easeOutCubic, popin 30%" # window open
+                        "windowsOut, 1, 3, fluent_decel, popin 70%" # window close.
+                        "windowsMove, 1, 2, easeinoutsine, slide" # everything in between, moving, dragging, resizing.
+
+                        # Fade
+                        "fadeIn, 1, 3, easeOutCubic" # fade in (open) -> layers and windows
+                        "fadeOut, 1, 2, easeOutCubic" # fade out (close) -> layers and windows
+                        "fadeSwitch, 0, 1, easeOutCirc" # fade on changing activewindow and its opacity
+                        "fadeShadow, 1, 10, easeOutCirc" # fade on changing activewindow for shadows
+                        "fadeDim, 1, 4, fluent_decel" # the easing of the dimming of inactive windows
+                        "border, 1, 2.7, easeOutCirc" # for animating the border's color switch speed
+                        "borderangle, 1, 30, fluent_decel, once" # for animating the border's gradient angle - styles: once (default), loop
+                        "workspaces, 1, 4, easeOutCubic, fade" # styles: slide, slidevert, fade, slidefade, slidefadevert
                 ];
+               
+            };
+
+            gestures = {
+                workspace_swipe = true;
+                workspace_swipe_fingers = 3;
+                workspace_swipe_min_speed_to_force = 0;
+                workspace_swipe_use_r = false;
             };
 
             dwindle = {
@@ -148,13 +161,15 @@
 
             master = {
                 allow_small_split = true;
-                new_status = "master";
+                new_status = "inherit";
                 new_on_top = false;
-                special_scale_factor = 1;
-                no_gaps_when_only = false;
                 inherit_fullscreen = true;
                 always_center_master = true;
                 drop_at_cursor = true;
+            };
+
+            binds = {
+                allow_workspace_cycles = true;
             };
 
             bind = [
@@ -166,7 +181,8 @@
                 "SUPER, F1, exec, ~/.config/hypr/scripts/gamemode.sh"
 
                 # LaunchApps
-                "SUPER, T, exec, kitty"
+                #"SUPER, T, exec, kitty"
+                "SUPER, T, exec, foot"
                 "SUPER, B, exec, firefox"
                 "CTRL SHIFT, E, exec, nautilus"
                 "SUPER, E, exec, kitty -e yazi"
@@ -197,7 +213,7 @@
                 "SUPER, down, movefocus, d"
 
                 # Close Windows
-                "SUPER, X, killactive,"
+                "SUPER, Q, killactive,"
 
                 # Lock System
                 "SUPER, L, exec, hyprlock"
@@ -289,9 +305,9 @@
                 "nomaxsize,title:^(Waydroid)$"
                 
                 # Pipewire (Pwvucontrol).
-                "windowrulev2 = float,title:^(Pipewire Volume Control)$"
+                "float,title:^(Pipewire Volume Control)$"
                 # PulseAudio (Pavucontrol).
-                "windowrulev2 = float,class:^(pavucontrol)$"
+                "float,class:^(pavucontrol)$"
 
                 # Steam
                 "stayfocused, title:^()$,class:^(steam)$"
@@ -305,6 +321,7 @@
 
                 # Workspaces
                 "workspace 1, class: ^(kitty)$"
+                "workspace 1, class: ^(foot)$"
                 "workspace 2 silent, class: ^(steam)$"
                 "workspace 2 silent, class: ^(Lutris)$"
                 "workspace 3, class: ^(firefox)$"
@@ -328,16 +345,10 @@
             ];
 
         };
-
-        extraConfig = "
+        extraConfig = ''
             monitor = HDMI-A-1, highres, auto, 1
-            monitor = eDP-1, highres, auto, 1, bitdepth, 10
-
-            xwayland {
-                force_zero_scaling = true
-            }
-
-        ";
+            monitor = eDP-1, highres, auto, 1
+        '';
     };
 
     xdg.configFile = {

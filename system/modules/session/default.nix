@@ -4,7 +4,6 @@
     imports = [
         ./drives.nix
         ./env.nix
-        #./firefox.nix
         ./flatpak.nix
         ./git.nix
         ./login-manager.nix

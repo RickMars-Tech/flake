@@ -8,10 +8,11 @@
             logo = {
                 source = "nixos";
                 padding = {
-                    top = 1;
+                    right = 1; #top = 1;
                 };
             };
             display = {
+                binaryPrefix = "si";
                 separator = "  ";
             };
             modules = [
@@ -21,7 +22,7 @@
                 }
                 {
                     "type" = "custom"; # Operative System
-                    "format" = "┌──────[ \u001b[32mOS\u001b[0m ]";
+                    "format" = "┌──────[ OS ]";
                 }
                 {
                     "type" = "os";
@@ -51,7 +52,7 @@
 
                 {
                     "type" = "custom"; # HardwareStart
-                    "format" = "├──────[ \u001b[32mHardware Information\u001b[0m ]";
+                    "format" = "├──────[ Hardware Information ]";
                 }
                 {
                     "type" = "cpu";
@@ -100,7 +101,7 @@
 
                 {
                     "type" = "custom"; #Terminal
-                    "format" = "├─────[ \u001b[32mTerminal\u001b[0m ]";
+                    "format" = "├─────[ Terminal ]";
                 }
                 {
                     "type" = "shell";
@@ -117,7 +118,7 @@
                 }
                 {
                     "type" = "colors";
-                    "paddingLeft" = 1;
+                    "paddingLeft" = 2;
                     "symbol" = "circle";
                 }
 

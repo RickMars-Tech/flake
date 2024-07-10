@@ -42,72 +42,71 @@
     ];
 
     style = ''
-            * {
-              font-family: "DaddyTimeMono";
-              background-image: none;
-              transition: 20ms;
-            }
+        * {
+            font-family: "DaddyTimeMono";
+            background-image: none;
+            transition: 20ms;
+        }
 
-          window {
+        window {
             background-color: rgba(12,12,12,0.5);
-          }
+        }
 
-          button {
-             font-size:20px;
+        button {
+            font-size:20px;
 
-             background-repeat: no-repeat;
-             background-position: center;
-             background-size: 25%;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 25%;
 
-             background-color:  rgba( 14, 14, 23, 0.80);
-             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-          }
+            background-color:  rgba( 14, 14, 23, 0.80);
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
 
-          button:focus,
-          button:active {
-             color: rgba(204, 204, 204, 0.1);
-             background-color:  rgba(12, 12, 12, 0.4);
-          }
+        button:focus,
+        button:active {
+            color: rgba(204, 204, 204, 0.1);
+            background-color:  rgba(12, 12, 12, 0.4);
+        }
 
-             /* 
-                ----------------------------------------------------- 
-                Buttons
-                ----------------------------------------------------- 
-              */
+        /* 
+        ----------------------------------------------------- 
+        Buttons
+        -----------------------------------------------------
+        */
 
-      #lock,#logout,#suspend,#hibernate,#shutdown,#reboot {
+        #lock,#logout,#suspend,#hibernate,#shutdown,#reboot {
         margin: 10px;
-        border-radius: 
-      }
+        }
 
-      #lock {
-              background-image: image(url("icons/lock.png"));
-      }
+        #lock {
+            background-image: image(url("icons/lock.png"));
+        }
 
-      #logout {
-              background-image: image(url("icons/logout.png"));
-      }
+        #logout {
+            background-image: image(url("icons/logout.png"));
+        }
 
-      #suspend {
-              background-image: image(url("icons/suspend.png"));
-      }
+        #suspend {
+            background-image: image(url("icons/suspend.png"));
+        }
 
-      #hibernate {
-              background-image: image(url("icons/hibernate.png"));
-      }
+        #hibernate {
+            background-image: image(url("icons/hibernate.png"));
+        }
 
-      #shutdown {
-              background-image: image(url("icons/shutdown.png"));
-      }
+        #shutdown {
+            background-image: image(url("icons/shutdown.png"));
+        }
 
-      #reboot {
-              background-image: image(url("icons/reboot.png"));
-      }
+        #reboot {
+            background-image: image(url("icons/reboot.png"));
+        }
     '';
   };
 
   xdg.configFile."wlogout/icons" = {
-    recursive = false;
+    recursive = true;
     source = ./icons;
   };
 

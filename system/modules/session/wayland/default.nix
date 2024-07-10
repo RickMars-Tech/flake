@@ -8,6 +8,9 @@
         ./waydroid.nix
     ];
 
+ #= Disable X11
+  services.xserver.enable = false;
+
  #= XWayland
   programs.xwayland.enable = true;
 

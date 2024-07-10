@@ -7,8 +7,9 @@
         settings = {
             mainBar = {
                 layer = "top";
-                position = "top";
+                position = "bottom";
                 exclusive = true;
+
                  "modules-left" = [ "custom/nix" "hyprland/workspaces" "hyprland/window" ];
                  "modules-center" = [ "clock" ];
                  "modules-right" = [ "gamemode" "tray" "cpu" "memory" "temperature" "battery" "wireplumber" "backlight" "network" ];
@@ -120,10 +121,10 @@
                 ##--------------------------
                 "network" = {
                     "interval" = 5;
-                    "format-wifi" = " {essid} ({signalStrength}%)";
-                    "format-ethernet" = "󰈀 {ifname}";
+                    "format-wifi" = "  Connected";
+                    "format-ethernet" = "󰈀 {essid}";
                     "format-disconnected" = "No connection";
-                    "format-alt" = "󰈀 {ipaddr}/{cidr}";
+                    "format-alt" = "󰈀 {essid}";
                     "tooltip" = false;
                 };
 

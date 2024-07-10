@@ -6,14 +6,24 @@
         ./modules/default.nix
     ];
 
+#= Home-Manager
     home = {
         username = "rick";
         homeDirectory = "/home/rick";
         enableNixpkgsReleaseCheck = true;
-        stateVersion = "24.05";
+        stateVersion = "24.11";
     };
+    programs.home-manager.enable = true;
 
-
+#= XDG
+    xdg = {
+        enable = true;
+        userDirs = {
+            enable = true;
+            createDirectories = true;
+        };
+    };
+    
 #= Wallpapers
     home.file."wal" = {
         source = ./wal;

@@ -2,15 +2,19 @@
 
 {
 
-    home.file.".config/rofi/themes" = {
-        source = ./themes;
-        recursive = true;
-    };
-
     programs.rofi = {
         enable = true;
-        cycle = false;
-        configPath = "./config.rasi";
+        terminal = "${pkgs.foot}/bin/foot";
+        theme = ./themes/onedark.rasi;
+        package = pkgs.rofi-wayland;
+    };
+
+    xdg.configFile = {
+        #"rofi/config.rasi".source = ./config.rasi;
+        "rofi/themes" = {
+            recursive = true;
+            source = ./themes;
+        };
     };
 
 }

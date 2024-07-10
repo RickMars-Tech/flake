@@ -16,7 +16,7 @@
       tree = "eza -T --all --icons";
       search = "fzf";
       hw = "hwinfo --short";
-      top = "zfxtop";
+      ntop = "zfxtop";
     };
     interactiveShellInit = "
     function fish_greeting
@@ -35,6 +35,7 @@
         set -gx ECORE_EVAS_ENGINE wayland_egl
         set -gx ELM_ENGINE wayland_egl
     end
+
     ";
     vendor = {
       config.enable = true;
@@ -50,12 +51,28 @@
     settings = {
         add_newline = false;
 
-        character = {
-            success_symbol = "[<0> ~](bold green)$username$directory(bold green)";
-            error_symbol = "[<0> ~](bold red)$username$directory(bold red)";
+        directory = {
+            format = "[ ](bold #89b4fa)[ $path ]($style)";
+            style = "bold #b4befe";
         };
 
-        shell = {
+        character = {
+            # Old 
+            #success_symbol = "[<0> ~](bold green)$username$directory(bold green)";
+            #error_symbol = "[<0> ~](bold red)$username$directory(bold red)";
+            success_symbol = "[ ](bold #89b4fa)[ ➜](bold green)";
+            error_symbol = "[ ](bold #89b4fa)[ ➜](bold red)";
+        };
+
+        cmd_duration = {
+            format = "[󰔛 $duration]($style)";
+            disabled = false;
+            style = "bg:none fg:#f9e2af";
+            show_notifications = false;
+            min_time_to_notify = 60000;
+        };
+
+        /* shell = {
             disabled = false;
             format = "$indicator";
             fish_indicator = "(bright-white) ";
@@ -66,7 +83,7 @@
             symbol = "";
             format = "[$symbol$name]($style) ";
             style = "bright-purple bold";
-        };
+        }; */
 
         package.disabled = true;
     };
@@ -74,9 +91,9 @@
 
 #= Direnv
   programs.direnv = {
-    enable = true;
-    nix-direnv.enable = true;
+      enable = true;
     loadInNixShell = true;
+    nix-direnv.enable = true;
   };
 
 }

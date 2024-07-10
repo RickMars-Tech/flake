@@ -2,19 +2,10 @@
 
 {
 #==> TmpFiles
-
-  systemd.tmpfiles.rules = let
-    rocmEnv = pkgs.symlinkJoin {
-      name = "rocm-combined";
-      paths = with pkgs.rocmPackages; [
-        rocblas
-        hipblas
-        clr
-      ];
-    };
-  in [
-      "L+    /opt/rocm   -    -    -     -    ${rocmEnv}"
-      # https://wiki.archlinux.org/title/Gaming#Make_the_changes_permanent
+  systemd.tmpfiles.rules = [
+      # ROCm
+      "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
+      # https://wiki.archlinux.org/title/Gaming#Make_the_changes_permanent.
       "w     /proc/sys/vm/compaction_proactiveness - - - - 0"
       "w     /proc/sys/vm/watermark_boost_factor - - - - 1"
       "w     /proc/sys/vm/min_free_kbytes - - - - 1048576"
@@ -32,10 +23,14 @@
       "w     /sys/kernel/debug/sched/base_slice_ns  - - - - 3000000"
       "w     /sys/kernel/debug/sched/migration_cost_ns - - - - 500000"
       "w     /sys/kernel/debug/sched/nr_migrate - - - - 8"
-      # https://github.com/CachyOS/CachyOS-Settings/blob/master/etc/tmpfiles.d/thp.conf
+      # https://github.com/CachyOS/CachyOS-Settings/blob/master/etc/tmpfiles.d/thp.conf.
       "w!    /sys/kernel/mm/transparent_hugepage/defrag - - - -  defer+madvise"
       "w!    /sys/class/rtc/rtc0/max_user_freq - - - -  3072"
       "w!    /proc/sys/dev/hpet/max-user-freq  - - - -  3072"
+      # for some reason *this* is what makes networkmanager not get screwed completely instead of the impermanence module.
+      "L     /var/lib/NetworkManager/secret_key - - - - /persist/var/lib/NetworkManager/secret_key"
+      "L     /var/lib/NetworkManager/seen-bssids - - - - /persist/var/lib/NetworkManager/seen-bssids"
+      "L     /var/lib/NetworkManager/timestamps - - - - /persist/var/lib/NetworkManager/timestamps"
   ];
 
 #==> LACT Service. 
@@ -46,48 +41,51 @@
     wantedBy = [ "multi-user.target" ]; # add this if you want the unit to auto start at boot time 
   };
 
-#==> PCI Latency Service.
-  systemd.services.pci-latency = {
-      description = "Adjust Latency timers for PCI Peripherals";
-      wantedBy = [ "multi-user.target" ];
-      serviceConfig = {
-          Type = "oneshot";
-          ExecStart = "/usr/bin/pci-latency";
-      };
-  };
-
 #=> Polkit Service.
-  systemd.user.services.polkit-gnome-authentication-agent-1 = {
-    description = "polkit-gnome-authentication-agent-1";
-    wantedBy = [ "graphical-session.target" ];
-    wants = [ "graphical-session.target" ];
-    after = [ "graphical-session.target" ];
-    serviceConfig = {
-        Type = "simple";
-        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-        Restart = "on-failure";
-        RestartSec = 1;
-        TimeoutStopSec = 10;
+    systemd.user.services.polkit-gnome-authentication-agent-1 = {
+        description = "polkit-gnome-authentication-agent-1";
+        wantedBy = [ "graphical-session.target" ];
+        wants = [ "graphical-session.target" ];
+        after = [ "graphical-session.target" ];
+        serviceConfig = {
+            Type = "simple";
+            ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+            Restart = "on-failure";
+            RestartSec = 1;
+            TimeoutStopSec = 10;
+        };
     };
-  };
+
+#=> Greetd Service
+# https://www.reddit.com/r/NixOS/comments/u0cdpi/tuigreet_with_xmonad_how/
+    systemd.services.greetd.serviceConfig = {
+        Type = "idle";
+        StandardInput = "tty";
+        StandardOutput = "tty";
+        StandardError = "journal"; # Without this errors will spam on screen
+        # Without these bootlogs will spam on screen
+        TTYReset = true;
+        TTYVHangup = true;
+        TTYVTDisallocate = true;
+    };
 
 #==> Extra Configurations
   systemd.extraConfig = ''
-      [Manager]
-      DefaultTimeoutStartSec=15s
-      DefaultTimeoutStopSec=10s
-      ...
       [Manager]
       DefaultLimitNOFILE=2048:2097152
     '';
   systemd.user.extraConfig = ''
       [Manager]
       DefaultLimitNOFILE=2048:1048576
-      ...
-      [Service]
-      MemoryKSM=yes
-      ...
-      [Service]
-      Delegate=cpu cpuset io memory pids
     '';
+
+#==> Jourdnald
+  services.journald = {
+      extraConfig = ''
+          SystemMaxUse=50M
+          RuntimeMaxUse=10M
+      '';
+      rateLimitBurst = 500;
+      rateLimitInterval = "30s";
+  };
 }

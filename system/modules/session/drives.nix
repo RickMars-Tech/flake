@@ -9,7 +9,7 @@
 
  #= Swap
   zramSwap = {
-      enable = true;
+      enable = lib.mkDefault true;
       priority = 100;
       memoryPercent = 50;
       algorithm = "zstd";

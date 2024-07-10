@@ -1,15 +1,6 @@
 { config, pkgs, lib, ... }:
 
 {
-#==> Apparmor <==#
-  security.apparmor = {
-    enable = true;
-    enableCache = true;
-    packages = with pkgs; [
-        apparmor-kernel-patches
-        apparmor-profiles
-    ];
-  };
 
 #==> Polkit <==#
   security.polkit.enable = true;
