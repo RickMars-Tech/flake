@@ -4,24 +4,32 @@
 
     programs.foot = {
         enable = true;
+        server.enable = true;
         settings = {
+            
             main = {
                 font = "DaddyTimeMono Nerd Font:size=12";
+                font-bold = "DaddyTimeMono Nerd Font:size=12";
+                font-italic = "DaddyTimeMono Nerd Font:size=12";
+                font-bold-italic = "DaddyTimeMono Nerd Font:size=12";
+                dpi-aware = "no";
             };
 
             url.osc8-underline = "always";
 
             cursor = {
-                style = "beam";
+                style = "block";
                 unfocused-style = "unchanged";
                 blink = "yes";
             };
-
             mouse = {
                 hide-when-typing = "yes";
+                alternate-scroll-mode = "yes";
             };
 
             key-bindings = {
+                clipboard-copy = "Control+Shift+c";
+                clipboard-paste = "Control+Shift+v";
                 scrollback-up-page = "Control+Shift+Page_Up";
                 scrollback-down-page = "Control+Shift+Page_Down";
                 scrollback-up-line = "Control+Shift+Up";

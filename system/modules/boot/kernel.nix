@@ -27,7 +27,6 @@
       "quiet"
       "splash"
       "loglevel=0"
-      "nmi_watchdog=0"
       "nowatchdog"
   ];
 
@@ -58,6 +57,7 @@
       "fs.inotify.max_user_watches" = 524288;
       "net.core.netdev_max_backlog" = 16384;
       "net.core.somaxconn" = 8192;
+      "net.ipv4.ping_group_range" = 65535;
       "net.ipv4.tcp_slow_start_after_idle" = 0;
     };
 

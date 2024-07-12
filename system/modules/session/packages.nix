@@ -43,6 +43,8 @@
     wget
     libreoffice
     yarn
+ #= Blender
+    blender
  #= C/C++
     boost
     cmake
@@ -154,7 +156,12 @@
     ffmpeg-headless
     ffmpegthumbnailer
  #= Media Player
-    mpv
+    (pkgs.mpv-unwrapped.wrapper {
+        mpv = pkgs.mpv-unwrapped.override {
+            ffmpeg = pkgs.ffmpeg-full;
+            waylandSupport = true;
+        };
+    })
   ];
 
  #= Java =#

@@ -10,6 +10,11 @@
 
         hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
 
+        lix = {
+            url = "https://git.lix.systems/lix-project/nixos-module/archive/2.90.0.tar.gz";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
+
         nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
         nix-flatpak.url = "github:gmodena/nix-flatpak";
@@ -19,6 +24,7 @@
     outputs = inputs@{
         home-manager,
         hyprland,
+        lix,
         nixpkgs,
         nix-flatpak,
         self,
@@ -41,6 +47,8 @@
                 ./system/configuration.nix
 
                 home-manager.nixosModules.home-manager
+
+                lix.nixosModules.default
 
                 nix-flatpak.nixosModules.nix-flatpak
 

@@ -5,12 +5,12 @@
  #= AMD P-STATE EPP
     amdctl
  #= ROCm
-    rocmPackages.rocm-core
-    rocmPackages.rocm-runtime 
-    rocmPackages.clr
-    rocmPackages.rocm-smi # Managment interface
-    rocmPackages.rocminfo # ROCm app for reporting System info
-    rocmPackages.rocm-device-libs
+    #rocmPackages.rocm-core
+    #rocmPackages.rocm-runtime 
+    #rocmPackages.clr
+    #rocmPackages.rocm-smi # Managment interface
+    #rocmPackages.rocminfo # ROCm app for reporting System info
+    #rocmPackages.rocm-device-libs
  #= Vulkan
     gfxreconstruct
     glslang

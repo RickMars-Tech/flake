@@ -21,17 +21,17 @@
       audio-file-auto = "fuzzy"; # Load additional audio files containing the video filename
 
     # ===== Video
-      vo = "gpu";
-      hwdec = "auto-safe";
+      #vo = "gpu";
+      hwdec = "no"; #"vaapi"; #"auto-safe";
       pause = "no";
-      profile = "fast"; #"gpu-hq";
+      profile = "gpu-hq";
       gpu-context = "wayland";
       gpu-api = "vulkan";
       vulkan-queue-count = 4;
       video-sync = "display-resample";
       interpolation = true;
       tscale = "oversample";
-      fullscreen = true;
+      fullscreen = false;
 
     # ===== RAM
       cache = "yes"; # uses a large seekable RAM cache even for local input.
@@ -65,16 +65,17 @@
       msg-module = "yes"; # prepend module name to log messages
       term-osd-bar = "yes"; # displays a progress bar on the terminal
     };
+
     bindings = {
-      "ctrl+a" = "script-message osc-visibility cycle";
-      UP = "add volume +5";
-      DOWN = "add volume -5";
+        "ctrl+a" = "script-message osc-visibility cycle";
+        UP = "add volume +5";
+        DOWN = "add volume -5";
     };
     scripts = with pkgs.mpvScripts; [
-      mpris
-      uosc
-      thumbfast
-      sponsorblock
+        mpris
+        uosc
+        thumbfast
+        sponsorblock
     ];
   };
 }

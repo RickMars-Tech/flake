@@ -12,6 +12,7 @@
     #= Declare packages to install with ID of the Aplication
         packages = [
             "io.github.hmlendea.geforcenow-electron"
+            "com.boxy_svg.BoxySVG"
             "com.github.tchx84.Flatseal"
         ];
         overrides = {

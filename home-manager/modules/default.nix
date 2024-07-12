@@ -9,7 +9,6 @@
         ./firefox/default.nix
         ./foot/default.nix
         ./hyprland/default.nix
-        #./kitty/default.nix
         ./mpv/default.nix
         ./rofi/default.nix
         ./steam/default.nix

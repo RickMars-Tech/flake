@@ -2,17 +2,18 @@
 
 {
 #==> TmpFiles
-  systemd.tmpfiles.rules = let
-    rocmEnv = pkgs.symlinkJoin {
-      name = "rocm-combined";
-      paths = with pkgs.rocmPackages; [
-        rocblas
-        hipblas
-        clr
-      ];
-    };
-    in [
-      "L+    /opt/rocm   -    -    -     -    ${rocmEnv}"
+systemd.tmpfiles.rules = 
+    /*let
+      rocmEnv = pkgs.symlinkJoin {
+        name = "rocm-combined";
+        paths = with pkgs.rocmPackages; [
+          rocblas
+          hipblas
+          clr
+        ];
+      };
+    in */ [
+      #"L+    /opt/rocm   -    -    -     -    ${rocmEnv}"
       # https://wiki.archlinux.org/title/Gaming#Make_the_changes_permanent.
       "w     /proc/sys/vm/compaction_proactiveness - - - - 0"
       "w     /proc/sys/vm/watermark_boost_factor - - - - 1"
