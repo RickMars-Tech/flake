@@ -22,6 +22,7 @@
     # Terminal
     #kitty
     foot
+    zellij
     # Top bar
     #eww
     # Hyprland

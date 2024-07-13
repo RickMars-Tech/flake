@@ -14,6 +14,7 @@
         ./steam/default.nix
         ./waybar/default.nix
         ./wlogout/default.nix
+        ./zellij/default.nix
     ];
 
 }

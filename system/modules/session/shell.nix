@@ -19,6 +19,12 @@
       ntop = "zfxtop";
     };
     interactiveShellInit = "
+
+    if set -q ZELLIJ
+    else
+        zellij
+    end
+
     function fish_greeting
         fastfetch
     end

@@ -13,9 +13,13 @@
                 font-italic = "DaddyTimeMono Nerd Font:size=12";
                 font-bold-italic = "DaddyTimeMono Nerd Font:size=12";
                 dpi-aware = "no";
+                initial-window-size-chars = "82x23";
+                initial-window-mode = "windowed";
             };
 
-            url.osc8-underline = "always";
+            url = {
+                osc8-underline = "always";
+            };
 
             cursor = {
                 style = "block";

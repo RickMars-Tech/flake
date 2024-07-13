@@ -42,14 +42,11 @@
         nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
             inherit system;
             inherit lib;
-            modules = [ 
+            modules = [
 
                 ./system/configuration.nix
-
                 home-manager.nixosModules.home-manager
-
                 lix.nixosModules.default
-
                 nix-flatpak.nixosModules.nix-flatpak
 
                 {
