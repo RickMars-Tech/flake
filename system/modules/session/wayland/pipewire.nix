@@ -21,7 +21,32 @@
                     ["bluez5.enable-hw-volume"] = true,
                     ["bluez5.headset-roles"] = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]"
                 }
-      	    '')
+            '')
+            (pkgs.writeTextFile {
+                name = "wireplumber-audio-fixes";
+                text = ''
+                    rule = {
+                        matches = {{{"device.name", "equals", "alsa_card.pci-0000_03_00.6.pro-output-0"}}};
+
+                        apply_properties = {
+                            ["audio.format"] = "U32BE";
+                            ["node.disabled"] = false,
+                            ["channelmix.normalize"] = true,
+                            ["channelmix.mix-lfe"] = true,
+                            ["channelmix.disable"] = false,
+                            ["monitor.channel-volumes"] = false,
+                            ["device.disabled"] = false,
+                            ["node.pause-on-idle"] = false,
+                            ["node.disabled"] = false,
+                            ["resample.quality"] = 4,
+                            ["resample.disable"] = false,
+                        },
+                    }
+
+                   table.insert(alsa_monitor.rules,rule)
+                '';
+                destination = "/share/wireplumber/main.lua.d/51-disable-audio-fixes.lua";
+            })
         ];
     };
     extraConfig = {

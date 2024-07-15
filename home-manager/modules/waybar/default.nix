@@ -12,7 +12,7 @@
 
                  "modules-left" = [ "custom/nix" "hyprland/workspaces" "hyprland/window" ];
                  "modules-center" = [ "clock" ];
-                 "modules-right" = [ "gamemode" "tray" "cpu" "memory" "temperature" "battery" "wireplumber" "backlight" "network" ];
+                 "modules-right" = [ "gamemode" "tray" "cpu" "memory" "battery" "temperature" "backlight" "wireplumber" "network" ];
 
                  ##--------------------------
                  ## Hyprland Workspaces
@@ -25,12 +25,12 @@
                      "on-scroll-down" = "hyprctl dispatch workspace e-1";
                      "format-icons" = {
                         "1" = "";
-                        "2" = "󰊗";
-                        "3" = "";
-                        "4" = "";
-                        "5" = "";
-                        "6" = "";
-                        "7" = "";
+                        "2" = "󱎓";
+                        "3" = "󰈹";
+                        "4" = "󰙯";
+                        "5" = "";
+                        "6" = "󰹉";
+                        "7" = "󰈔";
                         "8" = "󰋊";
                         "9" = "";
                         "10" = "";
@@ -46,7 +46,7 @@
                 };
 
                 "custom/nix" = {
-                    "format" = " ";
+                    "format" = "";
                 };
 
                 ##--------------------------
@@ -54,7 +54,7 @@
                 ##--------------------------
                 "wireplumber" = {
                     "format" = "{volume}% {icon}";
-                    "format-icons" = ["" "" "󰕾" ""];
+                    "format-icons" = [ "" "" "" ""];
                     "on-click" = "wpctl";
                 };
 
@@ -108,7 +108,7 @@
                 ##--------------------------
                 "memory" = {
                     "interval" = 5;
-                    "format" = "󰗉 {used:0.1f}G/{total:0.1f}G";
+                    "format" = "  {used:0.1f}G/{total:0.1f}G";
                     "states" = {
                         "warning" = 70;
                         "critical" = 90;
@@ -121,9 +121,9 @@
                 ##--------------------------
                 "network" = {
                     "interval" = 5;
-                    "format-wifi" = "  Connected";
+                    "format-wifi" = "󰤨  Connected";
                     "format-ethernet" = "󰈀 {essid}";
-                    "format-disconnected" = "No connection";
+                    "format-disconnected" = "󰤮";
                     "format-alt" = "󰈀 {essid}";
                     "tooltip" = false;
                 };
