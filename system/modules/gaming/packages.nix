@@ -1,6 +1,5 @@
-{ config, pkgs, lib, input, ... }:
+{ config, pkgs, lib, input, ... }: {
 
-{
  environment.systemPackages = with pkgs; [
  #= AMD P-STATE EPP
     amdctl

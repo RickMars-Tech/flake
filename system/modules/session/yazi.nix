@@ -1,6 +1,5 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, ... }: {
 
-{
 #= File Managers
   # Yazi
   programs.yazi = {

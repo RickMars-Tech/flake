@@ -1,6 +1,5 @@
-{ config, pkgs, lib, inputs, ... }:
+{ config, pkgs, lib, inputs, ... }: {
 
-{
  #=> NixLD <=#
   programs.nix-ld = {
     enable = true;

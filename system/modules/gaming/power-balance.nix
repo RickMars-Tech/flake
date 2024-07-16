@@ -1,6 +1,4 @@
-{ config, pkgs, lib, inputs, ... }:
-
-{
+{ config, pkgs, lib, inputs, ... }: {
 
 #= Scheduler System-76
     services.system76-scheduler = {

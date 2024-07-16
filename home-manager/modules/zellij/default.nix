@@ -1,6 +1,4 @@
-{ config, pkgs, lib, ...}:
-
-{
+{ config, pkgs, lib, ...}: {
 
     programs.zellij = {
         enable = true;

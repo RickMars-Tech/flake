@@ -35,7 +35,7 @@
       }
       {
         label = "suspend";
-        action = "${pkgs.hyprlock}/bin/hyprlock";
+        action = "systemctl suspend";
         text = "Suspend";
         keybind = "u";
       }
@@ -49,58 +49,28 @@
             transition: 15ms;
         }
 
-        @define-color bar-bg rgba(0, 0, 0, 0);
-
-        @define-color text-color-m #FFFFFF;
-        @define-color text-color-h #000000;
-        @define-color text-color-f #000000;
-
-        @define-color main-bg rgba( 14, 14, 23, 0.70);
-        @define-color main-fg rgba(205, 214, 244, 0.80);
-
-        @define-color wb-act-bg rgba(166, 173, 200, 0.80);
-        @define-color wb-act-fg rgba(49, 50, 68, 0.80);
-
-        @define-color wb-hvr-bg rgba(245, 194, 231, 0.80);
-        @define-color wb-hvr-fg rgba(49, 50, 68, 0.80);
-
+        /** ********** Main Window ********** **/
         window {
-            background-color: @main-bg;
+            background-color: rgba( 14, 14, 23, 0.70); /* #1E1E2E; */
         }
 
+        /** ********** Buttons ********** **/
         button {
-            color: @text-color-m;
-            background-color: transparent;
-            border-style: none;
+            background-color: rgba( 14, 14, 23, 0.80); /* #242434; */
+            color: #FFFFFF;
+            border: 2px solid #282838;
+            border-radius: 20px;
             background-repeat: no-repeat;
             background-position: center;
             background-size: 35%;
-            border-radius:30px;
-            font-size: 18px;
-            margin: 182px 5px;
-            text-shadow: 0px 0px;
-            box-shadow: 0px 0px;
-            animation: gradient_f 20s ease-in infinite;
-            transition: all 0.3s cubic-bezier(.55,0.0,.28,1.682);
         }
 
-        button:focus {
-            color: @text-color-f;
-            background-color: @wb-act-bg;
-            background-size: 40%;
+        button:focus, button:active, button:hover {
             animation: gradient_f 20s ease-in infinite;
             transition: all 0.3s cubic-bezier(.55,0.0,.28,1.682);
+            background-color: rgba(270, 155, 255, 0.80); /* #89B4FA; */
+            outline-style: none;
         }
-
-        button:hover {
-            color: @text-color-h;
-            background-color: @wb-hvr-bg;
-            background-size: 50%;
-            animation: gradient_f 20s ease-in infinite;
-            transition: all 0.3s cubic-bezier(.55,0.0,.28,1.682);
-        }
-
-
 
         /* 
         ----------------------------------------------------- 
@@ -108,56 +78,28 @@
         -----------------------------------------------------
         */
 
-        #lock,#logout,#shutdown,#reboot,#hibernate,#suspend {
-            margin: 10px;
-        }
-
         #lock {
-            background-image: image(url("icons/lock_black.png"));
-        }
-        #lock:focus,
-        #lock:hover {
-            background-image: image(url("icons/lock_white.png"));
+            background-image: image(url("icons/lock.png"));
         }
 
         #logout {
-            background-image: image(url("icons/logout_black.png"));
-        }
-        #logout:focus,
-        #logout:hover {
-            background-image: image(url("icons/logout_white.png"));
+            background-image: image(url("icons/logout.png"));
         }
 
         #shutdown {
-            background-image: image(url("icons/shutdown_black.png"));
-        }
-        #shutdown:focus,
-        #shutdown:hover {
-            background-image: image(url("icons/shutdown_white.png"));
+            background-image: image(url("icons/shutdown.png"));
         }
 
         #reboot {
-            background-image: image(url("icons/reboot_black.png"));
-        }
-        #reboot:focus,
-        #reboot:hover {
-            background-image: image(url("icons/reboot_white.png"));
+            background-image: image(url("icons/reboot.png"));
         }
 
         #hibernate {
-            background-image: image(url("icons/hibernate_black.png"));
-        }
-        #hibernate:focus,
-        #hibernate:hover {
-            background-image: image(url("icons/hibernate_white.png"));
+            background-image: image(url("icons/hibernate.png"));
         }
 
         #suspend {
-            background-image: image(url("icons/suspend_black.png"));
-        }
-        #suspend:focus,
-        #suspend:hover {
-            background-image: image(url("icons/suspend_white.png"));
+            background-image: image(url("icons/suspend.png"));
         }
     '';
   };

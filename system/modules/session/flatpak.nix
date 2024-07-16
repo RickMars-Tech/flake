@@ -1,6 +1,5 @@
-{ config, pkgs, lib, input, ...}:
+{ config, pkgs, lib, input, ...}: {
 
-{
 #==> Declare Flatpak Config/Packages <==#
 
     services.flatpak = {

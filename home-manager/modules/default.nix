@@ -1,6 +1,4 @@
-{ config, pkgs, lib, ... }:
-
-{
+{ config, pkgs, lib, ... }: {
 
     imports = [
         ./dri/default.nix
@@ -13,6 +11,7 @@
         ./rofi/default.nix
         ./steam/default.nix
         ./waybar/default.nix
+        ./wireplumber/default.nix
         ./wlogout/default.nix
         ./zellij/default.nix
     ];

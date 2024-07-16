@@ -1,6 +1,4 @@
-{ config, pkgs, lib, inputs, ... }:
-
-{
+{ config, pkgs, lib, inputs, ... }: {
 
   programs.firefox = {                  
     enable = true;
@@ -170,6 +168,14 @@
           "extensions.pocket.enabled" = false;
           "findbar.highlightAll" = true;
           "loop.enabled" = false;
+
+          # Disable Browse With Caret
+          "accessibility.browsewithcaret" = false;
+          "accessibility.browsewithcaret_shortcut.enabled" = false;
+          "accessibility.warn_on_browsewithcaret" = false;
+          "services.sync.prefs.sync-seen.accessibility.browsewithcaret" = false;
+          "services.sync.prefs.sync.accessibility.browsewithcaret" = false;
+          "services.sync.prefs.sync-seen.services.sync.prefs.sync.accessibility.browsewithcaret" = false;
 
           # Advanced DOM and Events Configuration
           "dom.enable_web_task_scheduling" = true;

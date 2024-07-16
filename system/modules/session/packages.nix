@@ -1,6 +1,5 @@
-{ config, pkgs, lib, input, ... }:
+{ config, pkgs, lib, input, ... }: {
 
-{
  #= Config Of General Packages
 
  #= Allow unfree packages

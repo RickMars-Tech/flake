@@ -1,6 +1,5 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, ... }: {
 
-{
  #= Neovim
   programs.neovim = {
     enable = true;

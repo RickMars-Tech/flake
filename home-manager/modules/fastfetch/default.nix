@@ -1,6 +1,4 @@
-{ config, pkgs, lib, ... }:
-
-{
+{ config, pkgs, lib, ... }: {
 
     programs.fastfetch = {
         enable = true;
@@ -22,7 +20,7 @@
                 }
                 {
                     "type" = "custom"; # Operative System
-                    "format" = "┌──────[ OS ]";
+                    "format" = "┌──────[  OS  ]";
                 }
                 {
                     "type" = "os";
@@ -48,7 +46,7 @@
 
                 {
                     "type" = "custom"; # HardwareStart
-                    "format" = "├──────[ Hardware Information ]";
+                    "format" = "├──────[  Hardware Information  ]";
                 }
                 {
                     "type" = "cpu";
@@ -97,7 +95,7 @@
 
                 {
                     "type" = "custom"; #Terminal
-                    "format" = "├─────[ Terminal ]";
+                    "format" = "├─────[  Terminal  ]";
                 }
                 {
                     "type" = "shell";

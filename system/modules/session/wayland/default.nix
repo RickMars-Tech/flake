@@ -1,6 +1,5 @@
-{ config, pkgs, lib, inputs, ...}:
+{ config, pkgs, lib, inputs, ...}: {
 
-{
     imports = [
         ./hyprland.nix
         ./pipewire.nix

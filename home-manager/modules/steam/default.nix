@@ -1,6 +1,5 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, ... }: {
 
-{
     home.file.steam-slow-fix = {
         enable = true;
         text = ''

@@ -1,6 +1,5 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, ... }: {
 
-{
 #==> TmpFiles
 systemd.tmpfiles.rules = 
     /*let

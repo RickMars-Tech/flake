@@ -1,6 +1,5 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, ... }: {
 
-{
 #= Top Bar
   programs.waybar = {
     enable = true;

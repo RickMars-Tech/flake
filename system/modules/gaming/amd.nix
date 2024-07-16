@@ -1,6 +1,4 @@
-{ config, pkgs, lib, inputs, ... }:
-
-{
+{ config, pkgs, lib, inputs, ... }: {
 
 #=> OpenGL, Drivers and more... 
     hardware.graphics.enable = true;

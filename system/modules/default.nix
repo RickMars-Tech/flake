@@ -1,6 +1,5 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, pkgs, inputs, ... }: {
 
-{
     imports = [
         ./boot/default.nix
         ./gaming/default.nix

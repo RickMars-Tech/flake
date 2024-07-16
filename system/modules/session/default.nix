@@ -1,6 +1,5 @@
-{ config, lib, pkgs, ...}:
+{ config, lib, pkgs, ...}: {
 
-{
     imports = [
         ./drives.nix
         ./env.nix

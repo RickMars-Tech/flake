@@ -1,6 +1,5 @@
-{ config, pkgs, lib, input,... }:
+{ config, pkgs, lib, input,... }: {
 
-{
 #==> Drives <==#
 
  #= Enable Trim Needed for SSD's
