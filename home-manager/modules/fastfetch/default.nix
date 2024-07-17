@@ -21,6 +21,7 @@
                 {
                     "type" = "custom"; # Operative System
                     "format" = "┌──────[  OS  ]";
+                    "outputColor" = "250";
                 }
                 {
                     "type" = "os";
@@ -33,20 +34,13 @@
                 }
                 {
                     "type" = "packages";
-                    "key" = " ├─󰏖";
-                }
-                {
-                    "type" = "de";
-                    "key" = " ├─";
-                }
-                {
-                    "type" = "wm";
-                    "key" = " ╰─";
+                    "key" = " ╰─󰏖";
                 }
 
                 {
                     "type" = "custom"; # HardwareStart
                     "format" = "├──────[  Hardware Information  ]";
+                    "outputColor" = "90";
                 }
                 {
                     "type" = "cpu";
@@ -62,15 +56,15 @@
                 }
                 {
                     "type" = "memory";
-                    "key" = " ├─󰑭";
+                    "key" = " ├─";
                 }
                 {
                     "type" = "swap";
-                    "key" = " ├─󰓡";
+                    "key" = " ├─󰯍";
                 }
                 {
                     "type" = "display";
-                    "key" = " ├─󰍹";
+                    "key" = " ├─󰹑";
                 }
                 {
                     "type" = "brightness";
@@ -85,10 +79,6 @@
                     "key" = " ├─";
                 }
                 {
-                    "type" = "bluetooth";
-                    "key" = " ├─";
-                }
-                {
                     "type" = "sound";
                     "key" = " ╰─";
                 }
@@ -96,10 +86,11 @@
                 {
                     "type" = "custom"; #Terminal
                     "format" = "├─────[  Terminal  ]";
+                    "outputColor" = "90";
                 }
                 {
                     "type" = "shell";
-                    "key" = " ╭─";
+                    "key" = " ╭─";
                 }
                 {
                     "type" = "terminal";
@@ -109,10 +100,11 @@
                 {
                     "type" = "custom"; # InformationEnd
                     "format" = "└──────────────────────────────────────────────┘";
+                    "outputColor" = "90";
                 }
                 {
                     "type" = "colors";
-                    "paddingLeft" = 2;
+                    "paddingLeft" = 4;
                     "symbol" = "circle";
                 }
 

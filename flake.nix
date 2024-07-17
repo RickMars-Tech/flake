@@ -3,19 +3,19 @@
 
     inputs = {
 
-        home-manager = {
-            url = "github:nix-community/home-manager";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
-
-        hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+        nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
         lix = {
             url = "https://git.lix.systems/lix-project/nixos-module/archive/2.90.0.tar.gz";
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
-        nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+        home-manager = {
+            url = "github:nix-community/home-manager";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
+
+        hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
 
         nix-flatpak.url = "github:gmodena/nix-flatpak";
 
@@ -45,6 +45,7 @@
             modules = [
 
                 ./system/configuration.nix
+                
                 home-manager.nixosModules.home-manager
                 lix.nixosModules.default
                 nix-flatpak.nixosModules.nix-flatpak

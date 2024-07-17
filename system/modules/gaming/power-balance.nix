@@ -2,8 +2,8 @@
 
 #= Scheduler System-76
     services.system76-scheduler = {
-        enable = lib.mkDefault true;
-        useStockConfig = lib.mkDefault true;
+        enable = true;
+        settings.cfsProfiles.enable = true;
     };
 
 #= IRQBalance

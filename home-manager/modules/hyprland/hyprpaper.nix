@@ -4,13 +4,13 @@
         enable = true;
         settings = {
             ipc = "on";
-            splash = true;
+            splash = false;
             splash_offset = 2.0;
 
             preload =
                 [ "~/wal/arcane.png" "~/wal/spaceman.png" "~/wal/alone.png" ];
             wallpaper = 
-                [ "DP-1,~/wal/alone.png" ];
+                [ "eDP-1,~/wal/alone.png" ];
         };
     };
 
