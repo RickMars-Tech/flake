@@ -21,7 +21,7 @@
             createDirectories = true;
         };
     };
-    
+
 #= Wallpapers
     home.file."wal" = {
         source = ./wal;
