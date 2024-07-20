@@ -21,7 +21,7 @@
                 {
                     "type" = "custom"; # Operative System
                     "format" = "┌──────[  OS  ]";
-                    "outputColor" = "250";
+                    "outputColor" = "blue";
                 }
                 {
                     "type" = "os";
@@ -40,7 +40,7 @@
                 {
                     "type" = "custom"; # HardwareStart
                     "format" = "├──────[  Hardware Information  ]";
-                    "outputColor" = "90";
+                    "outputColor" = "blue";
                 }
                 {
                     "type" = "cpu";
@@ -86,7 +86,7 @@
                 {
                     "type" = "custom"; #Terminal
                     "format" = "├─────[  Terminal  ]";
-                    "outputColor" = "90";
+                    "outputColor" = "blue";
                 }
                 {
                     "type" = "shell";
@@ -100,7 +100,7 @@
                 {
                     "type" = "custom"; # InformationEnd
                     "format" = "└──────────────────────────────────────────────┘";
-                    "outputColor" = "90";
+                    "outputColor" = "blue";
                 }
                 {
                     "type" = "colors";

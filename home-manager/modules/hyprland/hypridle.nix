@@ -18,7 +18,7 @@
                 {
                     timeout = 600;
                     on-timeout = "hyprctl dispatch dpms off";
-                    on-resume = ''hyprctl dispatch dpms on && ${pkgs.libnotify}/bin/notify-send "Welcome back to your desktop!"'';
+                    on-resume = "hyprctl dispatch dpms on";
                 }
             ];
         };

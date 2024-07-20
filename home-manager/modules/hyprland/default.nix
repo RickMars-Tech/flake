@@ -192,7 +192,7 @@
                 #"SUPER, E, exec, kitty -e yazi"
                 "SUPER, E, exec, foot -e yazi"
                 "SUPER, S, togglesplit, # dwindle"
-                "SUPER, R, exec, rofi -show drun -show-icons"
+                "SUPER, R, exec, pkill rofi || rofi -show drun -show-icons"
                 "CTRL SHIFT, H, exec, hyprpicker -r -a"
 
                 # Audio
@@ -259,12 +259,10 @@
                 "SUPER, mouse:273, resizewindow"
             ];
 
-            bindl = [
-                # Clamshell mode configuration
-                # Lid is opened
-                ",switch:off:Lid Switch, exec, ~/.config/hypr/lid.sh open"
-                # Lid is closed
-                ",switch:on:Lid Switch, exec, ~/.config/hypr/lid.sh close"
+            bindl = [ # You can view your switches in hyprctl devices.
+                ",switch:Lid Switch,exec,${pkgs.hyprlock}/bin/hyprlock"
+                #",switch:on:Lid Switch,exec,hyprctl keyword monitor ''eDP-1, disable''"
+                #",switch:off:Lid Switch,exec,hyprctl keyword monitor ''eDP-1,highres,auto,1''"
             ];
 
             windowrulev2 = [
@@ -315,12 +313,18 @@
                 # PulseAudio (Pavucontrol).
                 "float,class:^(pavucontrol)$"
 
+                # Firefox
+                "float,title:^(Extension: (Bitwarden Password Manager) - Bitwarden — Mozilla Firefox)$"
+                "nomaxsize,title:^(Extension: (Bitwarden Password Manager) - Bitwarden — Mozilla Firefox)$"
+
                 # Steam
                 "stayfocused, title:^()$,class:^(steam)$"
                 "minsize 1 1, title:^()$,class:^(steam)$"
                 "noblur,class:(steam)$"
                 "forcergbx,class:(steam)$"
                 "float,title:^(Configuraciones de Steam)$"
+                "nomaxsize, class:^(net.davidotek.pupgui2)$"
+                "float, class:^(net.davidotek.pupgui2)$"
 
                 # Lutris
                 "float,class:^(lutris)$"
@@ -359,10 +363,6 @@
 
     xdg.configFile = {
         "hypr/xdph.conf".source = ./xdph.conf;
-        "hypr/scripts" = {
-            source = ./scripts;
-            recursive = true;
-        };
     };
 
 }
