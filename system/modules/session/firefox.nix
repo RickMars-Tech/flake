@@ -1,5 +1,7 @@
 { config, pkgs, lib, input, ... }:
 
+# DEPRECATED 
+
 {
  #= Firefox
   programs.firefox = {                  

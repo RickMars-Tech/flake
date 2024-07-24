@@ -9,7 +9,8 @@
         ./swap.nix
         ./modules/default.nix
     ];
-
+  
+  # Use Lix
     nix.package = pkgs.lix;
 
   # This value determines the NixOS release from which the default

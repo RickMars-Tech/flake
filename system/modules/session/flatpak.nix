@@ -4,9 +4,8 @@
 
     services.flatpak = {
         enable = true;
-        remotes = lib.mkOptionDefault [{
-            name = "flathub-beta";
-            location = "https://flathub.org/beta-repo/flathub-beta.flatpakrepo";
+        remotes = [{
+            name = "flathub"; location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
         }];
     #= Declare packages to install with ID of the Aplication
         packages = [

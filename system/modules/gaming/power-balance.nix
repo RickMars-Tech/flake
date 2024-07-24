@@ -1,12 +1,6 @@
 { config, pkgs, lib, inputs, ... }: {
 
-#= Scheduler System-76
-    services.system76-scheduler = {
-        enable = true;
-        settings.cfsProfiles.enable = true;
-    };
-
-#= IRQBalance
+#=> IRQBalance
     services.irqbalance.enable = lib.mkDefault true;
 
 #=> Gamemode

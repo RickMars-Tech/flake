@@ -20,23 +20,15 @@
         ];
     };
 
-#= LACT (Linux AMDGPU Controller).
-    environment.systemPackages = with pkgs; [
-        lact
-    ];
-
-#= MSR.
-    hardware.cpu.x86.msr.enable = true;
-
-#=> Firmware (mostly for battery life).
-    hardware.cpu.amd.updateMicrocode = lib.mkDefault true; # Update Microcode
-    hardware.enableAllFirmware = lib.mkDefault true;
-    hardware.enableRedistributableFirmware = lib.mkDefault true; # Lemme update my CPU Microcode, alr?!
-    hardware.firmware = with pkgs; [ linux-firmware ];
-
-  # Use https://github.com/fwupd/fwupd
-  # fwupdmgr get-updates # list updates
-  # fwupdmgr update # performs firmware update
-    services.fwupd.enable = true;
+#=> Hardware & Firmware
+    hardware = {
+        cpu = {
+            x86.msr.enable = true; #= MSR.
+            amd.updateMicrocode = true; # Update Microcode
+        };
+        enableAllFirmware = true;
+        enableRedistributableFirmware = lib.mkDefault true; # Lemme update my CPU Microcode, alr?!
+        firmware = with pkgs; [ linux-firmware ];
+    };
 
 }

@@ -4,7 +4,6 @@
         ./drives.nix
         ./env.nix
         ./flatpak.nix
-        ./git.nix
         ./login-manager.nix
         ./neovim.nix
         ./network.nix

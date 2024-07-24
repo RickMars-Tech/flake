@@ -1,22 +1,22 @@
 { config, pkgs, lib, ... }: {
 
-#=> SystemD-Boot.
     boot = {
         loader = {
             systemd-boot.enable = true;
             systemd-boot.consoleMode = "keep";
+            systemd-boot.configurationLimit = 20;
             efi.canTouchEfiVariables = true;
-            systemd-boot.configurationLimit = 15;
-    #=> Enable "Silent Boot".
             timeout = 5;
         };
-        plymouth.enable = true;
-        initrd.verbose = false;
-        consoleLogLevel = 0;
-    #=> Tpmfs
+        initrd = {
+            enable = true;
+            compressor = "zstd";
+            verbose = false;
+        };
         tmp = {
             useTmpfs = true;
             cleanOnBoot = true;
         };
+        consoleLogLevel = 0;
     };
 }
