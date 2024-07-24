@@ -30,18 +30,13 @@
             ];
 
             exec-once = [
-                "dbus-update-activation-environment --systemd --allx WAYLAND DISPLAY XDG_CURRENT_DESKTOP"
-                "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP" # for XDPH
-                "hyprpaper && hypridle"
-                "dunst"
+                "dbus-update-activation-environment --systemd --all WAYLAND DISPLAY XDG_CURRENT_DESKTOP"
                 "systemctl --user restart pipewire # Restart pipewire to avoid bugs"
-                "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
                 "xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 2"
                 "wl-clipboard-history -t"
                 "wl-paste --type text --watch cliphist store"
                 "wl-paste --type image --watch cliphist store"
                 "$POLKIT_BIN"
-                "/scripts/xdg-portal-hyprland"
                 "systemctl --user import-environment PATH && systemctl --user restart xdg-desktop-portal.service"
             ];
 
@@ -69,12 +64,12 @@
 
             general = {
                 "$mainMod" = "SUPER";
-                layout = "master";
-                gaps_in = 1;
-                gaps_out = 5;
+                layout = "dwindle";
+                gaps_in = 2;
+                gaps_out = 4;
                 border_size = 2;
-                "col.active_border" = "0x66FFFFFFF";
-                "col.inactive_border" = "0x66333333";
+                "col.active_border" = "0xff89dceb";
+                "col.inactive_border" = "0xff444444";
                 border_part_of_window = false;
                 no_border_on_floating = false;
             };
@@ -92,7 +87,7 @@
             };
 
             decoration = {
-                rounding = 5;
+                rounding = 7;
 
                 blur = {
                     enabled = false;
@@ -154,13 +149,13 @@
             };
 
             dwindle = {
-                no_gaps_when_only = true;
+                no_gaps_when_only = 0;
                 force_split = 0;
                 special_scale_factor = 1.0;
                 split_width_multiplier = 1.0;
                 use_active_for_splits = true;
-                pseudotile = "yes";
-                preserve_split = "yes";
+                pseudotile = true;
+                preserve_split = true;
             };
 
             master = {
@@ -191,7 +186,7 @@
                 "CTRL SHIFT, E, exec, nautilus"
                 #"SUPER, E, exec, kitty -e yazi"
                 "SUPER, E, exec, foot -e yazi"
-                "SUPER, S, togglesplit, # dwindle"
+                "SUPER, S, swapsplit, # dwindle"
                 "SUPER, R, exec, pkill rofi || rofi -show drun -show-icons"
                 "CTRL SHIFT, H, exec, hyprpicker -r -a"
 

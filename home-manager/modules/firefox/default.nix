@@ -16,6 +16,58 @@
             # Disable about:config warning
                 "browser.aboutConfig.showWarning" = "false";
 
+            # SECTION: Misc
+                "network.cookie.cookieBehavior" = 1;
+                "camera.control.face_detection.enabled" = false;
+                "browser.search.countryCode" = "MX";
+                "browser.search.region" = "MX";
+                "browser.search.geoip.url" = "";
+                "intl.accept_languages" = "es-MX, es";
+                "intl.locale.matchOS" = false;
+                "browser.search.geoSpecificDefaults" = false;
+                "clipboard.autocopy" = true;
+                "javascript.use_us_english_locale" = true;
+                "keyword.enabled" = true;
+                "browser.urlbar.trimURLs" = false;
+                "browser.urlbar.speculativeConnect.enabled" = false;
+                "browser.fixup.alternate.enabled" = false;
+                "browser.fixup.hide_user_pass" = true;
+                "network.proxy.socks_remote_dns" = true;
+                "network.manage-offline-status" = false;
+                "security.mixed_content.block_active_content" = true;
+                "security.mixed_content.block_display_content" = true;
+                "network.jar.open-unsafe-types" = false;
+                "security.xpconnect.plugin.unrestricted" = false;
+                "security.fileuri.strict_origin_policy" = true;
+                "browser.urlbar.filter.javascript" = true;
+                "javascript.options.asmjs" = false;
+                "media.video_stats.enabled" = false;
+                "general.buildID.override" = "20100101";
+                "browser.startup.homepage_override.buildID" = "20100101";
+                "browser.display.use_document_fonts" = 0;
+                "network.protocol-handler.warn-external-default" = true;
+                "network.protocol-handler.external.http" = false;
+                "network.protocol-handler.external.https" = false;
+                "network.protocol-handler.external.javascript" = false;
+                "network.protocol-handler.external.moz-extension" = false;
+                "network.protocol-handler.external.ftp" = false;
+                "network.protocol-handler.external.file" = false;
+                "network.protocol-handler.external.about" = false;
+                "network.protocol-handler.external.chrome" = false;
+                "network.protocol-handler.external.blob" = false;
+                "network.protocol-handler.external.data" = false;
+                "network.protocol-handler.expose-all" = false;
+                "network.protocol-handler.expose.http" = true;
+                "network.protocol-handler.expose.https" = true;
+                "network.protocol-handler.expose.javascript" = true;
+                "network.protocol-handler.expose.moz-extension" = true;
+                "network.protocol-handler.expose.ftp" = true;
+                "network.protocol-handler.expose.file" = true;
+                "network.protocol-handler.expose.about" = true;
+                "network.protocol-handler.expose.chrome" = true;
+                "network.protocol-handler.expose.blob" = true;
+                "network.protocol-handler.expose.data" = true;
+
             # SECTION: HTML5 / APIs / DOM
                 "dom.webnotifications.enabled" = false;
                 "dom.enable_performance" = false;
@@ -109,7 +161,6 @@
                 "browser.safebrowsing.downloads.remote.enabled" = false;
                 "browser.pocket.enabled" = false;
                 "extensions.pocket.enabled" = false;
-                "browser.newtabpage.activity-stream.feeds.section.topstories" = false;
                 "privacy.globalprivacycontrol.enabled" = true;
 
             # SECTION: Automatic connections
@@ -127,7 +178,6 @@
                 "network.captive-portal-service.enabled" = false;
                 "browser.topsites.contile.enabled" = false;
                 "browser.newtabpage.activity-stream.feeds.topsites" = false;
-                "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
 
             # SECTION: HTTP
                 "network.negotiate-auth.allow-insecure-ntlm-v1" = false;
@@ -139,13 +189,28 @@
                 "network.http.referer.XOriginTrimmingPolicy" = 2;
                 "privacy.firstparty.isolate" = true;
 
+            # SECTION: Geolocation
+                "geo.provider.network.url" = "https://location.services.mozilla.com/v1/geolocate?key=%MOZILLA_API_KEY%";
+                "geo.provider.use_gpsd" = false;
+                "geo.provider.use_geoclue" = false;
+
             # SECTION: UI related
+                "browser.compactmode.show" = true;
+                "ui.key.menuAccessKeyFocuses" = false;
                 "security.insecure_password.ui.enabled" = true;
                 "browser.download.folderList" = 2;
                 "browser.download.useDownloadDir" = false;
                 "browser.newtabpage.enabled" = false;
                 "browser.newtab.url" = "about:blank";
                 "browser.newtabpage.activity-stream.feeds.snippets" = false;
+                "browser.newtabpage.activity-stream.feeds.telemetry" = false;
+                "browser.newtabpage.activity-stream.telemetry" = false;
+                "browser.newtabpage.activity-stream.feeds.section.topstories" = false;
+                "browser.newtabpage.activity-stream.section.highlights.includePocket" = false;
+                "browser.newtabpage.activity-stream.feeds.discoverystreamfeed" = false;
+                "browser.newtabpage.activity-stream.showSponsored" = false;
+                "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
+                "browser.newtabpage.activity-stream.default.sites" = "";
                 "browser.newtabpage.activity-stream.enabled" = false;
                 "browser.newtabpage.enhanced" = false;
                 "browser.newtab.preload" = false;
@@ -171,7 +236,6 @@
                 "browser.aboutwelcome.enabled" = false;
                 "browser.tabs.tabmanager.enabled" = false;
                 "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-                "browser.compactmode.show" = true;
                 "layout.css.prefers-color-scheme.content-override" = 0;
                 "browser.theme.dark-private-windows" = true;
                 "cookiebanners.service.mode" = 0;
@@ -243,58 +307,6 @@
                 "security.ssl3.dhe_dss_camellia_128_sha" = false;
                 "security.ssl3.dhe_dss_camellia_256_sha" = false;
                 "security.tls.enable_kyber" = true;
-
-            # SECTION: Misc
-                "network.cookie.cookieBehavior" = 1;
-                "camera.control.face_detection.enabled" = false;
-                "browser.search.countryCode" = "MX";
-                "browser.search.region" = "MX";
-                "browser.search.geoip.url" = "";
-                "intl.accept_languages" = "es-MX, es";
-                "intl.locale.matchOS" = false;
-                "browser.search.geoSpecificDefaults" = false;
-                "clipboard.autocopy" = false;
-                "javascript.use_us_english_locale" = true;
-                "keyword.enabled" = true;
-                "browser.urlbar.trimURLs" = false;
-                "browser.urlbar.speculativeConnect.enabled" = false;
-                "browser.fixup.alternate.enabled" = false;
-                "browser.fixup.hide_user_pass" = true;
-                "network.proxy.socks_remote_dns" = true;
-                "network.manage-offline-status" = false;
-                "security.mixed_content.block_active_content" = true;
-                "security.mixed_content.block_display_content" = true;
-                "network.jar.open-unsafe-types" = false;
-                "security.xpconnect.plugin.unrestricted" = false;
-                "security.fileuri.strict_origin_policy" = true;
-                "browser.urlbar.filter.javascript" = true;
-                "javascript.options.asmjs" = false;
-                "media.video_stats.enabled" = false;
-                "general.buildID.override" = "20100101";
-                "browser.startup.homepage_override.buildID" = "20100101";
-                "browser.display.use_document_fonts" = 0;
-                "network.protocol-handler.warn-external-default" = true;
-                "network.protocol-handler.external.http" = false;
-                "network.protocol-handler.external.https" = false;
-                "network.protocol-handler.external.javascript" = false;
-                "network.protocol-handler.external.moz-extension" = false;
-                "network.protocol-handler.external.ftp" = false;
-                "network.protocol-handler.external.file" = false;
-                "network.protocol-handler.external.about" = false;
-                "network.protocol-handler.external.chrome" = false;
-                "network.protocol-handler.external.blob" = false;
-                "network.protocol-handler.external.data" = false;
-                "network.protocol-handler.expose-all" = false;
-                "network.protocol-handler.expose.http" = true;
-                "network.protocol-handler.expose.https" = true;
-                "network.protocol-handler.expose.javascript" = true;
-                "network.protocol-handler.expose.moz-extension" = true;
-                "network.protocol-handler.expose.ftp" = true;
-                "network.protocol-handler.expose.file" = true;
-                "network.protocol-handler.expose.about" = true;
-                "network.protocol-handler.expose.chrome" = true;
-                "network.protocol-handler.expose.blob" = true;
-                "network.protocol-handler.expose.data" = true;
 
             # Speed / Smooth Scrolling
                 "content.notify.interval" = 100000;

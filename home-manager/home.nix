@@ -51,8 +51,8 @@
             name = "WhiteSur-Dark"; #"Material-Black-Blueberry";
         };
         iconTheme = {
-            package = pkgs.flat-remix-icon-theme;
-            name = "Flat-Remix-Blue-Dark";
+            package = pkgs.cosmic-icons;#pkgs.flat-remix-icon-theme;
+            name = "Cosmic";#"Flat-Remix-Blue-Dark";
         };
     };
 
@@ -61,8 +61,8 @@
         enable = true;
         platformTheme.name = "gtk";
         style = {
-            name = "adwaita-dark";
             package = pkgs.adwaita-qt;
+            name = "adwaita-dark";
         };
     };
 }

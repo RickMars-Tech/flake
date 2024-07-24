@@ -5,7 +5,7 @@
         settings = {
             mainBar = {
                 layer = "top";
-                position = "bottom";
+                position = "top"; #"bottom";
                 exclusive = true;
 
                  "modules-left" = [ "custom/nix" "hyprland/workspaces" "hyprland/window" ];
@@ -52,7 +52,7 @@
                 ##--------------------------
                 "wireplumber" = {
                     "format" = "{volume}% {icon}";
-                    "format-icons" = [ "" "" "" ""];
+                    "format-icons" = [ "" "" ""];
                     "on-click" = "wpctl";
                 };
 
