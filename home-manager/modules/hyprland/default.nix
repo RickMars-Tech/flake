@@ -1,4 +1,8 @@
-{ config, pkgs, lib, ... }: {
+{ config, pkgs, lib, ... }: let
+
+    cfg = config.home;
+
+in {
 
     imports = [
         ./hypridle.nix
@@ -25,8 +29,8 @@
                 "QT_QPA_PLATFORM, wayland;xcb"
                 "QT_WAYLAND_DISABLE_WINDOWDECORATION, 1"
                 #= Hyprcursor
-                "HYPRCURSOR_THEME, Bibata-Modern-Classic"
-                "HYPRCURSOR_SIZE, 24"
+                "HYPRCURSOR_THEME,${cfg.pointerCursor.name}"
+                "HYPRCURSOR_SIZE,${toString cfg.pointerCursor.size}"
             ];
 
             exec-once = [
@@ -64,7 +68,7 @@
 
             general = {
                 "$mainMod" = "SUPER";
-                layout = "dwindle";
+                layout = "master"; #"dwindle";
                 gaps_in = 2;
                 gaps_out = 4;
                 border_size = 2;
@@ -72,6 +76,25 @@
                 "col.inactive_border" = "0xff444444";
                 border_part_of_window = false;
                 no_border_on_floating = false;
+            };
+
+            dwindle = {
+                no_gaps_when_only = 0;
+                force_split = 0;
+                special_scale_factor = 1.0;
+                split_width_multiplier = 1.0;
+                use_active_for_splits = true;
+                pseudotile = true;
+                preserve_split = true;
+            };
+
+            master = {
+                allow_small_split = true;
+                new_status = "slave";
+                new_on_top = true;
+                inherit_fullscreen = true;
+                always_center_master = true;
+                drop_at_cursor = true;
             };
 
             misc = {
@@ -148,25 +171,6 @@
                 workspace_swipe_use_r = false;
             };
 
-            dwindle = {
-                no_gaps_when_only = 0;
-                force_split = 0;
-                special_scale_factor = 1.0;
-                split_width_multiplier = 1.0;
-                use_active_for_splits = true;
-                pseudotile = true;
-                preserve_split = true;
-            };
-
-            master = {
-                allow_small_split = true;
-                new_status = "inherit";
-                new_on_top = false;
-                inherit_fullscreen = true;
-                always_center_master = true;
-                drop_at_cursor = true;
-            };
-
             binds = {
                 allow_workspace_cycles = true;
             };
@@ -190,24 +194,15 @@
                 "SUPER, R, exec, pkill rofi || rofi -show drun -show-icons"
                 "CTRL SHIFT, H, exec, hyprpicker -r -a"
 
-                # Audio
-                ",XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
-                ",XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-                ",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-                ",XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-
-                # Multimedia
-                ",XF86AudioPlay, exec, playerctl play-pause"
-                ",XF86AudioPause, exec, playerctl play-pause"
-
                 # Brightnes
                 ",XF86MonBrightnessUp, exec, brightnessctl set +5%"
                 ",XF86MonBrightnessDown, exec, brightnessctl set 5%-"
 
                 # Windows
-                "SUPER, V, togglefloating,"
-                "SUPER, P, pseudo," # dwindle
+                "SUPER, S, swapnext,"
+
                 "SUPER, F, fullscreen"
+
                 "SUPER, left, movefocus, l"
                 "SUPER, right, movefocus, r"
                 "SUPER, up, movefocus, u"
@@ -254,10 +249,21 @@
                 "SUPER, mouse:273, resizewindow"
             ];
 
-            bindl = [ # You can view your switches in hyprctl devices.
+            bindl = [
+                # You can view your switches in hyprctl devices.
                 ",switch:Lid Switch,exec,${pkgs.hyprlock}/bin/hyprlock"
                 #",switch:on:Lid Switch,exec,hyprctl keyword monitor ''eDP-1, disable''"
                 #",switch:off:Lid Switch,exec,hyprctl keyword monitor ''eDP-1,highres,auto,1''"
+
+                # Audio
+                ",XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+                ",XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+                ",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+                ",XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+
+                # Multimedia
+                ",XF86AudioPlay, exec, playerctl play-pause"
+                ",XF86AudioPause, exec, playerctl play-pause"
             ];
 
             windowrulev2 = [

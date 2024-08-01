@@ -31,6 +31,10 @@ themes {
 	    yellow "#5F5B9D"
 	}
 }
+
+// Choose what to do when zellij receives SIGTERM, SIGINT, SIGQUIT or SIGHUP
+on_force_close "detach"
+
 // Layput
 default_layout "work_everforest"
 
@@ -41,7 +45,7 @@ scroll_buffer_size 12000
 copy_clipboard "system"  // Default
 copy_command "wl-copy"  // wayland
 copy_on_select true
-mirror_session false
+mirror_session true
 
 // UI Config
 ui {
@@ -263,3 +267,6 @@ keybinds clear-defaults=true {
         bind "Ctrl a" { SwitchToMode "Tmux"; }
     }
 }
+
+session_serialization false
+disable_session_metadata true

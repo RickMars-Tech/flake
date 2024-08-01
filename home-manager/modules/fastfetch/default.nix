@@ -10,7 +10,7 @@
                 };
             };
             display = {
-                binaryPrefix = "si";
+                size.binaryPrefix = "si";
                 separator = "  ";
             };
             modules = [
@@ -45,6 +45,7 @@
                 {
                     "type" = "cpu";
                     "key" = " ╭─";
+                    "showPeCoreCount" = true;
                 }
                 {
                     "type" = "gpu";

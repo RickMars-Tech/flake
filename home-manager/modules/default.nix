@@ -8,6 +8,7 @@
         ./foot/default.nix
         ./hyprland/default.nix
         ./mpv/default.nix
+        ./nvim/default.nix
         ./rofi/default.nix
         ./steam/default.nix
         ./waybar/default.nix

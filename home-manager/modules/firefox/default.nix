@@ -7,6 +7,19 @@
 
     programs.firefox = {                  
         enable = true;
+        policies = {
+            DisableFirefoxStudies = true;
+            EnableTrackingProtection = {
+                Value = true;
+                Locked = true;
+                Cryptomining = true;
+                Fingerprinting = true;
+            };
+            PasswordManagerEnabled = false;
+            OfferToSaveLoginsDefault = false;
+            NoDefaultBookmarks = true;
+            DisableFirefoxScreenshots = true;
+        };
         profiles.rick = {
             isDefault = true;
             settings = {

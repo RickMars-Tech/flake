@@ -106,7 +106,8 @@
                 ##--------------------------
                 "memory" = {
                     "interval" = 5;
-                    "format" = "  {used:0.1f}G/{total:0.1f}G";
+                    "format" = "  {}%";
+                    "format-alt" = "  {used}/{total} GiB";
                     "states" = {
                         "warning" = 70;
                         "critical" = 90;
@@ -168,7 +169,7 @@
                 ## Battery
                 ##--------------------------
                 "battery" = {
-                    "interval" = 10;
+                    "interval" = 2;
                     "states" = {
                         "warning" = 30;
                         "critical" = 15;
