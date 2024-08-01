@@ -35,13 +35,15 @@
         webcord
         electron
         jq
-        python3
         qt5.qtwayland
         qt6.qtwayland
         usbutils
         wget
         libreoffice
         yarn
+ #= Clamav Anti-Virus
+        clamav
+        clamtk
  #= Blender
         blender-hip
  #= C/C++
@@ -51,6 +53,12 @@
         glibmm
         libgcc
         SDL2
+ #= Python
+        python3
+        python312Packages.pipx # Install and Run Python Applications in Isolated Environments
+        jetbrains.pycharm-professional # PyCharm
+        libsForQt5.qt5.qttools
+        libsForQt5.full
  #= XDG
         xdg-utils-cxx
         xdg-launch

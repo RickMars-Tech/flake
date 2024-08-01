@@ -12,6 +12,11 @@
             "io.github.hmlendea.geforcenow-electron"
             "com.boxy_svg.BoxySVG"
             "com.github.tchx84.Flatseal"
+            #= Qt IDE's
+            "io.qt.Designer"
+            "io.qt.QtCreator"
+            "io.qt.qdbusviewer"
+            "io.qt.Linguist"
         ];
         overrides = {
             global = {
@@ -29,10 +34,4 @@
         };
     };
 
- #= Dbus
-    services.dbus = {
-        enable = true;
-        implementation = "broker"; 
-        packages = with pkgs; [ flatpak ];
-    };
 }

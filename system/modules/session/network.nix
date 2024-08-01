@@ -10,7 +10,7 @@
             };
             "80-wired" = {
                 matchConfig = { Name = "enp*s*"; };
-                DHCP= "yes";
+                DHCP = "yes";
             };
         };
         wait-online.timeout = 0;
@@ -19,13 +19,8 @@
 #= Host & Firewall
     networking = {
         hostName = "nixos"; # Define your hostname.
-        /* networkmanager = {
-            enable = true;
-            wifi = {
-                backend = "iwd"; #"wpa_supplicant";
-            };
-        };*/
         useDHCP = lib.mkForce false;
+        enableIPv6 = false;
         wireless.iwd = {
             enable = true;
             settings = {
@@ -36,6 +31,7 @@
         };
         firewall = {
             enable = true;
+            checkReversePath = "loose"; # libvirt DHCP compatibility
             pingLimit = "--limit 1/minute --limit-burst 5";
             allowedTCPPorts = [
                 22
@@ -52,7 +48,29 @@
                 { from = 8000; to = 8010; }
             ];
         };
-        enableIPv6 = false;
+        dhcpcd = {
+            enable = true;
+            extraConfig = "nohook resolv.conf";
+        };
+        nameservers = [
+            #Quad9
+            "9.9.9.9"
+            "2620:fe::fe"
+            #Mullvad
+            # "100.64.0.63"
+            "194.242.2.4"
+            "2a07:e340::4"
+            # local
+            # "127.0.0.1"
+            # "::1"
+        ];
+    };
+
+#= DNS
+    services.resolved = {
+        enable = true;
+        dnssec = "false";
+        dnsovertls = "true";
     };
 
 #= Bluetooth
@@ -60,6 +78,7 @@
         enable = true; # enables support for Bluetooth
         powerOnBoot = false; # powers up the default Bluetooth controller on boot
     };
+    services.blueman.enable = true;
 
 #= Fail2Ban
     services.fail2ban = {

@@ -21,15 +21,23 @@
         };
         interactiveShellInit = "
 
+            # Zellij
             if set -q ZELLIJ
             else
                 zellij
             end
 
+            # Autolaunch Fetch
             function fish_greeting 
                 fastfetch
             end
 
+            # Direnv if installed
+            if type -q direnv
+               eval (direnv hook fish)
+            end
+
+            # Wayland Environment variables
             ## Enable Wayland Support for different Applications
             if [ '$XDG_SESSION_TYPE' = 'wayland' ]
                 set -gx WAYLAND 1

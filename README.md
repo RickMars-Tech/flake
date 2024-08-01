@@ -6,12 +6,17 @@
 git clone https://github.com/RickMars-Tech/NixOS-Mars.git
 cd NixOS-Mars
 
-sudo nixos-rebuild boot --upgrade --experimental-features 'nix-command flakes' --flake .
+# Built with detailed error messages 
+sudo nixos-rebuild switch --flake . --show-trace --print-build-logs --verbose
 ```
 
-# Experimental
+
+# To clean up historical versions and free up storage space, use the following command:
 ```bash
+# Delete all historical versions older than 7 days
+sudo nix profile wipe-history --older-than 7d --profile /nix/var/nix/profiles/system
 
-nix-shell -p git --command "nix run github:RicKMars-Tech/NixOS-Mars --extra-experimental-features nix-command --extra-experimental-features flakes"
-
+# Run garbage collection after wiping history
+sudo nix-collect-garbage --delete-old
 ```
+

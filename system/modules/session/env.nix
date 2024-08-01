@@ -13,7 +13,7 @@
             MOZ_USE_XINPUT2 = "1";
         #=> JAVA
             _JAVA_AWT_WM_NONREPARENTING = "1";
-        #=> RADV
+        #=> RADEON
             AMD_VULKAN_ICD = "RADV"; # Force radv
             RADV_PERFTEST = "aco"; # Force aco
         #=> Load Shared Objects Immediately

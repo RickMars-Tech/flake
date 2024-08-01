@@ -45,10 +45,13 @@
     };
     services.power-profiles-daemon.enable = false;
 
+  #= Powertop
+    powerManagement.powertop.enable = true;
+
   #= UPower
     services.upower.enable = true;
 
   #= Thermal CPU Management
-    #services.thermald.enable = true; Not CPU Supported
+    services.thermald.enable = true; # Disable if your CPU isn't Supported
 
 }

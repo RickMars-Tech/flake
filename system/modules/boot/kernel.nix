@@ -6,15 +6,12 @@
 
 #==> Kernel Parameters <==#
     boot.kernelParams = [
+        "acpi_osi=Linux"
         "amd_iommu=on"
         "amdgpu.noretry=0"
         "amdgpu.dc=1"
         "amdgpu.dpm=1"
-        "amdgpu.si_support=1"
-        "amdgpu.cik_support=1"
-        "radeon.si_support=0"
-        "radeon.cik_support=0"
-        #"transparent_hugepage=always"
+        "transparent_hugepage=always"
         "mitigations=auto"
         "quiet"
         "splash"
@@ -28,14 +25,11 @@
 #==> Kernel Modules <==#
     boot.kernelModules = [
         "amd-pstate-epp"
-        "radeon"
         "tcp_bbr"
     ];
     boot.initrd.kernelModules = [
-        "amdgpu"
         "amd_pmc"
         "zenpower"
-        "radeon"
         "nvme"
         "nvme_core"
         "acer_wmi"
@@ -60,6 +54,10 @@
         "kernel.sched_min_granularity_ns" = 2250000;
         "kernel.sched_wakeup_granularity_ns" = 3000000;
         "kernel.sched_migration_cost_ns" = 500000;
+        "kernel.sched_latency_ns" = 10000000;
+        "kernel.sched_rr_timeslice_ms" = 5;
+        "kernel.sched_rt_runtime_us" = -1;
+        "kernel.sched_rt_period_us" = 1000000;
         "kernel.numa_balancing" = 0;
         "kernel.unprivileged_userns_clone" = 1;
         "kernel.pid_max" = 32768;
@@ -69,10 +67,13 @@
         "vm.dirty_background_ratio" = 5;
         "vm.dirty_bytes" = 16384;
         "vm.dirty_background_bytes" = 78643200;
-        "vm.dirty_writeback_centisecs" = 1500;
+        "vm.dirty_writeback_centisecs" = 6000;
+        "vm.dirty_expire_centisecs" = 1500;
         "vm.swappiness" = 60;
         "vm.vfs_cache_pressure" = 50;
-        "vm.drop_caches" = 2;
+        "vm.drop_caches" = 3;
+        "vm.overcommit_memory" = 1;
+        "vm.laptop_mode" = 1;
     #= Networking Stack Tuning
         "net.core.netdev_budget" = 300;
         "net.core.somaxconn" = 128;
@@ -114,6 +115,7 @@
     ];
     boot.extraModprobeConfig = "
         options kvm_amd nested=1
+        options iwlwifi power_save=1 d0i3_disable=0 uapsd_disable=0
     ";
 
 #==> Black List of Kernel Modules <==#
