@@ -19,7 +19,8 @@ in {
                 "XDG_CURRENT_DESKTOP, Hyprland"
                 "XDG_SESSION_TYPE, Wayland"
                 "XDG_SESSION_DESKTOP, Hyprland"
-                "HYPRLAND_NO_RT, 1"
+                #"HYPRLAND_NO_RT, 1"
+                "HYPRLAND_NO_SD_NOTIFY=1"
                 "CLUTTER_BACKEND, wayland"
                 #= XWayland
                 "GDK_SCALE, 1"

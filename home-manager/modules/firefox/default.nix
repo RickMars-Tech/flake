@@ -183,7 +183,7 @@
                 "browser.urlbar.suggest.history" = false;
                 "browser.urlbar.groupLabels.enabled" = false;
                 "browser.casting.enabled" = false;
-                "media.gmp-gmpopenh264.enabled" = false;
+                "media.gmp-gmpopenh264.enabled" = true;
                 "media.gmp-manager.url" = "";
                 "network.http.speculative-parallel-limit" = 0;
                 "browser.aboutHomeSnippets.updateUrl" = "";
