@@ -1,8 +1,8 @@
 { config, pkgs, lib, ... }: {
 
 #==> Kernel & Filesystem <==#
+    boot.kernelPackages = pkgs.linuxPackages_zen; #pkgs.linuxPackages_latest; # Latest Linux Kernel
     boot.supportedFilesystems = [ "ntfs" ]; # Enable Support for Others FS
-    boot.kernelPackages = pkgs.linuxPackages_latest; # Latest Linux Kernel
 
 #==> Kernel Parameters <==#
     boot.kernelParams = [
@@ -12,6 +12,8 @@
         "amdgpu.dc=1"
         "amdgpu.dpm=1"
         "transparent_hugepage=always"
+        "tsc=reliable"
+        "clocksource=tsc"
         "mitigations=auto"
         "quiet"
         "splash"
@@ -73,7 +75,7 @@
         "vm.vfs_cache_pressure" = 50;
         "vm.drop_caches" = 3;
         "vm.overcommit_memory" = 1;
-        "vm.laptop_mode" = 1;
+        "vm.laptop_mode" = 5;
     #= Networking Stack Tuning
         "net.core.netdev_budget" = 300;
         "net.core.somaxconn" = 128;
@@ -115,7 +117,8 @@
     ];
     boot.extraModprobeConfig = "
         options kvm_amd nested=1
-        options iwlwifi power_save=1 d0i3_disable=0 uapsd_disable=0
+        options snd_hda_intel power_save=1
+        options iwlwifi power_save=1 uapsd_disable=0
     ";
 
 #==> Black List of Kernel Modules <==#

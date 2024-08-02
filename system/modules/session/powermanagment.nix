@@ -46,7 +46,10 @@
     services.power-profiles-daemon.enable = false;
 
   #= Powertop
-    powerManagement.powertop.enable = true;
+    powerManagement = {
+        enable = true;
+        powertop.enable = true;
+    };
 
   #= UPower
     services.upower.enable = true;

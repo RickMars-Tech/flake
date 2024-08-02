@@ -65,6 +65,7 @@
             # "::1"
         ];
     };
+    environment.systemPackages = with pkgs; [ iwgtk ]; # GTK Front-end for IWD
 
 #= DNS
     services.resolved = {

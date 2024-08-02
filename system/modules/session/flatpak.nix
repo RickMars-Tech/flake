@@ -1,4 +1,4 @@
-{ config, pkgs, lib, input, ...}: {
+{ config, pkgs, lib, input, ... }: {
 
 #==> Declare Flatpak Config/Packages <==#
 
@@ -10,6 +10,7 @@
     #= Declare packages to install with ID of the Aplication
         packages = [
             "io.github.hmlendea.geforcenow-electron"
+            "io.github.thetumultuousunicornofdarkness.cpu-x"
             "com.boxy_svg.BoxySVG"
             "com.github.tchx84.Flatseal"
             #= Qt IDE's
@@ -25,10 +26,11 @@
 
                 Environment = {
                     # Fix un-themed cursor in some Wayland apps
-                    XCURSOR_PATH = "/run/host/user-share/icons:/run/host/share/icons";
+                    #XCURSOR_THEME = "Bibata-Modern-Classic";
+                    #XCURSOR_SIZE = "24";
 
                     # Force correct theme for some GTK apps
-                    GTK_THEME = "Adwaita:dark";
+                    #GTK_THEME = "WhiteSur-Dark";
                 };
             };
         };

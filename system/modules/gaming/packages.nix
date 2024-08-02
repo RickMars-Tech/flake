@@ -20,7 +20,6 @@
     vulkan-headers
     vulkan-loader
     vulkan-tools
-    vulkan-tools-lunarg
     vulkan-utility-libraries
     vulkan-validation-layers
     vulkan-volk
@@ -62,5 +61,7 @@
     lutris
  #= Launcher for Veloren.
     airshipper
+ #= Required to run CS:Source
+    pkgsi686Linux.gperftools
  ];
 }

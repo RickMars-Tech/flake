@@ -1,11 +1,5 @@
 { config, pkgs, lib, inputs, ... }: {
 
-#=> Ananicy
-    services.ananicy = {
-        enable = true;
-        package = pkgs.ananicy-cpp;
-    };
-
 #=> IRQBalance
     services.irqbalance.enable = lib.mkDefault true;
 

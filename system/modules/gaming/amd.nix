@@ -47,7 +47,10 @@
         };
         enableAllFirmware = true;
         enableRedistributableFirmware = lib.mkDefault true; # Lemme update my CPU Microcode, alr?!
-        firmware = with pkgs; [ linux-firmware ];
+        firmware = with pkgs; [ 
+            alsa-firmware
+            linux-firmware
+        ];
     };
 
 }
