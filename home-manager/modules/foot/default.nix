@@ -51,8 +51,8 @@
                 regular1 = "94594B";
                 bright1 = "94594B";
 
-                regular2 = "C69E5B";
-                bright2 = "C69E5B";
+                regular2 = "71bf98"; #"31ffa1";
+                bright2 = "71bf98"; #"31ffa1";
 
                 regular3 = "5F5B9D";
                 bright3 = "5F5B9D";

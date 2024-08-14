@@ -19,8 +19,9 @@ in {
                 "XDG_CURRENT_DESKTOP, Hyprland"
                 "XDG_SESSION_TYPE, Wayland"
                 "XDG_SESSION_DESKTOP, Hyprland"
-                #"HYPRLAND_NO_RT, 1"
-                "HYPRLAND_NO_SD_NOTIFY=1"
+                "HYPRLAND_TRACE, 1"
+                "HYPRLAND_NO_RT, 1"
+                "HYPRLAND_NO_SD_NOTIFY, 1"
                 "CLUTTER_BACKEND, wayland"
                 #= XWayland
                 "GDK_SCALE, 1"
@@ -48,6 +49,21 @@ in {
             xwayland = {
                 use_nearest_neighbor = true;
                 force_zero_scaling = true;
+            };
+
+            opengl = {
+                force_introspection = 1;
+            };
+
+            /*render = {
+                explicit_sync = 1;
+                direct_scanout = true;
+            };*/
+
+            cursor = {
+                persistent_warps = true;
+                enable_hyprcursor = true;
+                hide_on_key_press = false;
             };
 
             input = {
@@ -358,8 +374,7 @@ in {
 
         };
         extraConfig = ''
-            monitor = HDMI-A-1, highres, auto, 1
-            monitor = eDP-1, highres, auto, 1
+            monitor = , highres, auto, 1
         '';
     };
 

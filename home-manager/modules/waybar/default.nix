@@ -93,8 +93,8 @@
                 "cpu" = {
                     "interval" = 5;
                     "tooltip" = false;
-                    "format" = " {usage}%";
-                    "format-alt" = " {load}";
+                    "format" = "{usage}% ";
+                    "format-alt" = "{load} ";
                     "states" = {
                         "warning" = 70;
                         "critical" = 90;
@@ -106,8 +106,8 @@
                 ##--------------------------
                 "memory" = {
                     "interval" = 5;
-                    "format" = "  {}%";
-                    "format-alt" = "  {used}/{total} GiB";
+                    "format" = "{}%  ";
+                    "format-alt" = "{used:0.1f}/{total:0.1f}G  ";
                     "states" = {
                         "warning" = 70;
                         "critical" = 90;
@@ -120,10 +120,10 @@
                 ##--------------------------
                 "network" = {
                     "interval" = 5;
-                    "format-wifi" = "󰤨  Connected";
-                    "format-ethernet" = "󰈀 {essid}";
+                    "format-wifi" = "Connected 󰤨 ";
+                    "format-ethernet" = "{essid} 󰈀";
                     "format-disconnected" = "󰤮";
-                    "format-alt" = "󰈀 {essid}";
+                    "format-alt" = "{essid} 󰈀";
                     "tooltip" = false;
                 };
 
@@ -142,8 +142,8 @@
                 ## Clock
                 ##--------------------------
                 "clock" = {
-                    "format" = "  {:%I:%M}";
-                    "format-alt" = " {:%d/%m/%y}";
+                    "format" = "{:%I:%M} ";
+                    "format-alt" = "{:%d/%m/%y} ";
                     "tooltip" = "true";
                     "tooltip-format" = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
                 };
@@ -154,7 +154,7 @@
                 "temperature" = {
                     "critical-threshold" = 90;
                     "interval" = 5;
-                    "format" = "{icon} {temperatureC}°";
+                    "format" = "{temperatureC}° {icon}";
                     "format-icons" = [
                         ""
                         ""
