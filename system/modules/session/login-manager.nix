@@ -14,6 +14,7 @@ in {
                 user = "greeter";
             };
         };
+        vt = 1;
     };
 
   #= TTY

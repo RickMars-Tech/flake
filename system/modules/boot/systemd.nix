@@ -2,23 +2,12 @@
 
 #==> TmpFiles 
     systemd = {
-        tmpfiles.rules = let
-            rocmEnv = pkgs.symlinkJoin { # https://wiki.nixos.org/wiki/AMD_GPU#HIP
-                name = "rocm-combined";
-                paths = with pkgs.rocmPackages; [
-                    rocblas
-                    hipblas
-                    clr
-                ];
-            };
-        in [
-            "L+    /opt/rocm   -    -    -     -    ${rocmEnv}"
+        tmpfiles.rules = [
         # https://wiki.archlinux.org/title/Gaming#Make_the_changes_permanent.
             "w     /proc/sys/vm/compaction_proactiveness - - - - 0"
             "w     /proc/sys/vm/watermark_boost_factor - - - - 1"
             "w     /proc/sys/vm/min_free_kbytes - - - - 1048576"
             "w     /proc/sys/vm/watermark_scale_factor - - - - 500"
-            "w     /proc/sys/vm/swappiness - - - - 10"
             "w     /sys/kernel/mm/lru_gen/enabled - - - - 5"
             "w     /proc/sys/vm/zone_reclaim_mode - - - - 0"
             "w     /sys/kernel/mm/transparent_hugepage/enabled - - - - madvise"
@@ -56,8 +45,6 @@
         # https://www.reddit.com/r/NixOS/comments/u0cdpi/tuigreet_with_xmonad_how/
         services.greetd.serviceConfig = {
             Type = "idle";
-            StandardInput = "tty";
-            StandardOutput = "tty";
             StandardError = "journal"; # Without this errors will spam on screen
             # Without these bootlogs will spam on screen
             TTYReset = true;
@@ -78,11 +65,11 @@
 
 #==> Jourdnald
     services.journald = {
-        storage = "volatile";
+        storage = "persistent";
         rateLimitBurst = 10000;
         rateLimitInterval = "30s";
         extraConfig = ''
-            SystemMaxUse=1G
+            SystemMaxUse=50M
         '';
     };
 

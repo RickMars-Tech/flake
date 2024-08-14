@@ -22,7 +22,7 @@
         };
         amdgpu = {
             opencl.enable = true; # enable OpenCL using ROCM runtime library.
-            legacySupport.enable = true; # using amdgpu kernel driver instead of radeon.
+            legacySupport.enable = true; # Enable for using amdgpu kernel driver instead of radeon.
             initrd.enable = true;
             amdvlk = {
                 enable = true;
@@ -45,10 +45,9 @@
             x86.msr.enable = true; #= MSR.
             amd.updateMicrocode = true; # Update Microcode
         };
-        enableAllFirmware = true;
+        enableAllFirmware = true; # Enable Properitary Firmware
         enableRedistributableFirmware = lib.mkDefault true; # Lemme update my CPU Microcode, alr?!
-        firmware = with pkgs; [ 
-            alsa-firmware
+        firmware = with pkgs; [
             linux-firmware
         ];
     };

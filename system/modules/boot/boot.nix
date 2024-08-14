@@ -2,21 +2,23 @@
 
     boot = {
         loader = {
-            systemd-boot.enable = true;
-            systemd-boot.consoleMode = "keep";
-            systemd-boot.configurationLimit = 20;
+            systemd-boot = {
+                enable = true;
+                consoleMode = "keep";
+                configurationLimit = 20;
+            };
             efi.canTouchEfiVariables = true;
             timeout = 5;
         };
         initrd = {
             enable = true;
             compressor = "zstd";
-            verbose = false;
+            verbose = true;
         };
         tmp = {
             useTmpfs = true;
             cleanOnBoot = true;
         };
-        consoleLogLevel = 0;
+        consoleLogLevel = 4;
     };
 }

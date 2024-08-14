@@ -7,6 +7,8 @@
         packages = with pkgs; [ 
             dunst
             flatpak
+            greetd.greetd
+            greetd.tuigreet
             thermald
             upower
         ];

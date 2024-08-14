@@ -38,7 +38,7 @@
     # App-Launcher
     rofi-wayland
     # Applets
-    networkmanagerapplet
+    #networkmanagerapplet
     # Screen-Locker
     wlogout
     #kanshi # To turn a laptop's internal screen off when docked.
@@ -50,7 +50,7 @@
     # Brightnes Manager
     brightnessctl
     # Media CMD Utility
-    playerctl
+    #playerctl
     # Clipboard-specific
     wl-clipboard-rs
     # Screenshot
@@ -63,10 +63,10 @@
     # Image Viewer
     imv
     # Theme's
-    adwaita-qt
-    adwaita-qt6
-    qgnomeplatform
-    qgnomeplatform-qt6
+    #adwaita-qt
+    #adwaita-qt6
+    #qgnomeplatform
+    #qgnomeplatform-qt6
     # XWayland/Wayland
     glfw
     wlr-randr

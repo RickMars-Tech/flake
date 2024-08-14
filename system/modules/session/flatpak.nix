@@ -16,8 +16,6 @@
             #= Qt IDE's
             "io.qt.Designer"
             "io.qt.QtCreator"
-            "io.qt.qdbusviewer"
-            "io.qt.Linguist"
         ];
         overrides = {
             global = {
@@ -26,14 +24,15 @@
 
                 Environment = {
                     # Fix un-themed cursor in some Wayland apps
-                    #XCURSOR_THEME = "Bibata-Modern-Classic";
-                    #XCURSOR_SIZE = "24";
+                    XCURSOR_THEME = "Bibata-Modern-Classic";
+                    XCURSOR_SIZE = "24";
 
                     # Force correct theme for some GTK apps
-                    #GTK_THEME = "WhiteSur-Dark";
+                    GTK_THEME = "WhiteSur-Dark";
                 };
             };
         };
+        update.onActivation = true;
     };
 
 }

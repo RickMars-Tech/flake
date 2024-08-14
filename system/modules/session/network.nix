@@ -13,7 +13,10 @@
                 DHCP = "yes";
             };
         };
-        wait-online.timeout = 0;
+        wait-online = {
+            enable = false;
+            timeout = 0;
+        };
     };
 
 #= Host & Firewall
@@ -79,7 +82,6 @@
         enable = true; # enables support for Bluetooth
         powerOnBoot = false; # powers up the default Bluetooth controller on boot
     };
-    services.blueman.enable = true;
 
 #= Fail2Ban
     services.fail2ban = {

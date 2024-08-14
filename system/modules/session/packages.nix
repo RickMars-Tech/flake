@@ -1,6 +1,6 @@
 { config, pkgs, lib, input, ... }: {
 
- #= Config Of General Packages
+ #= General Packages Config
 
  #= Allow unfree packages
     nixpkgs.config.allowUnfree = true;
@@ -28,19 +28,19 @@
         #gnome.eog
         nautilus
  #= Main
-        alsa-plugins
+        #alsa-plugins
         alsa-utils
         libsForQt5.ark
         geogebra6
         webcord
         electron
-        jq
+        #jq
         qt5.qtwayland
         qt6.qtwayland
         usbutils
         wget
         libreoffice
-        yarn
+        #yarn
  #= Clamav Anti-Virus
         clamav
         clamtk
@@ -75,26 +75,26 @@
         skim
         zfxtop
     # Fish Plugins
-        fishPlugins.done
-        fishPlugins.fzf-fish
-        fishPlugins.forgit
-        fishPlugins.hydro
+        #fishPlugins.done
+        #fishPlugins.fzf-fish
+        #fishPlugins.forgit
+        #fishPlugins.hydro
  #= Archives
         imagemagick
         zip
         unzip
         gnutar
-        rarcrack
+        #rarcrack
         rar
         unrar-free
  #= Rust
-        cargo # PackageManager for rust
-        rustup # Rust toolchain installer
+        #cargo # PackageManager for rust
+        #rustup # Rust toolchain installer
  #= Drives utilities
         gnome-disk-utility # Disk Manager.
         baobab # Gui app to analyse disk usage.
         ventoy # Flash OS images for Linux and anothers Systems.
-        woeusb # Flash OS images for Windows.
+        #woeusb # Flash OS images for Windows.
  #= Flatpak
         libportal
         libportal-gtk3
@@ -104,13 +104,13 @@
         pavucontrol # Pulseaudio Volume Control
         pwvucontrol
  #= Appimages
-        appimagekit
+        #appimagekit
         appimage-run
  #= TOR
         #obfs4
         #tor-browser
  #= Image Editors
-        krita
+        #krita
         gimp
  #= Video/Audio Tools
         shotcut
