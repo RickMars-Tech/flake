@@ -7,7 +7,7 @@
                 consoleMode = "keep";
                 configurationLimit = 20;
             };
-            efi.canTouchEfiVariables = true;
+            efi.canTouchEfiVariables = false;
             timeout = 5;
         };
         initrd = {

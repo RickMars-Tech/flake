@@ -21,7 +21,7 @@
     vulkan-loader
     vulkan-tools
     vulkan-utility-libraries
-    vulkan-validation-layers
+    #vulkan-validation-layers
     vulkan-volk
     vkdisplayinfo
     vkd3d

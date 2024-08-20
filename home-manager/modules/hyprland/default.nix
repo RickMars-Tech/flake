@@ -14,13 +14,18 @@ in {
         enable = true;
         settings = {
 
+            monitor = [
+                ", preferred, auto, 1, bitdepth, 10"
+                #", highres, auto, 1"
+            ];
+
             env = [
                 #= Hyprland
                 "XDG_CURRENT_DESKTOP, Hyprland"
-                "XDG_SESSION_TYPE, Wayland"
+                "XDG_SESSION_TYPE, wayland"
                 "XDG_SESSION_DESKTOP, Hyprland"
-                "HYPRLAND_TRACE, 1"
-                "HYPRLAND_NO_RT, 1"
+                "HYPRLAND_TRACE, 0"
+                "HYPRLAND_NO_RT, 0"
                 "HYPRLAND_NO_SD_NOTIFY, 1"
                 "CLUTTER_BACKEND, wayland"
                 #= XWayland
@@ -55,13 +60,18 @@ in {
                 force_introspection = 1;
             };
 
-            /*render = {
+            render = {
                 explicit_sync = 1;
+                explicit_sync_kms = 1;
                 direct_scanout = true;
-            };*/
+            };
 
             cursor = {
+                no_hardware_cursors = true;
+                no_break_fs_vrr = true;
+                min_refresh_rate = 25;
                 persistent_warps = true;
+                warp_on_change_workspace = true;
                 enable_hyprcursor = true;
                 hide_on_key_press = false;
             };
@@ -70,6 +80,7 @@ in {
                 kb_model = "pc104";
                 kb_layout = "latam";
                 kb_options ="terminate:ctrl_alt_bksp";
+                numlock_by_default = true;
                 accel_profile = "flat";
                 follow_mouse = 1;
                 sensitivity = 0;
@@ -121,7 +132,7 @@ in {
                 swallow_regex = "^(foot|kitty|Alacritty)$";
                 swallow_exception_regex = "^(foot|kitty|Alacritty)";
                 vrr = 2; # VRR (Adaptive Sync). 0 - Disabled, 1 - Enabled, 2 - Only FullScreen
-                vfr = true;
+                vfr = true; #
                 render_ahead_safezone = 1;
                 new_window_takes_over_fullscreen = 2;
             };
@@ -185,6 +196,7 @@ in {
                 workspace_swipe = true;
                 workspace_swipe_fingers = 3;
                 workspace_swipe_min_speed_to_force = 0;
+                workspace_swipe_forever = true;
                 workspace_swipe_use_r = false;
             };
 
@@ -217,6 +229,7 @@ in {
 
                 # Windows
                 "SUPER, S, swapnext,"
+                "SUPER, V, togglefloating"
 
                 "SUPER, F, fullscreen"
 
@@ -373,9 +386,9 @@ in {
             ];
 
         };
-        extraConfig = ''
-            monitor = , highres, auto, 1
-        '';
+        #extraConfig = ''
+        #    monitor = , highres, auto, 1
+        #'';
     };
 
     xdg.configFile = {

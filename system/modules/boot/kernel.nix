@@ -7,7 +7,8 @@
 
     #==> Kernel Parameters <==#
         kernelParams = [
-            "acpi_osi=linux"
+            #"acpi_osi=linux"
+            "acpi_osi=Windows"
             #"acpi=strict"
             "amd_iommu=on"
             "amdgpu.noretry=0"

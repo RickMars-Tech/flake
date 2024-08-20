@@ -42,8 +42,8 @@
         libreoffice
         #yarn
  #= Clamav Anti-Virus
-        clamav
-        clamtk
+        #clamav
+        #clamtk
  #= Blender
         blender-hip
  #= C/C++

@@ -42,10 +42,6 @@
     # Screen-Locker
     wlogout
     #kanshi # To turn a laptop's internal screen off when docked.
-    # Lock Screen
-    hyprlock
-    # Idle manager
-    hypridle # required by the screen locker
     hyprpicker # Wlroots-compatible Wayland color picker that does not suck
     # Brightnes Manager
     brightnessctl

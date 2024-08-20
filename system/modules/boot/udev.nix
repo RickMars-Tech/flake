@@ -2,8 +2,8 @@
 
     services.udev = {
         enable = true;
-        packages = with pkgs; [ game-devices-udev-rules ];
-        extraRules = ''
+        #packages = with pkgs; [ game-devices-udev-rules ];
+        /*extraRules = ''
 
         # SATA Active Link Power Management
             ACTION=="add", SUBSYSTEM=="scsi_host", KERNEL=="host*", ATTR{link_power_management_policy}="max_performance"
@@ -19,7 +19,7 @@
         # Cpu-dma-latency
             DEVPATH=="/devices/virtual/misc/cpu_dma_latency", OWNER="root", GROUP="audio", MODE="0660"
 
-        '';
+        '';*/
     };
 
 }
