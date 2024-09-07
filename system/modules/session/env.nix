@@ -1,10 +1,8 @@
 { config, pkgs, lib, ... }: {
 
-#==> Environment Variables <==#
-
-  environment = {
-    #pathsToLink = [ "/share/X11" "/libexec" "/share/nix-ld" ];
-    sessionVariables = rec {
+    environment = {
+        #pathsToLink = [ "/share/X11" "/libexec" "/share/nix-ld" ];
+        sessionVariables = rec {
         #=> Default's
             EDITOR = "nvim";
             BROWSER = "firefox";
@@ -13,6 +11,8 @@
             MOZ_USE_XINPUT2 = "1";
         #=> JAVA
             _JAVA_AWT_WM_NONREPARENTING = "1";
+        #=> Python
+            PYGAME_DETECT_AVX2 = "1";
         #=> RADEON
             #AMD_VULKAN_ICD = "RADV"; # Force radv
             #AMDVLK_ENABLE_DEVELOPING_EXT = "all";
@@ -35,6 +35,6 @@
             FLATPAK_GL_DRIVERS = "mesa-git";
         #=> Polkit
             POLKIT_BIN = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+        };
     };
-  };
 }

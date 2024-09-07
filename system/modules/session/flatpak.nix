@@ -16,6 +16,7 @@
             #= Qt IDE's
             "io.qt.Designer"
             "io.qt.QtCreator"
+
         ];
         overrides = {
             global = {

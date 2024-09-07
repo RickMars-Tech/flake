@@ -14,7 +14,7 @@
             enable32Bit = true;
             extraPackages32 = with pkgs.driversi686Linux; [
                 mesa.drivers
-                glxinfo
+                #glxinfo
                 vdpauinfo
                 libva-vdpau-driver
                 libvdpau-va-gl

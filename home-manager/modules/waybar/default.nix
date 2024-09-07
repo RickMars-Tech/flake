@@ -45,6 +45,7 @@
 
                 "custom/nix" = {
                     "format" = "";
+                    "tooltip" = false;
                 };
 
                 ##--------------------------
@@ -181,11 +182,11 @@
                     "format-full" = "{icon} {capacity}%";
                     "format-alt" = "{icon} ({time}Hrs)";
                     "format-icons" = [
-                        ""
-                        ""
-                        ""
-                        ""
-                        ""
+                        " "
+                        " "
+                        " "
+                        " "
+                        " "
                     ];
                     "tooltip" = false;
                 };

@@ -5,6 +5,8 @@
 
         nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+        nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
+
         lix = {
             url = "https://git.lix.systems/lix-project/nixos-module/archive/2.90.0.tar.gz";
             inputs.nixpkgs.follows = "nixpkgs";
@@ -26,6 +28,7 @@
         hyprland,
         lix,
         nixpkgs,
+        nixpkgs-stable,
         nix-flatpak,
         self,
         ...
@@ -34,6 +37,7 @@
         system = "x86_64-linux";
         lib = nixpkgs.lib;
         pkgs = nixpkgs.legacyPackages.${system};
+        pkgs-stable = nixpkgs-stable.legacyPackages.${system};
         username = "rick";
         name = "Rick";
 
@@ -57,6 +61,7 @@
                     home-manager.users.rick = import ./home-manager/home.nix;
                     home-manager.extraSpecialArgs = {
                         inherit inputs;
+                        inherit pkgs-stable;
                         inherit self;
                         inherit username;
                     };
@@ -65,6 +70,7 @@
             specialArgs = {
                 inherit username;
                 inherit name;
+                inherit pkgs-stable;
                 inherit inputs;
                 inherit self;
             };

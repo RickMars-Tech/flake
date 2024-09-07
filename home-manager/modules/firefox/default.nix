@@ -85,6 +85,6 @@
                 order = [ "DuckDuckGo" "Google" ];
             };
         };
-        package = (pkgs.wrapFirefox (pkgs.firefox-beta-unwrapped.override { pipewireSupport = true;}) {});
+        package = (pkgs.wrapFirefox (pkgs.firefox-unwrapped.override { pipewireSupport = true;}) {});
     };
 }

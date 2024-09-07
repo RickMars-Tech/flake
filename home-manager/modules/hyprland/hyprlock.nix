@@ -9,7 +9,7 @@
                 hide_cursor = true;
             };
             background = {
-                path = "~/wal/spaceman.png";
+                path = "~/wal/alone.png";
                 blur_size = 4;
                 blur_passes = 3;
                 noise = 0.0117;

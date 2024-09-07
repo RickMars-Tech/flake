@@ -14,7 +14,7 @@
 
  #=> Packages Installed in System Profile.
     environment.systemPackages = with pkgs; [
- #= Gnome
+    #= Gnome
         #gnome-extension-manager
         #gnomeExtensions.appindicator
         #gnomeExtensions.dash-to-dock
@@ -27,7 +27,7 @@
         #gnome.dconf-editor
         #gnome.eog
         nautilus
- #= Main
+    #= Main
         #alsa-plugins
         alsa-utils
         libsForQt5.ark
@@ -41,28 +41,41 @@
         wget
         libreoffice
         #yarn
- #= Clamav Anti-Virus
+    #= Clamav Anti-Virus
         #clamav
         #clamtk
- #= Blender
+    #= Blender
         blender-hip
- #= C/C++
+    #= Code Editor
+        vscodium
+        zed-editor
+    #= Rust
+        cargo
+        rustc
+        rustup
+        rust-analyzer
+    #= C/C++
         boost
         cmake
+        gccgo
         glibc
         glibmm
         libgcc
         SDL2
- #= Python
-        python3
-        python312Packages.pipx # Install and Run Python Applications in Isolated Environments
-        jetbrains.pycharm-professional # PyCharm
+    #= Python
+        (python312.withPackages (ps: with ps; [
+            pipenv-poetry-migrate
+            pipx
+            pydevd
+            pygame
+        ]))
+        #jetbrains.pycharm-community-src # PyCharm
         libsForQt5.qt5.qttools
         libsForQt5.full
- #= XDG
+    #= XDG
         xdg-utils-cxx
         xdg-launch
- #= Cli Utilities
+    #= Cli Utilities
         babelfish
         bat
         eza
@@ -70,16 +83,17 @@
         fastfetch
         git
         htop-vim
+        lynx
         macchanger
         ripgrep
         skim
         zfxtop
-    # Fish Plugins
+    #= Fish Plugins
         #fishPlugins.done
         #fishPlugins.fzf-fish
         #fishPlugins.forgit
         #fishPlugins.hydro
- #= Archives
+    #= Archives
         imagemagick
         zip
         unzip
@@ -87,34 +101,34 @@
         #rarcrack
         rar
         unrar-free
- #= Rust
+    #= Rust
         #cargo # PackageManager for rust
         #rustup # Rust toolchain installer
- #= Drives utilities
+    #= Drives utilities
         gnome-disk-utility # Disk Manager.
         baobab # Gui app to analyse disk usage.
         ventoy # Flash OS images for Linux and anothers Systems.
         #woeusb # Flash OS images for Windows.
- #= Flatpak
+    #= Flatpak
         libportal
         libportal-gtk3
         libportal-gtk4
         libportal-qt5
- #= Graph manager dedicated for PipeWire
+    #= Graph manager dedicated for PipeWire
         pavucontrol # Pulseaudio Volume Control
         pwvucontrol
- #= Appimages
+    #= Appimages
         #appimagekit
         appimage-run
- #= TOR
+    #= TOR
         #obfs4
         #tor-browser
- #= Image Editors
+    #= Image Editors
         #krita
         gimp
- #= Video/Audio Tools
+    #= Video/Audio Tools
         shotcut
- #= Video Recorder
+    #= Video Recorder
         (pkgs.wrapOBS {
             plugins = with pkgs.obs-studio-plugins; [
                 wlrobs
@@ -125,7 +139,7 @@
                 obs-vaapi
             ];
         })
- #= GStreamer and codecs
+    #= GStreamer and codecs
     # Video/Audio data composition framework tools like "gst-inspect", "gst-launch" ...
         gst_all_1.gstreamermm # C++ interface for GStreamer
     # Common plugins like "filesrc" to combine within e.g. gst-launch
@@ -165,13 +179,15 @@
         ffmpeg-full
         ffmpeg-headless
         ffmpegthumbnailer
- #= Media Player
+    #= Media Player
         (pkgs.mpv-unwrapped.wrapper {
             mpv = pkgs.mpv-unwrapped.override {
                 ffmpeg = pkgs.ffmpeg-full;
                 waylandSupport = true;
             };
         })
+    #= Wine
+        bottles
     ];
 
  #= Java =#

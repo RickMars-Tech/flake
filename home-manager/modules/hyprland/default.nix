@@ -69,7 +69,7 @@ in {
             cursor = {
                 no_hardware_cursors = true;
                 no_break_fs_vrr = true;
-                min_refresh_rate = 25;
+                min_refresh_rate = 60;
                 persistent_warps = true;
                 warp_on_change_workspace = true;
                 enable_hyprcursor = true;
