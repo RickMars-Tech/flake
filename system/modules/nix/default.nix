@@ -1,6 +1,7 @@
 { config, pkgs, lib, inputs, ... }: {
 
     imports = [
+        ./lix.nix
         ./nix-ld.nix
         ./nix-index.nix
     ];
@@ -8,8 +9,7 @@
   #= Enable Nix-Shell, Flakes and More...
     nix = {
         settings = {
-            sandbox = false; # true
-            warn-dirty = true;
+            sandbox = true;
             auto-optimise-store = true;
             experimental-features = [ "nix-command" "flakes" ];
             trusted-users = ["rick"];

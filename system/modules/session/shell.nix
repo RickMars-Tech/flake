@@ -4,7 +4,10 @@
     programs.fish = {
         enable = true;
         useBabelfish = true;
-        promptInit = "set fish_greeting";
+        promptInit = ''
+            set fish_greeting
+            any-nix-shell fish --info-right | source
+        '';
         shellAliases = {
             grep = "rg --color=auto";
             cat = "bat --style=plain --paging=never";

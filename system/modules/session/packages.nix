@@ -58,10 +58,13 @@
         boost
         cmake
         gccgo
+        glib
         glibc
         glibmm
         libgcc
         SDL2
+        SDL2_image
+        SDL2_ttf
     #= Python
         (python312.withPackages (ps: with ps; [
             pipenv-poetry-migrate
@@ -76,6 +79,7 @@
         xdg-utils-cxx
         xdg-launch
     #= Cli Utilities
+        any-nix-shell
         babelfish
         bat
         eza
@@ -87,6 +91,7 @@
         macchanger
         ripgrep
         skim
+        uutils-coreutils-noprefix
         zfxtop
     #= Fish Plugins
         #fishPlugins.done
@@ -101,9 +106,6 @@
         #rarcrack
         rar
         unrar-free
-    #= Rust
-        #cargo # PackageManager for rust
-        #rustup # Rust toolchain installer
     #= Drives utilities
         gnome-disk-utility # Disk Manager.
         baobab # Gui app to analyse disk usage.

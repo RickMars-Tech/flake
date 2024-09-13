@@ -1,9 +1,9 @@
-{ config, pkgs, lib, ... }: {
+{ config, pkgs, lib, input, ... }: {
 
     #==> Kernel & Filesystem <==#
     boot = {
-        kernelPackages = pkgs.linuxPackages_latest; # Latest Linux Kernel
-        supportedFilesystems = [ "ntfs" ]; # Enable Support for Others File Systems
+        kernelPackages = pkgs.linuxPackages_latest;
+        supportedFilesystems = [ "ntfs3" ]; # Enable Support for Others File Systems
 
     #==> Kernel Parameters <==#
         kernelParams = [
@@ -123,4 +123,5 @@
     #==> Black List of Kernel Modules <==#
         blacklistedKernelModules = [ "k10temp" "iTCO_wdt" "sp5100_tco" ];
     };
+
 }

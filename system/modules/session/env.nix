@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }: {
 
     environment = {
-        #pathsToLink = [ "/share/X11" "/libexec" "/share/nix-ld" ];
+        pathsToLink = [ "/share/X11" "/libexec" "/share/nix-ld" ];
         sessionVariables = rec {
         #=> Default's
             EDITOR = "nvim";
@@ -19,6 +19,9 @@
             RADV_PERFTEST = "aco"; # Force aco
         #=> Load Shared Objects Immediately
             LD_BIND_NOW = "1";
+        #=> SDL2
+            LIBRARY_PATH = "${pkgs.SDL2}/lib";
+            C_INCLUDE_PATH = "${pkgs.SDL2}/include";
         #=> Steam
             STEAM_EXTRA_COMPAT_TOOLS_PATHS = "$HOME/.steam/root/compatibilitytools.d";
         #=> Wayland

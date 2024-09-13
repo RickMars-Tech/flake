@@ -2,16 +2,14 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, inputs, ... }: {
+{ config, lib, ... }: {
 
     imports = [ # Include the results of the hardware scan.
         ./hardware-configuration.nix
         ./swap.nix
         ./modules/default.nix
     ];
-  
-  # Use Lix
-    nix.package = pkgs.lix;
+
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

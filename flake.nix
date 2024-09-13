@@ -4,11 +4,15 @@
     inputs = {
 
         nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-
         nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
 
         lix = {
             url = "https://git.lix.systems/lix-project/nixos-module/archive/2.90.0.tar.gz";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
+
+        nix-ld = {
+            url = "github:Mic92/nix-ld";
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
@@ -30,6 +34,7 @@
         nixpkgs,
         nixpkgs-stable,
         nix-flatpak,
+        nix-ld,
         self,
         ...
     }: let 
@@ -49,10 +54,11 @@
             modules = [
 
                 ./system/configuration.nix
-                
+
                 home-manager.nixosModules.home-manager
                 lix.nixosModules.default
                 nix-flatpak.nixosModules.nix-flatpak
+                nix-ld.nixosModules.nix-ld
 
                 {
                     _module.args = { inherit inputs; };
