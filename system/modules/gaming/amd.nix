@@ -1,4 +1,6 @@
-{ config, pkgs, lib, inputs, ... }: {
+{ pkgs, ... }: 
+
+{
 
 #=> OpenGL, Drivers and more... 
     hardware = {
@@ -45,8 +47,8 @@
             x86.msr.enable = true; #= MSR.
             amd.updateMicrocode = true; # Update Microcode
         };
-        enableAllFirmware = true; # Enable Properitary Firmware
-        enableRedistributableFirmware = lib.mkDefault true; # Lemme update my CPU Microcode, alr?!
+        #enableAllFirmware = true; # Enable Properitary Firmware
+        enableRedistributableFirmware = true; # Lemme update my CPU Microcode, alr?!
         firmware = with pkgs; [
             linux-firmware
         ];

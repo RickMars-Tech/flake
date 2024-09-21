@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }: {
+{ config, lib, ... }: {
 
     boot = lib.mkIf config.services.tlp.enable {
         kernelModules = [ "acpi_call" ];

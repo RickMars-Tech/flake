@@ -1,34 +1,32 @@
-{ config, pkgs, lib, input, ... }: {
+{ pkgs, ... }: {
 
- #= General Packages Config
-
- #= Allow unfree packages
+#= Allow unfree packages
     nixpkgs.config.allowUnfree = true;
 
- #= Permitted Insecure Packages
-    nixpkgs.config.permittedInsecurePackages = [
-        "electron-19.1.9"
-        "openjdk-19-ga"
-        "temurin-bin-19.0.2"
-    ];
+#= Permitted Insecure Packages
+    nixpkgs.config.permittedInsecurePackages = [ ];
 
- #=> Packages Installed in System Profile.
+#=> Packages Installed in System Profile.
     environment.systemPackages = with pkgs; [
     #= Gnome
-        #gnome-extension-manager
-        #gnomeExtensions.appindicator
-        #gnomeExtensions.dash-to-dock
-        #gnomeExtensions.blur-my-shell
-        #gnomeExtensions.gamemode-indicator-in-system-settings
-        #gnomeExtensions.vitals
-        #gnomeExtensions.xwayland-indicator
-        #gnome.gnome-tweaks
-        #gnome.gnome-calculator
-        #gnome.dconf-editor
-        #gnome.eog
+        /*
+        gnome-extension-manager
+        gnomeExtensions.appindicator
+        gnomeExtensions.dash-to-dock
+        gnomeExtensions.blur-my-shell
+        gnomeExtensions.gamemode-indicator-in-system-settings
+        gnomeExtensions.vitals
+        gnomeExtensions.xwayland-indicator
+        gnome.gnome-tweaks
+        gnome.gnome-calculator
+        gnome.dconf-editor
+        gnome.eog
+        */
         nautilus
     #= Main
-        #alsa-plugins
+        alsa-lib
+        alsaLib
+        alsa-plugins
         alsa-utils
         libsForQt5.ark
         geogebra6
@@ -42,17 +40,20 @@
         libreoffice
         #yarn
     #= Clamav Anti-Virus
-        #clamav
-        #clamtk
+        clamav
+        clamtk
     #= Blender
         blender-hip
     #= Code Editor
         vscodium
         zed-editor
+    #= Game Engine
+        godot_4
     #= Rust
         cargo
+        clippy
         rustc
-        rustup
+        rustfmt
         rust-analyzer
     #= C/C++
         boost
@@ -67,6 +68,11 @@
         SDL2_ttf
     #= Python
         (python312.withPackages (ps: with ps; [
+            anyqt
+            pyqtdarktheme
+            qtawesome
+            pyqtgraph
+            pyqt6
             pipenv-poetry-migrate
             pipx
             pydevd
@@ -192,7 +198,7 @@
         bottles
     ];
 
- #= Java =#
+#= Java =#
     programs.java = {
         enable = true;
         package = pkgs.jdk;

@@ -1,4 +1,4 @@
-{ config, pkgs, lib, input, ... }: {
+{ pkgs, ... }: {
 
     environment.systemPackages = with pkgs; [
     #= AMD P-STATE EPP

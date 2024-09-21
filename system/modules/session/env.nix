@@ -1,8 +1,9 @@
-{ config, pkgs, lib, ... }: {
+{ pkgs, ... }: {
 
     environment = {
+        extraInit = "~/.cargo/bin";
         pathsToLink = [ "/share/X11" "/libexec" "/share/nix-ld" ];
-        sessionVariables = rec {
+        sessionVariables = {
         #=> Default's
             EDITOR = "nvim";
             BROWSER = "firefox";
@@ -17,6 +18,8 @@
             #AMD_VULKAN_ICD = "RADV"; # Force radv
             #AMDVLK_ENABLE_DEVELOPING_EXT = "all";
             RADV_PERFTEST = "aco"; # Force aco
+        #=> PKG_CONFIG
+            PKG_CONFIG_PATH = "${pkgs.alsa-lib}/lib/pkgconfig:${pkgs.pkg-config}/lib/pkgconfig";
         #=> Load Shared Objects Immediately
             LD_BIND_NOW = "1";
         #=> SDL2

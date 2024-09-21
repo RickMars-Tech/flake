@@ -1,8 +1,8 @@
-{ config, pkgs, lib, ... }: {
+{ pkgs, ... }: {
 
     services.udev = {
         enable = true;
-        #packages = with pkgs; [ game-devices-udev-rules ];
+        packages = with pkgs; [ game-devices-udev-rules ];
         /*extraRules = ''
 
         # SATA Active Link Power Management

@@ -1,15 +1,16 @@
-{ config, pkgs, lib, ... }: {
+{ pkgs, ... }: {
 
   #= Printers
     services.printing = {
         enable = true;
         drivers = with pkgs; [
             gutenprint
-            hplipWithPlugin
+            #hplipWithPlugin
+            hplip
         ];
     };
 
     environment.systemPackages = with pkgs; [
-        hplipWithPlugin
+        hplip
     ];
 }

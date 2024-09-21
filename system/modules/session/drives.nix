@@ -1,4 +1,4 @@
-{ config, pkgs, lib, input,... }: {
+{ ... }: {
 
  #= Enable Trim Needed for SSD's
     services.fstrim = {

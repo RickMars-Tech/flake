@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }: let
+{ config, pkgs, ... }: let
 
     cfg = config.home;
 
@@ -338,6 +338,9 @@ in {
                 "float,title:^(Confirm to replace files)$"
                 "float,title:^(File Operation Progress)$"
                 "nomaxsize,title:^(Waydroid)$"
+
+                # IWGTK
+                "float,title:^(iwgtk)$"
                 
                 # Pipewire (Pwvucontrol).
                 "float,title:^(Pipewire Volume Control)$"

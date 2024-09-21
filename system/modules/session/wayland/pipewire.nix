@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }: {
+{ pkgs, ... }: {
 
     #= Pipewire
     security.rtkit.enable = true; # Real-Time Priority to Processes.

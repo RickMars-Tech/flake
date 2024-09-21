@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ...  }: {
+{ ...  }: {
 
  #= Power Management
     services.tlp = {

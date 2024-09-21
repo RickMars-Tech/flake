@@ -21,6 +21,11 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
+        /*fenix = {
+            url = "github:nix-community/fenix";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };*/
+
         hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
 
         nix-flatpak.url = "github:gmodena/nix-flatpak";
@@ -28,8 +33,8 @@
     };
 
     outputs = inputs@{
+        #fenix,
         home-manager,
-        hyprland,
         lix,
         nixpkgs,
         nixpkgs-stable,
@@ -44,9 +49,9 @@
         pkgs = nixpkgs.legacyPackages.${system};
         pkgs-stable = nixpkgs-stable.legacyPackages.${system};
         username = "rick";
-        name = "Rick";
+        name = "rick";
 
-    in {  
+    in {
 
         nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
             inherit system;
@@ -54,32 +59,39 @@
             modules = [
 
                 ./system/configuration.nix
-
                 home-manager.nixosModules.home-manager
                 lix.nixosModules.default
                 nix-flatpak.nixosModules.nix-flatpak
                 nix-ld.nixosModules.nix-ld
 
+                #==> Home-Manager <==#
                 {
+                    nixpkgs.config.allowUnfree = true;
                     _module.args = { inherit inputs; };
                     home-manager.useGlobalPkgs = true;
                     home-manager.useUserPackages = true;
                     home-manager.users.rick = import ./home-manager/home.nix;
                     home-manager.extraSpecialArgs = {
+                        inherit username;
+                        inherit name;
                         inherit inputs;
                         inherit pkgs-stable;
                         inherit self;
-                        inherit username;
                     };
                 }
             ];
             specialArgs = {
-                inherit username;
-                inherit name;
-                inherit pkgs-stable;
                 inherit inputs;
+                inherit pkgs-stable;
+                inherit username;
                 inherit self;
             };
+            /*extraSpecialArgs = {
+                inherit username;
+                inherit name;
+                inherit inputs;
+                inherit self;
+            };*/
         };
     };
 }

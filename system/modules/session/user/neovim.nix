@@ -1,5 +1,8 @@
 { config, pkgs, lib, ... }: {
 
+
+    # DEPRECATED
+
  #= Neovim
     programs.neovim = {
         enable = true;

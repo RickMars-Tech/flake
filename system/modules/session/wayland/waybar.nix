@@ -1,10 +1,10 @@
-{ config, pkgs, lib, ... }: {
+{ pkgs, ... }: {
 
 #= Top Bar
-  programs.waybar = {
-    enable = true;
-    /*package = pkgs.waybar.overrideAttrs (oldAttrs: {
-      mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-    });*/
-  };
+    programs.waybar = {
+        enable = true;
+        package = pkgs.waybar.overrideAttrs (oldAttrs: {
+            mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+        });
+    };
 }

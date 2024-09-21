@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, ... }: {
+{ pkgs, ... }: {
 
  #=> NixLD <=#
     programs.nix-ld.dev = {
@@ -9,6 +9,13 @@
             python312Packages.pipx
             python312Packages.pydevd
             python312Packages.pygame
+            pkg-config
+            xorg.libxcb
+            alsa-lib
+            alsaLib
+            wayland
+            libxkbcommon
+            libGL
             SDL
             SDL2
             SDL2_image

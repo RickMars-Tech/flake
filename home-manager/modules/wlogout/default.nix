@@ -1,48 +1,47 @@
-{ config, pkgs, ... }: {
+{ pkgs, ... }: {
 
-  programs.wlogout = {
-    enable = true;
-    layout = [
-      {
-        label = "shutdown";
-        action = "systemctl poweroff";
-        text = "Shutdown";
-        keybind = "s";
-      }
-      {
-        label = "reboot";
-        action = "systemctl reboot";
-        text = "Reboot";
-        keybind = "r";
-      }
-      {
-        label = "lock";
-        action = "${pkgs.hyprlock}/bin/hyprlock";
-        text = "Lock";
-        keybind = "l";
-      }
-      {
-        label = "logout";
-        action = "loginctl kill-session $XDG_SESSION_ID";
-        text = "Logout";
-        keybind = "e";
-      }
-      {
-        label = "hibernate";
-        action = "systemctl hibernate";
-        text = "Hibernate";
-        keybind = "h";
-      }
-      {
-        label = "suspend";
-        action = "systemctl suspend";
-        text = "Suspend";
-        keybind = "u";
-      }
+    programs.wlogout = {
+        enable = true;
+        layout = [
+            {
+                label = "shutdown";
+                action = "systemctl poweroff";
+                text = "Shutdown";
+                keybind = "s";
+            }
+            {
+                label = "reboot";
+                action = "systemctl reboot";
+                text = "Reboot";
+                keybind = "r";
+            }
+            {
+                label = "lock";
+                action = "${pkgs.hyprlock}/bin/hyprlock";
+                text = "Lock";
+                keybind = "l";
+            }
+            {
+                label = "logout";
+                action = "loginctl kill-session $XDG_SESSION_ID";
+                text = "Logout";
+                keybind = "e";
+            }
+            {
+                label = "hibernate";
+                action = "systemctl hibernate";
+                text = "Hibernate";
+                keybind = "h";
+            }
+            {
+                label = "suspend";
+                action = "systemctl suspend";
+                text = "Suspend";
+                keybind = "u";
+            }
+        ];
 
-    ];
-
-    style = ''
+        style = ''
         *{
             font-family: "DaddyTimeMono";
             background-image: none;
@@ -101,12 +100,12 @@
         #suspend {
             background-image: image(url("icons/suspend.png"));
         }
-    '';
-  };
+        '';
+    };
 
-  xdg.configFile."wlogout/icons" = {
-    recursive = true;
-    source = ./icons;
-  };
+    xdg.configFile."wlogout/icons" = {
+        recursive = true;
+        source = ./icons;
+    };
 
 }

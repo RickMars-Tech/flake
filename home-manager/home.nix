@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, ... }: {
+{ pkgs, ... }: {
 
     imports = [
         ./modules/default.nix
@@ -51,8 +51,8 @@
             name = "WhiteSur-Dark"; #"Material-Black-Blueberry";
         };
         iconTheme = {
-            package = pkgs.cosmic-icons;#pkgs.flat-remix-icon-theme;
-            name = "Cosmic";#"Flat-Remix-Blue-Dark";
+            package = pkgs.cosmic-icons; #pkgs.flat-remix-icon-theme;
+            name = "Cosmic"; #"Flat-Remix-Blue-Dark";
         };
     };
 

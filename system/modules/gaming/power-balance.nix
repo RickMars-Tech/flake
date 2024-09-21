@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, ... }: {
+{ pkgs, lib, ... }: {
 
 #=> IRQBalance
     services.irqbalance.enable = lib.mkDefault true;
