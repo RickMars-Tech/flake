@@ -360,6 +360,10 @@ in {
                 "nomaxsize, class:^(net.davidotek.pupgui2)$"
                 "float, class:^(net.davidotek.pupgui2)$"
 
+                # Foot+Zellij
+                "size 950 550, class:^(foot)$"
+                "float, class: ^(foot)$"
+
                 # Lutris
                 "float,class:^(lutris)$"
 

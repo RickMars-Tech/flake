@@ -1,6 +1,6 @@
 { pkgs, ... }: {
 
     # Just use Lix...
-    nix.package = pkgs.lix;
+    #nix.package = pkgs.lix;
 
 }

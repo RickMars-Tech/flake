@@ -7,7 +7,7 @@
         nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
 
         lix = {
-            url = "https://git.lix.systems/lix-project/nixos-module/archive/2.90.0.tar.gz";
+            url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.0.tar.gz";
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
@@ -21,10 +21,10 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
-        /*fenix = {
+        fenix = {
             url = "github:nix-community/fenix";
             inputs.nixpkgs.follows = "nixpkgs";
-        };*/
+        };
 
         hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
 
@@ -33,7 +33,6 @@
     };
 
     outputs = inputs@{
-        #fenix,
         home-manager,
         lix,
         nixpkgs,
@@ -45,20 +44,23 @@
     }: let 
 
         system = "x86_64-linux";
-        lib = nixpkgs.lib;
         pkgs = nixpkgs.legacyPackages.${system};
         pkgs-stable = nixpkgs-stable.legacyPackages.${system};
+        lib = nixpkgs.lib;
         username = "rick";
-        name = "rick";
+        name = "Rick";
 
     in {
 
+        packages.x86_64-linux.default = inputs.fenix.packages.x86_64-linux.default.toolchain;
         nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
             inherit system;
             inherit lib;
+            #inherit inputs;
             modules = [
 
                 ./system/configuration.nix
+
                 home-manager.nixosModules.home-manager
                 lix.nixosModules.default
                 nix-flatpak.nixosModules.nix-flatpak
@@ -73,7 +75,6 @@
                     home-manager.users.rick = import ./home-manager/home.nix;
                     home-manager.extraSpecialArgs = {
                         inherit username;
-                        inherit name;
                         inherit inputs;
                         inherit pkgs-stable;
                         inherit self;
@@ -84,14 +85,9 @@
                 inherit inputs;
                 inherit pkgs-stable;
                 inherit username;
+                inherit name;
                 inherit self;
             };
-            /*extraSpecialArgs = {
-                inherit username;
-                inherit name;
-                inherit inputs;
-                inherit self;
-            };*/
         };
     };
 }

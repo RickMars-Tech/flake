@@ -9,6 +9,7 @@
             any-nix-shell fish --info-right | source
         '';
         shellAliases = {
+            git = "gix";
             grep = "rg --color=auto";
             cat = "bat --style=plain --paging=never";
             la = "eza -a --color=always --group-directories-first --grid --icons";

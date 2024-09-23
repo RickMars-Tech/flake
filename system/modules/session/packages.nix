@@ -1,4 +1,7 @@
-{ pkgs, ... }: {
+{ pkgs, inputs, ... }: {
+
+#= Fenix (Rust Toolchain & Rust-Analyzer Nightly).
+    nixpkgs.overlays = [ inputs.fenix.overlays.default ];
 
 #= Allow unfree packages
     nixpkgs.config.allowUnfree = true;
@@ -50,11 +53,14 @@
     #= Game Engine
         godot_4
     #= Rust
-        cargo
-        clippy
-        rustc
-        rustfmt
-        rust-analyzer
+        (fenix.complete.withComponents [
+            "cargo"
+            "clippy"
+            "rust-src"
+            "rustc"
+            "rustfmt"
+        ])
+        rust-analyzer-nightly
     #= C/C++
         boost
         cmake
@@ -73,14 +79,15 @@
             qtawesome
             pyqtgraph
             pyqt6
+            pyqt6-sip
             pipenv-poetry-migrate
             pipx
             pydevd
             pygame
         ]))
         #jetbrains.pycharm-community-src # PyCharm
-        libsForQt5.qt5.qttools
-        libsForQt5.full
+        #libsForQt5.qt5.qttools
+        #libsForQt5.full
     #= XDG
         xdg-utils-cxx
         xdg-launch
@@ -91,7 +98,7 @@
         eza
         fzf
         fastfetch
-        git
+        gitoxide
         htop-vim
         lynx
         macchanger

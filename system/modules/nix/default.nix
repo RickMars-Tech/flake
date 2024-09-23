@@ -6,7 +6,7 @@
         ./nix-index.nix
     ];
 
-  #= Enable Nix-Shell, Flakes and More...
+    #= Enable Nix-Shell, Flakes and More...
     nix = {
         settings = {
             sandbox = true;
@@ -31,5 +31,4 @@
             options = "--delete-older-than 1w";
         };
     };
-
 }

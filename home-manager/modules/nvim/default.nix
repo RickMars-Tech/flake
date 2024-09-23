@@ -1,4 +1,7 @@
-{ pkgs, ... }: {
+{ pkgs, inputs, ... }: {
+
+    nixpkgs.overlays = [ inputs.fenix.overlays.default ];
+
 
     programs.neovim = {
         enable = true;
@@ -19,8 +22,10 @@
             };
         };
         extraPackages = with pkgs; [
-            rust-analyzer
-            rustfmt
+            (fenix.complete.withComponents [
+                "rustfmt"
+            ])
+            rust-analyzer-nightly
             nodePackages.bash-language-server
             docker-compose-language-service
             dockerfile-language-server-nodejs
@@ -32,8 +37,8 @@
             flake8
         ];
         plugins = with pkgs.vimPlugins; [
-            coc-rls
-            coc-rust-analyzer
+            #coc-rls
+            #coc-rust-analyzer
             indent-blankline-nvim
             mason-nvim
             nvim-dap
