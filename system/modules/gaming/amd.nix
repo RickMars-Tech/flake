@@ -1,4 +1,4 @@
-{ pkgs, ... }: 
+{ pkgs, lib, ... }: 
 
 {
 
@@ -44,10 +44,10 @@
 #=> Hardware & Firmware
     hardware = {
         cpu = {
-            x86.msr.enable = true; #= MSR.
+            x86.msr.enable = lib.mkDefault false; #= MSR (Model-Specific Registers).
             amd.updateMicrocode = true; # Update Microcode
         };
-        #enableAllFirmware = true; # Enable Properitary Firmware
+        enableAllFirmware = true; # Enable Properitary Firmware
         enableRedistributableFirmware = true; # Lemme update my CPU Microcode, alr?!
         firmware = with pkgs; [
             linux-firmware

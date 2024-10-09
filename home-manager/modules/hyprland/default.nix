@@ -27,7 +27,11 @@ in {
                 "HYPRLAND_TRACE, 0"
                 "HYPRLAND_NO_RT, 0"
                 "HYPRLAND_NO_SD_NOTIFY, 1"
-                "CLUTTER_BACKEND, wayland"
+                #= Toolkit Backend Variables 
+                "GDK_BACKEND,wayland,x11,*"
+                "QT_QPA_PLATFORM,wayland;xcb"
+                "SDL_VIDEODRIVER,wayland"
+                "CLUTTER_BACKEND,wayland"
                 #= XWayland
                 "GDK_SCALE, 1"
                 "XCURSOR_SIZE, 24"
@@ -100,8 +104,8 @@ in {
                 gaps_in = 2;
                 gaps_out = 4;
                 border_size = 2;
-                "col.active_border" = "0xff89dceb";
-                "col.inactive_border" = "0xff444444";
+                "col.active_border" = "rgba(fe5ff7ee) rgba(33ccffee) 45deg "; #rgba(00ff99ee) 45deg";
+                "col.inactive_border" = "rgba(595959aa)"; #"0xff444444";
                 border_part_of_window = false;
                 no_border_on_floating = false;
             };
@@ -132,7 +136,7 @@ in {
                 swallow_regex = "^(foot|kitty|Alacritty)$";
                 swallow_exception_regex = "^(foot|kitty|Alacritty)";
                 vrr = 2; # VRR (Adaptive Sync). 0 - Disabled, 1 - Enabled, 2 - Only FullScreen
-                vfr = true; #
+                vfr = true;
                 render_ahead_safezone = 1;
                 new_window_takes_over_fullscreen = 2;
             };
@@ -210,7 +214,7 @@ in {
                 "SHIFT, Print, exec, grimblast --notify --cursor copysave area"
 
                 # Gamemode
-                "SUPER, F1, exec, ~/.config/hypr/scripts/gamemode.sh"
+                #"SUPER, F1, exec, ~/.config/hypr/scripts/gamemode.sh"
 
                 # LaunchApps
                 #"SUPER, T, exec, kitty"
@@ -221,7 +225,7 @@ in {
                 "SUPER, E, exec, foot -e yazi"
                 "SUPER, S, swapsplit, # dwindle"
                 "SUPER, R, exec, pkill rofi || rofi -show drun -show-icons"
-                "CTRL SHIFT, H, exec, hyprpicker -r -a"
+                "SUPER SHIFT, H, exec, hyprpicker -r -a"
 
                 # Brightnes
                 ",XF86MonBrightnessUp, exec, brightnessctl set +5%"
@@ -297,72 +301,48 @@ in {
             ];
 
             windowrulev2 = [
-                # Opacidad
-                "opacity 0.90 0.90,class:^(Firefox)$"
-                "opacity 0.80 0.80,class:^(Spotify)$"
-                "opacity 0.80 0.80,class:^(Code)$"
-                "opacity 0.80 0.80,class:^(file-roller)$"
-                "opacity 0.80 0.80,class:^(nwg-look)$"
-                "opacity 0.80 0.80,class:^(qt5ct)$"
-                "opacity 0.80 0.70,class:^(polkit-kde-authentication-agent-1)$"
+                # QBittorrent
+                "float,class:^(org.qbittorrent.qBittorrent)$"
 
-                # Posición
-                "float,class:^(org.kde.polkit-kde-authentication-agent-1)$"
-                "float,class:^(lxqt-policykit-agent)$"
-
-                "float,class:^(fragments)$"
-                "float,class:^(pavucontrol)$"
-                "float,class:^(et)$"
-                "float,class:^(org.gnome.Nautilus)$"
-                "float,class:^(xdg-desktop-portal-gtk)$"
-                "float, title:^(Library)$,class:^(firefox)$"
-                "float,class:^(pcmanfm)$"
-                "float,class:^(gnome-disks)$"
-                "float,class:^(Network)$"
-                "float,class:^(steamwebhelper)$"
-                "float,title:^(ProtonUp-Qt)$"
-                "float,class:^(fragments)$"
-                "float,title:^(Media viewer)$"
-                "float,title:^(Volume Control)$"
-                "float,title:^(Picture-in-Picture)$"
-                "float,title:^(DevTools)$"
-                "float,class:^(file_progress)$"
-                "float,class:^(confirm)$"
-                "float,class:^(dialog)$"
-                "float,class:^(download)$"
-                "float,class:^(notification)$"
-                "float,class:^(error)$"
-                "float,class:^(confirmreset)$"
-                "float,title:^(Open File)$"
-                "float,title:^(branchdialog)$"
-                "float,title:^(Confirm to replace files)$"
-                "float,title:^(File Operation Progress)$"
-                "nomaxsize,title:^(Waydroid)$"
+                # Disk/Files
+                "float, class:^(org.gnome.Nautilus)$"
+                "float, class:^(org.gnome.baobab)$"
+                "float, class:^(gnome-disks)$"
 
                 # IWGTK
                 "float,title:^(iwgtk)$"
+                "float,class:^(iwgtk)$"
+                "float,class:^(org.twosheds.iwgtk)$"
                 
                 # Pipewire (Pwvucontrol).
                 "float,title:^(Pipewire Volume Control)$"
+
                 # PulseAudio (Pavucontrol).
                 "float,class:^(pavucontrol)$"
 
                 # Firefox
-                "float,title:^(Extension: (Bitwarden Password Manager) - Bitwarden — Mozilla Firefox)$"
-                "nomaxsize,title:^(Extension: (Bitwarden Password Manager) - Bitwarden — Mozilla Firefox)$"
+                "float, title:^(Library)$,class:^(firefox)$"
+                "float,title:^(Extension: (Bitwarden Password Manager) - Bitwarden — Mozilla Firefox)$,class:^(firefox)$"
+                "nomaxsize,title:^(Extension: (Bitwarden Password Manager) - Bitwarden — Mozilla Firefox)$,class:^(firefox)$"
+
+                # Waydroid
+                "float, class:^(Waydroid)$"
 
                 # Steam
                 "stayfocused, title:^()$,class:^(steam)$"
                 "minsize 1 1, title:^()$,class:^(steam)$"
-                "noblur,class:(steam)$"
+                "noblur, class:(steam)$"
                 "forcergbx,class:(steam)$"
-                "float,title:^(Configuraciones de Steam)$"
+                "float, title:^(Configuraciones de Steam)$"
                 "nomaxsize, class:^(net.davidotek.pupgui2)$"
                 "float, class:^(net.davidotek.pupgui2)$"
+                "float, class:^(steamwebhelper)$"
+
+                "float,title:^(ProtonUp-Qt)$"
 
                 # Foot+Zellij
-                "size 950 550, class:^(foot)$"
-                "float, class: ^(foot)$"
+                #"size 950 550, class:^(foot)$"
+                #"float, class: ^(foot)$"
 
                 # Lutris
                 "float,class:^(lutris)$"

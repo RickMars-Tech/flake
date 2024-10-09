@@ -10,14 +10,14 @@ in {
         enable = true;
         settings = {
             default_session = {
-                command = "${tuigreet} --time --remember --remember-session --sessions ${hyprland-session}";
+                command = "${tuigreet} --time --remember --remember-session --asterisks --sessions ${hyprland-session}";
                 user = "greeter";
             };
         };
         vt = 1;
     };
 
-  #= TTY
+#= TTY
     console = {
         earlySetup = true;
         keyMap = "la-latin1";

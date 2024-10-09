@@ -1,6 +1,6 @@
 { ...  }: {
 
- #= Power Management
+#= TLP (Advanced Power Management for Linux).
     services.tlp = {
         enable = true;
         settings = {
@@ -36,15 +36,7 @@
     };
     services.power-profiles-daemon.enable = false;
 
-  #= Powertop
-    powerManagement = {
-        enable = true;
-    };
-
-  #= UPower
-    services.upower.enable = true;
-
-  #= Thermal CPU Management
+#= Thermal CPU Management
     services.thermald.enable = true; # Disable if your CPU isn't Supported
 
 }

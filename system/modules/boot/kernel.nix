@@ -2,8 +2,10 @@
 
     #==> Kernel & Filesystem <==#
     boot = {
-        kernelPackages = pkgs.linuxPackages_latest;
-        supportedFilesystems = [ "ntfs3" ]; # Enable Support for Others File Systems
+        kernelPackages = pkgs.linuxPackages_cachyos;
+        supportedFilesystems = { # Enable Support for Others File Systems
+            ntfs = true;
+        };
 
     #==> Kernel Parameters <==#
         kernelParams = [
@@ -23,7 +25,7 @@
             "nowatchdog"
             #"rd.systemd.show_status=false"
             #"rd.udev.log_level=3"
-            #"udev.log_level=3"
+            "udev.log_level=3"
         ];
 
     #==> Kernel Modules <==#
@@ -34,6 +36,7 @@
         ];
 
         initrd.kernelModules = [
+            /*
             "amd_pmc"
             "zenpower"
             "ext4"
@@ -50,6 +53,7 @@
             "snd-rawmidi"
             "mq-deadline"
             "vmd"
+            */
         ];
 
     #==> Kernel Runtime Parameters <==#
@@ -93,14 +97,14 @@
             "net.core.optmem_max" = 65536;
             "net.ipv4.tcp_rmem" = "4096 1048576 2097152";
             "net.ipv4.tcp_wmem" = "4096 65536 16777216";
-          #= https://enterprise-support.nvidia.com/s/article/linux-sysctl-tuning
+            #= https://enterprise-support.nvidia.com/s/article/linux-sysctl-tuning
             "net.ipv4.tcp_timestamps" = 0;
             "net.ipv4.tcp_sack" = 1;
             "net.core.netdev_max_backlog" = 250000;
             "net.ipv4.tcp_low_latency" = 1;
             "net.ipv4.tcp_adv_win_scale" = 1;
         #= Disable Source Routing
-          # https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/6/html/security_guide/chap-security_guide-securing_your_network
+            # https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/6/html/security_guide/chap-security_guide-securing_your_network
             "net.ipv4.conf.all.accept_source_route" = 0;
             "net.ipv4.conf.all.forwarding" = 0;
             "net.ipv6.conf.all.forwarding" = 0;
@@ -112,7 +116,7 @@
             "net.ipv4.conf.all.send_redirects" = 0;
         };
 
-    #==> Extra <==#
+        #==> Extra <==#
         extraModulePackages = with config.boot.kernelPackages; [
             zenpower
         ];
@@ -120,8 +124,14 @@
             options kvm_amd nested=1
         ";
 
-    #==> Black List of Kernel Modules <==#
+        #==> Black List of Kernel Modules <==#
         blacklistedKernelModules = [ "k10temp" "iTCO_wdt" "sp5100_tco" ];
+    };
+
+    #==> SCX Sheduler <==#
+    chaotic.scx = {
+        enable = true;
+        scheduler = "scx_rustland";
     };
 
 }

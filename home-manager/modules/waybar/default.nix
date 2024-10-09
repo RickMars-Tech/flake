@@ -8,20 +8,20 @@
                 position = "top"; #"bottom";
                 exclusive = true;
 
-                 "modules-left" = [ "custom/nix" "hyprland/workspaces" "hyprland/window" ];
-                 "modules-center" = [ "clock" ];
-                 "modules-right" = [ "gamemode" "tray" "cpu" "memory" "battery" "temperature" "backlight" "wireplumber" "network" ];
+                "modules-left" = [ "custom/nix" "hyprland/workspaces" "hyprland/window" ];
+                "modules-center" = [ "clock" ];
+                "modules-right" = [ "gamemode" "tray" "cpu" "memory" "battery" "temperature" "backlight" "wireplumber" "network" ];
 
-                 ##--------------------------
-                 ## Hyprland Workspaces
-                 ##--------------------------
-                 "hyprland/workspaces" = {
-                     "disable-scroll" = false;
-                     "all-outputs" = true;
-                     "format" = "{icon}";
-                     "on-scroll-up" = "hyprctl dispatch workspace e+1";
-                     "on-scroll-down" = "hyprctl dispatch workspace e-1";
-                     "format-icons" = {
+                ##--------------------------
+                ## Hyprland Workspaces
+                ##--------------------------
+                "hyprland/workspaces" = {
+                    "disable-scroll" = false;
+                    "all-outputs" = true;
+                    "format" = "{icon}";
+                    "on-scroll-up" = "hyprctl dispatch workspace e+1";
+                    "on-scroll-down" = "hyprctl dispatch workspace e-1";
+                    "format-icons" = {
                         "1" = "";
                         "2" = "󱎓";
                         "3" = "󰈹";

@@ -2,7 +2,6 @@
 
     nixpkgs.overlays = [ inputs.fenix.overlays.default ];
 
-
     programs.neovim = {
         enable = true;
         defaultEditor = true;
@@ -13,6 +12,10 @@
         coc = {
             enable = true;
             settings = {
+                "suggest.noselect" = true;
+                "suggest.enablePreview" = true;
+                "suggest.enablePreselect" = false;
+                "suggest.disableKind" = true;
                 "languageserver" = {
                     "nix" = {
                         "command" = "nixd";
@@ -31,17 +34,19 @@
             dockerfile-language-server-nodejs
             emmet-language-server
             nixd
+            pyright
         ];
         extraPython3Packages = pyPkgs: with pyPkgs; [ 
             python-lsp-server
+            #pylint
             flake8
         ];
         plugins = with pkgs.vimPlugins; [
-            #coc-rls
-            #coc-rust-analyzer
             indent-blankline-nvim
             mason-nvim
             nvim-dap
+            nvim-dap-ui
+            nvim-dap-python
             oil-nvim
             oxocarbon-nvim
             rustaceanvim
@@ -50,40 +55,35 @@
             vim-nix
             vim-just
         ];
-        extraConfig = ''
-            syntax on
-            set ignorecase
-            set smartcase
-            set encoding=utf-8
-            set number relativenumber
-            set mouse=a
-
-            " Autocompletion
-            set wildmode=longest,list,full
-
-            " Use system Clipboard
-            set clipboard+=unnamedplus
-
-            " Lines Number
-            set number
-
-            " Tab Settings
-            set expandtab
-            set shiftwidth=4
-            set softtabstop=4
-            set tabstop=4
-            
-            " Theme
-            set background=dark
-            set termguicolors 
-
-            " Transparency
-            highlight Normal guibg=none
-            highlight NonText guibg=none
-            highlight Normal ctermbg=none
-            highlight NonText ctermbg=none
-        '';
         extraLuaConfig = ''
+            vim.cmd('syntax on')
+
+            vim.o.ignorecase = true
+            vim.o.smartcase = true
+            vim.o.encoding = 'utf-8'
+            vim.o.mouse = 'a'
+            vim.o.number = true
+
+            vim.o.wildmode = 'longest,list,full'
+
+            vim.o.clipboard = 'unnamedplus'
+
+            vim.o.expandtab = true
+            vim.o.shiftwidth = 4
+            vim.o.softtabstop = 4
+            vim.o.tabstop = 4
+
+            -- Theme
+            vim.o.background = 'dark'
+            vim.o.termguicolors = true
+
+            -- Transparency
+            vim.cmd('highlight Normal guibg=none')
+            vim.cmd('highlight NonText guibg=none')
+            vim.cmd('highlight Normal ctermbg=none')
+            vim.cmd('highlight NonText ctermbg=none')
+
+            -- Indent Blankline
             local highlight = {
                 "RainbowRed", 
                 "RainbowYellow",
@@ -109,6 +109,7 @@
 
             require("ibl").setup { indent = { highlight = highlight } }
 
+            -- Supermaven
             require("supermaven-nvim").setup({
                 keymaps = {
                     accept_suggestion = "<Tab>",
@@ -127,6 +128,8 @@
                     return false
                 end -- condition to check for stopping supermaven, `true` means to stop supermaven when the condition is true.
             })
+
+            -- Oil
             require("oil").setup({
                 default_file_explorer = true,
             })

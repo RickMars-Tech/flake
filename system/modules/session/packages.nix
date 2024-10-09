@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, lib, inputs, ... }: {
 
 #= Fenix (Rust Toolchain & Rust-Analyzer Nightly).
     nixpkgs.overlays = [ inputs.fenix.overlays.default ];
@@ -48,8 +48,19 @@
     #= Blender
         blender-hip
     #= Code Editor
-        vscodium
-        zed-editor
+        #vscodium-fhs
+        (vscode-with-extensions.override {
+            vscode = vscodium-fhs;
+            vscodeExtensions = with vscode-extensions; [
+                rust-lang.rust-analyzer
+                supermaven.supermaven
+                bbenoist.nix
+                ms-python.python
+                ms-python.debugpy
+                ms-python.pylint
+            ];
+        })
+        #zed-editor
     #= Game Engine
         godot_4
     #= Rust
@@ -80,9 +91,11 @@
             pyqtgraph
             pyqt6
             pyqt6-sip
-            pipenv-poetry-migrate
+            py
             pipx
             pydevd
+            pylint
+            pyside6
             pygame
         ]))
         #jetbrains.pycharm-community-src # PyCharm
@@ -98,6 +111,7 @@
         eza
         fzf
         fastfetch
+        git
         gitoxide
         htop-vim
         lynx
@@ -135,9 +149,8 @@
     #= Appimages
         #appimagekit
         appimage-run
-    #= TOR
-        #obfs4
-        #tor-browser
+    #= Torrent
+        qbittorrent
     #= Image Editors
         #krita
         gimp
