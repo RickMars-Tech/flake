@@ -42,11 +42,13 @@
         wget
         libreoffice
         #yarn
+    #= FOSS Electronics Design Automation suite
+        kicad
     #= Clamav Anti-Virus
         clamav
         clamtk
     #= Blender
-        blender-hip
+        blender
     #= Code Editor
         #vscodium-fhs
         (vscode-with-extensions.override {
@@ -111,7 +113,7 @@
         eza
         fzf
         fastfetch
-        git
+        #git
         gitoxide
         htop-vim
         lynx

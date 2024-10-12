@@ -4,7 +4,6 @@
         ./hyprland.nix
         ./pipewire.nix
         ./waybar.nix
-        ./waydroid.nix
     ];
 
 #= Disable X11

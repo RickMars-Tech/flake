@@ -14,5 +14,6 @@ mkShell rec {
   LD_LIBRARY_PATH = lib.makeLibraryPath buildInputs;
 
   allowUnfree = true;
+  allowBrocken = true;
 
 }

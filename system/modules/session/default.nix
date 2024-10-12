@@ -12,6 +12,7 @@
         ./powermanagment.nix
         ./printing.nix
         ./shell.nix
+        ./virtualization.nix
         ./wayland/default.nix
     ];
 }
