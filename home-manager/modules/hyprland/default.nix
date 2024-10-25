@@ -15,8 +15,8 @@ in {
         settings = {
 
             monitor = [
-                ", preferred, auto, 1, bitdepth, 10"
-                #", highres, auto, 1"
+                #", preferred, auto, 1"
+                ", highres, auto, 1"
             ];
 
             env = [
@@ -81,9 +81,10 @@ in {
             };
 
             input = {
-                kb_model = "pc104";
-                kb_layout = "latam";
-                kb_options ="terminate:ctrl_alt_bksp";
+                kb_model = ""; #"pc104";
+                kb_layout = "us"; #"latam";
+                kb_variant = "nodeadkeys";
+                kb_options = ""; #"terminate:ctrl_alt_bksp";
                 numlock_by_default = true;
                 accel_profile = "flat";
                 follow_mouse = 1;
@@ -216,6 +217,10 @@ in {
                 # Gamemode
                 #"SUPER, F1, exec, ~/.config/hypr/scripts/gamemode.sh"
 
+                #''Alt+n, "type ñ"''
+                #''Alt+N, "type Ñ"''
+
+
                 # LaunchApps
                 #"SUPER, T, exec, kitty"
                 "SUPER, T, exec, foot"
@@ -331,8 +336,8 @@ in {
                 # Steam
                 "stayfocused, title:^()$,class:^(steam)$"
                 "minsize 1 1, title:^()$,class:^(steam)$"
-                "noblur, class:(steam)$"
-                "forcergbx,class:(steam)$"
+                "noblur, class:^(steam)$"
+                "forcergbx,class:^(steam)$"
                 "float, title:^(Configuraciones de Steam)$"
                 "nomaxsize, class:^(net.davidotek.pupgui2)$"
                 "float, class:^(net.davidotek.pupgui2)$"

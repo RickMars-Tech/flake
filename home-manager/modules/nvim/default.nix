@@ -1,6 +1,4 @@
-{ pkgs, inputs, ... }: {
-
-    nixpkgs.overlays = [ inputs.fenix.overlays.default ];
+{ pkgs, ... }: {
 
     programs.neovim = {
         enable = true;
@@ -9,37 +7,23 @@
         vimAlias = true;
         withPython3 = true;
         package = pkgs.neovim-unwrapped;
-        coc = {
-            enable = true;
-            settings = {
-                "suggest.noselect" = true;
-                "suggest.enablePreview" = true;
-                "suggest.enablePreselect" = false;
-                "suggest.disableKind" = true;
-                "languageserver" = {
-                    "nix" = {
-                        "command" = "nixd";
-                        "filetypes" = ["nix"];
-                    };
-                };
-            };
-        };
         extraPackages = with pkgs; [
-            (fenix.complete.withComponents [
-                "rustfmt"
-            ])
-            rust-analyzer-nightly
-            nodePackages.bash-language-server
-            docker-compose-language-service
-            dockerfile-language-server-nodejs
-            emmet-language-server
+            rust-analyzer
             nixd
+            nixfmt-rfc-style
             pyright
         ];
-        extraPython3Packages = pyPkgs: with pyPkgs; [ 
+        extraPython3Packages = pyPkgs: with pyPkgs; [
+            #pylsp-mypy
+            pyls-isort
             python-lsp-server
-            #pylint
-            flake8
+            pytest
+            pylint
+            # python-lsp-ruff
+            # pyls-flake8
+            # pylsp-rope
+            # yapf
+            # autopep8
         ];
         plugins = with pkgs.vimPlugins; [
             indent-blankline-nvim
@@ -47,7 +31,7 @@
             nvim-dap
             nvim-dap-ui
             nvim-dap-python
-            oil-nvim
+            nvim-lspconfig
             oxocarbon-nvim
             rustaceanvim
             supermaven-nvim
@@ -129,10 +113,43 @@
                 end -- condition to check for stopping supermaven, `true` means to stop supermaven when the condition is true.
             })
 
-            -- Oil
-            require("oil").setup({
-                default_file_explorer = true,
+            -- LSP Config
+            require("lspconfig").rust_analyzer.setup {
+            -- Server-specific settings. See `:help lspconfig-setup`
+                settings = {
+                    ['rust-analyzer'] = {},
+                },
+            }
+            require("lspconfig").nixd.setup({
+                cmd = { "nixd" },
+                settings = {
+                    nixd = {
+                        nixpkgs = {
+                            expr = "import <nixpkgs> { }",
+                        },
+                        formatting = {
+                            command = { "nixfmt" },
+                        },
+                    },
+                },
             })
+            lspconfig.pyright.setup {
+                settings = {
+                    python = {
+                        analysis = {
+                            autoSearchPaths = true,
+                            diagnosticMode = "workspace",
+                            useLibraryCodeForTypes = true,
+                        },
+                        formatting = {
+                            provider = "black",
+                            black_args = {
+                                "--line-length=120",
+                            },
+                        },
+                    }
+                },
+            };
         '';
     };
 

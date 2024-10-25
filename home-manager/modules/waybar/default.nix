@@ -17,6 +17,7 @@
                 ##--------------------------
                 "hyprland/workspaces" = {
                     "disable-scroll" = false;
+                    "enable-bar-scroll" = true;
                     "all-outputs" = true;
                     "format" = "{icon}";
                     "on-scroll-up" = "hyprctl dispatch workspace e+1";

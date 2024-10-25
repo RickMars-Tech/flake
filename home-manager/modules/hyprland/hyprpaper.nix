@@ -11,7 +11,7 @@
             preload =
                 [ "~/wal/arcane.png" "~/wal/spaceman.png" "~/wal/alone.png" ];
             wallpaper = 
-                [ "eDP-1,~/wal/alone.png" ];
+                [ ",~/wal/alone.png" ];
         };
     };
 

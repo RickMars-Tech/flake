@@ -36,7 +36,7 @@
                     fade_on_empty = true;
                     placeholder_text = "<i>Password...</i> ";
 
-                    position = "0, -350";
+                    position = "0, -200";
                     haling = "bottom";
                     valing = "center";
                 }
