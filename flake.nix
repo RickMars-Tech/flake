@@ -6,12 +6,14 @@
         nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
         nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
 
+        nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
         chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
 
-        lix = {
+        /*lix = {
             url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.0.tar.gz";
             inputs.nixpkgs.follows = "nixpkgs";
-        };
+        };*/
 
         nix-ld = {
             url = "github:Mic92/nix-ld";
@@ -23,25 +25,20 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
-        fenix = {
-            url = "github:nix-community/fenix";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
-
         hyprland.url = "github:hyprwm/Hyprland";
 
-        nix-flatpak.url = "github:gmodena/nix-flatpak";
-
+        flatpaks.url = "github:GermanBread/declarative-flatpak/stable-v3";
     };
 
     outputs = inputs@{
         chaotic,
+        flatpaks,
         home-manager,
-        lix,
+        #lix,
         nixpkgs,
         nixpkgs-stable,
-        nix-flatpak,
         nix-ld,
+        nixos-hardware,
         self,
         ...
     }: let 
@@ -55,7 +52,6 @@
 
     in {
 
-        packages.x86_64-linux.default = inputs.fenix.packages.x86_64-linux.default.toolchain;
         nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
             inherit system;
             inherit lib;
@@ -63,10 +59,11 @@
             modules = [
 
                 ./system/configuration.nix
+                nixos-hardware.nixosModules.lenovo-thinkpad-t420
                 chaotic.nixosModules.default
+                flatpaks.nixosModules.default
                 home-manager.nixosModules.home-manager
-                lix.nixosModules.default
-                nix-flatpak.nixosModules.nix-flatpak
+                #lix.nixosModules.default
                 nix-ld.nixosModules.nix-ld
 
                 #==> Home-Manager <==#
