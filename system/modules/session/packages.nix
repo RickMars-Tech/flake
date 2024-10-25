@@ -1,7 +1,4 @@
-{ pkgs, inputs, ... }: {
-
-#= Fenix (Rust Toolchain & Rust-Analyzer Nightly).
-    nixpkgs.overlays = [ inputs.fenix.overlays.default ];
+{ pkgs, ... }: {
 
 #= Allow unfree packages
     nixpkgs.config.allowUnfree = true;
@@ -28,7 +25,6 @@
         nautilus
     #= Main
         alsa-lib
-        alsaLib
         alsa-plugins
         alsa-utils
         cacert
@@ -44,7 +40,7 @@
         libreoffice
         #yarn
     #= FOSS Electronics Design Automation suite
-        kicad
+        #kicad
     #= Clamav Anti-Virus
         clamav
         clamtk
@@ -55,6 +51,7 @@
         (vscode-with-extensions.override {
             vscode = vscodium-fhs;
             vscodeExtensions = with vscode-extensions; [
+                catppuccin.catppuccin-vsc
                 rust-lang.rust-analyzer
                 supermaven.supermaven
                 bbenoist.nix
@@ -62,20 +59,16 @@
                 ms-python.debugpy
                 ms-python.pylint
                 ms-python.flake8
+                ms-python.vscode-pylance
             ];
         })
-        #zed-editor
+        zed-editor
+    #= Local Lenguage Model
+        ollama
     #= Game Engine
         godot_4
     #= Rust
-        (fenix.complete.withComponents [
-            "cargo"
-            "clippy"
-            "rust-src"
-            "rustc"
-            "rustfmt"
-        ])
-        rust-analyzer-nightly
+        rustup
     #= C/C++
         boost
         cmake
@@ -92,23 +85,29 @@
             anyqt
             pyqtdarktheme
             qtawesome
-            pyqtgraph
+            qtpy
             pyqt6
-            pyqt6-sip
             py
             pipx
             pydevd
+            pyls-isort
             pylint
+            pylint-venv
             pylint-plugin-utils
-            pyside6
+            python-lsp-server
+            pytest
             pygame
         ]))
-        #jetbrains.pycharm-community-src # PyCharm
-        #libsForQt5.qt5.qttools
-        #libsForQt5.full
+        pyright
+        kdePackages.qttools
     #= XDG
         xdg-utils-cxx
         xdg-launch
+    #= (Neo)Vim Extra Packages
+        rust-analyzer
+        nixd
+        nixfmt-rfc-style
+        pyright
     #= Cli Utilities
         any-nix-shell
         babelfish
@@ -116,7 +115,6 @@
         eza
         fzf
         fastfetch
-        #git
         gitoxide
         htop-vim
         lynx
@@ -125,7 +123,7 @@
         skim
         uutils-coreutils-noprefix
         busybox
-        woeusb-ng
+        woeusb
         zfxtop
     #= Fish Plugins
         #fishPlugins.done
@@ -141,6 +139,7 @@
         rar
         unrar-free
     #= Drives utilities
+        smartmontools # Monitoring the health of ard drives.
         gnome-disk-utility # Disk Manager.
         baobab # Gui app to analyse disk usage.
         ventoy # Flash OS images for Linux and anothers Systems.

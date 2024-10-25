@@ -4,7 +4,8 @@
         loader = {
             systemd-boot = {
                 enable = true;
-                consoleMode = "keep";
+                editor = false;
+                consoleMode = "max";
                 configurationLimit = 20;
             };
             efi.canTouchEfiVariables = false;

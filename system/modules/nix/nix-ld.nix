@@ -5,14 +5,13 @@
         enable = true;
         package = pkgs.nix-ld;
         libraries = with pkgs; pkgs.steam-run.fhsenv.args.multiPkgs pkgs ++ [
-            python312Packages.pipenv-poetry-migrate
-            python312Packages.pipx
-            python312Packages.pydevd
-            python312Packages.pygame
+            #python312Packages.pipenv-poetry-migrate
+            #python312Packages.pipx
+            #python312Packages.pydevd
+            #python312Packages.pygame
             pkg-config
             xorg.libxcb
             alsa-lib
-            alsaLib
             wayland
             libxkbcommon
             libGL
@@ -94,7 +93,7 @@
             p11-kit
             pango
             pixman
-            python3
+            python312
             speex
             stdenv.cc.cc
             tbb

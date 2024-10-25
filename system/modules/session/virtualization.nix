@@ -2,13 +2,13 @@
 
 #= General
      virtualisation = {
-         libvirtd.enable = true;
+         libvirtd.enable = false;
          waydroid.enable = false;
     };
     #environment.systemPackages = with pkgs; [ waydroid ];
 
 #=> Virt-Manager
-    programs.virt-manager.enable = true;
+    programs.virt-manager.enable = false;
 
 #=> Enable AMD SEV (For Memory Security).
     hardware.cpu.amd.sev.enable = true;

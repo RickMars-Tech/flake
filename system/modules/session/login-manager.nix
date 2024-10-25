@@ -20,7 +20,7 @@ in {
 #= TTY
     console = {
         earlySetup = true;
-        keyMap = "la-latin1";
+        keyMap = "us"; #"la-latin1";
         packages = with pkgs; [ terminus-nerdfont ];
     };
 

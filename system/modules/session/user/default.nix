@@ -27,7 +27,7 @@
             "qemu"
             "input"
         ];
-        shell = pkgs.fish; #pkgs.zsh;
+        shell = pkgs.fish;
     };
 #=> Fonts Config
     fonts = {

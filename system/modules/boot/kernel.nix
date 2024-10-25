@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ pkgs, ... }: {
 
     #==> Kernel & Filesystem <==#
     boot = {
@@ -7,50 +7,20 @@
 
     #==> Kernel Parameters <==#
         kernelParams = [
-            #"acpi_osi=linux"
-            #"acpi_osi=Windows"
-            #"acpi=strict"
-            "amd_iommu=on"
-            "amdgpu.noretry=0"
-            "amdgpu.dc=1"
-            "amdgpu.dpm=1"
             "transparent_hugepage=always"
             #"tsc=reliable"
             #"clocksource=tsc"
             "mitigations=auto"
             #"quiet"
             #"splash"
-            "nowatchdog"
-            #"rd.systemd.show_status=false"
-            #"rd.udev.log_level=3"
-            #"udev.log_level=3"
         ];
 
     #==> Kernel Modules <==#
         kernelModules = [
-            "tcp_bbr"
-            "xhci_pci"
-            "zenpower"
+            "thinkpad_acpi"
         ];
 
-        initrd.kernelModules = [
-            "amd_pmc"
-            "zenpower"
-            "ext4"
-            "nvme"
-            "nvme_core"
-            "acer_wmi"
-            "acer_wireless"
-            "ahci"
-            "ehci_pci"
-            "usb_storage"
-            "usbhid"
-            "sd_mod"
-            "snd-seq"
-            "snd-rawmidi"
-            "mq-deadline"
-            "vmd"
-        ];
+        #initrd.kernelModules = [];
 
     #==> Kernel Runtime Parameters <==#
         kernel.sysctl = {
@@ -113,15 +83,10 @@
         };
 
         #==> Extra <==#
-        extraModulePackages = with config.boot.kernelPackages; [
-            zenpower
-        ];
+        #extraModulePackages = with config.boot.kernelPackages; [];
         extraModprobeConfig = "
-            options kvm_amd nested=1
-        ";
-
-        #==> Black List of Kernel Modules <==#
-        blacklistedKernelModules = [ "k10temp" ];
+            options thinkpad_acpi fan_control=1
+            ";
     };
 
     #==> SCX Sheduler <==#

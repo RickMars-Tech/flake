@@ -10,7 +10,7 @@
     services.xserver.enable = false;
 
 #= XWayland
-    #programs.xwayland.enable = true;
+    programs.xwayland.enable = true;
 
 #= XDG
     xdg = {

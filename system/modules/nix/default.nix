@@ -1,4 +1,4 @@
-{ ... }: {
+{ inputs, ... }: {
 
     imports = [
         ./nix-ld.nix
@@ -29,5 +29,7 @@
             dates = "weekly";
             options = "--delete-older-than 1w";
         };
+    #= Extra
+        nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
     };
 }
