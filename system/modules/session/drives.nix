@@ -2,7 +2,7 @@
 
 #= Enable Trim Needed for SSD's
     services.fstrim = {
-        enable = true;
+        enable = false;
         interval = "weekly";
     };
 

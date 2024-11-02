@@ -6,16 +6,16 @@
         settings = {
 
         # Governor.
-            CPU_SCALING_GOVERNOR_ON_AC = "performance";
-            CPU_SCALING_GOVERNOR_ON_BAT = "schedutil";
+            CPU_SCALING_GOVERNOR_ON_AC = "schedutil"; #"performance";
+            CPU_SCALING_GOVERNOR_ON_BAT = "powersave"; #"schedutil";
 
         # Performance Policy.
             CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
             CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
 
         # CPU.
-            CPU_DRIVER_OPMODE_ON_AC = "guided";
-            CPU_DRIVER_OPMODE_ON_BAT = "guided";
+            CPU_DRIVER_OPMODE_ON_AC = "active";
+            CPU_DRIVER_OPMODE_ON_BAT = "passive";
             CPU_BOOST_ON_AC = 1;
             CPU_BOOST_ON_BAT = 0;
             CPU_HWP_DYN_BOOST_ON_AC=1;
@@ -24,7 +24,7 @@
             CPU_MAX_PERF_ON_AC = 100;
             CPU_MIN_PERF_ON_BAT = 0;
             CPU_MAX_PERF_ON_BAT = 70;
-        
+
         # GPU
             INTEL_GPU_MIN_FREQ_ON_AC = 650;
             INTEL_GPU_MIN_FREQ_ON_BAT = 650;
@@ -38,11 +38,11 @@
             RUNTIME_PM_ON_BAT = "auto";
 
         # Battery.
-            START_CHARGE_THRESH_BAT0 = 30;
-            STOP_CHARGE_THRESH_BAT0 = 90;
+            START_CHARGE_THRESH_BAT0 = 95;
+            STOP_CHARGE_THRESH_BAT0 = 100;
 
         # USB
-            USB_AUTOSUSPEND = 0;
+            #USB_AUTOSUSPEND = 0;
 
         # ACPI
             NATACPI_ENABLE = 1;

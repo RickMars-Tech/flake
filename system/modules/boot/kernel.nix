@@ -89,10 +89,4 @@
             ";
     };
 
-    #==> SCX Sheduler <==#
-    chaotic.scx = {
-        enable = true;
-        scheduler = "scx_rustland";
-    };
-
 }

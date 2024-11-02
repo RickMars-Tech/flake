@@ -3,49 +3,42 @@
 
     inputs = {
 
-        nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-        nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
+        nix.url = "https://flakehub.com/f/DeterminateSystems/nix/2.0";
+        nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1.0.tar.gz";
+        nixos-hardware.url = "https://flakehub.com/f/NixOS/nixos-hardware/*.tar.gz";
 
-        nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+        chaotic.url = "https://flakehub.com/f/chaotic-cx/nyx/*.tar.gz";
+        
+        hyprland.url = "https://flakehub.com/f/hyprwm/Hyprland/*.tar.gz";
 
-        chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+        #cosmic.url = "github:lilyinstarlight/nixos-cosmic";
 
-        /*lix = {
-            url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.0.tar.gz";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };*/
-
-        nix-ld = {
-            url = "github:Mic92/nix-ld";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
+        nix-flatpak.url = "https://flakehub.com/f/gmodena/nix-flatpak/*.tar.gz";
+        
+        magic-nix-cache.url = "https://flakehub.com/f/DeterminateSystems/magic-nix-cache/*.tar.gz";
 
         home-manager = {
-            url = "github:nix-community/home-manager";
+            url = "https://flakehub.com/f/nix-community/home-manager/0.1.0.tar.gz";
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
-        hyprland.url = "github:hyprwm/Hyprland";
-
-        flatpaks.url = "github:GermanBread/declarative-flatpak/stable-v3";
     };
 
     outputs = inputs@{
         chaotic,
-        flatpaks,
+        #cosmic,
+        nix-flatpak,
         home-manager,
         #lix,
+        nix,
         nixpkgs,
-        nixpkgs-stable,
-        nix-ld,
         nixos-hardware,
         self,
         ...
     }: let 
 
         system = "x86_64-linux";
-        pkgs = nixpkgs.legacyPackages.${system};
-        pkgs-stable = nixpkgs-stable.legacyPackages.${system};
+        #pkgs = nixpkgs.legacyPackages.${system};
         lib = nixpkgs.lib;
         username = "rick";
         name = "Rick";
@@ -55,18 +48,28 @@
         nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
             inherit system;
             inherit lib;
-            #inherit inputs;
             modules = [
 
+                #==> Nix <==#
                 ./system/configuration.nix
-                nixos-hardware.nixosModules.lenovo-thinkpad-t420
-                chaotic.nixosModules.default
-                flatpaks.nixosModules.default
-                home-manager.nixosModules.home-manager
+                #determinate.nixosModules.default
                 #lix.nixosModules.default
-                nix-ld.nixosModules.nix-ld
+                nix.nixosModules.default
+
+                #==> Cosmic <==#
+                #cosmic.nixosModules.default
+
+                #==> Chaotic <==#
+                chaotic.nixosModules.default
+
+                #==> Flatpak <==#
+                nix-flatpak.nixosModules.nix-flatpak
+
+                #==> Thinkpad Module <==#
+                nixos-hardware.nixosModules.lenovo-thinkpad-t420
 
                 #==> Home-Manager <==#
+                home-manager.nixosModules.home-manager
                 {
                     nixpkgs.config.allowUnfree = true;
                     _module.args = { inherit inputs; };
@@ -76,14 +79,12 @@
                     home-manager.extraSpecialArgs = {
                         inherit username;
                         inherit inputs;
-                        inherit pkgs-stable;
                         inherit self;
                     };
                 }
             ];
             specialArgs = {
                 inherit inputs;
-                inherit pkgs-stable;
                 inherit username;
                 inherit name;
                 inherit self;

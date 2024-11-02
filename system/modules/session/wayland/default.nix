@@ -1,6 +1,7 @@
 { pkgs, ...}: {
 
     imports = [
+        #./cosmic.nix
         ./hyprland.nix
         ./pipewire.nix
         ./waybar.nix

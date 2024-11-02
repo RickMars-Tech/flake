@@ -1,9 +1,11 @@
 { pkgs, ... }: {
 
     environment = {
-        extraInit = "~/.cargo/bin";
+        #extraInit = "~/.cargo/bin";
         #pathsToLink = [ "/share/X11" "/libexec" "/share/nix-ld" ];
         sessionVariables = {
+        #=> NixD_Flags
+            NIXD_FLAGS = "--inlay-hints=false";
         #=> Default's
             EDITOR = "nvim";
             BROWSER = "firefox";

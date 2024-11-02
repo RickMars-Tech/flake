@@ -6,7 +6,7 @@
         remotePlay.openFirewall = false; # Open ports in the firewall for Steam Remote Play
         dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
         extest.enable = true; # For using Steam Input on Wayland
-        protontricks.enable = true;
+        #protontricks.enable = true;
         package = pkgs.steam.override {
             extraPkgs = pkgs:
                 with pkgs; [
@@ -24,7 +24,7 @@
         };
     };
     #= Enable Steam Hardware Udev Rules
-    #hardware.steam-hardware.enable = true;
+    hardware.steam-hardware.enable = true;
 
 #=> Gamescope <=#
     programs.gamescope = {

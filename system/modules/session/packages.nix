@@ -30,8 +30,8 @@
         cacert
         libsForQt5.ark
         # geogebra6
-        webcord
-        electron
+        #webcord
+        #electron
         #jq
         qt5.qtwayland
         qt6.qtwayland
@@ -45,10 +45,10 @@
         clamav
         clamtk
     #= Blender
-        blender
+        #blender
     #= Code Editor
         #vscodium-fhs
-        (vscode-with-extensions.override {
+        /*(vscode-with-extensions.override {
             vscode = vscodium-fhs;
             vscodeExtensions = with vscode-extensions; [
                 catppuccin.catppuccin-vsc
@@ -61,12 +61,12 @@
                 ms-python.flake8
                 ms-python.vscode-pylance
             ];
-        })
+        })*/
         zed-editor
     #= Local Lenguage Model
-        ollama
+        #ollama
     #= Game Engine
-        godot_4
+        #godot_4
     #= Rust
         rustup
     #= C/C++
