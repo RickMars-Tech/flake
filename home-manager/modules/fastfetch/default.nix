@@ -4,7 +4,7 @@
         enable = true;
         settings = {
             logo = {
-                source = "nixos";
+                source = "nixos_small";
                 padding = {
                     right = 1; #top = 1;
                 };
@@ -61,27 +61,7 @@
                 }
                 {
                     "type" = "swap";
-                    "key" = " ├─󰯍";
-                }
-                {
-                    "type" = "display";
-                    "key" = " ├─󰹑";
-                }
-                {
-                    "type" = "brightness";
-                    "key" = " ├─󰃠";
-                }
-                {
-                    "type" = "battery";
-                    "key" = " ├─";
-                }
-                {
-                    "type" = "poweradapter";
-                    "key" = " ├─";
-                }
-                {
-                    "type" = "sound";
-                    "key" = " ╰─";
+                    "key" = " ╰─󰯍";
                 }
 
                 {

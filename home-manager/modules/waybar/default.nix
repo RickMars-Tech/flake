@@ -173,23 +173,15 @@
                 "battery" = {
                     "interval" = 2;
                     "states" = {
+                        "good" = 95;
                         "warning" = 30;
                         "critical" = 15;
                     };
-                    "format-time" = "{H}:{M:02}";
                     "format" = "{icon}  {capacity}%";
                     "format-charging" = "󰂄 {capacity}%";
-                    "format-charging-full" = " {capacity}%";
-                    "format-full" = "{icon} {capacity}%";
+                    "format-plugged" = " {capacity}%";
                     "format-alt" = "{icon} ({time}Hrs)";
-                    "format-icons" = [
-                        " "
-                        " "
-                        " "
-                        " "
-                        " "
-                    ];
-                    "tooltip" = false;
+                    "format-icons" = ["󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
                 };
             };
         };

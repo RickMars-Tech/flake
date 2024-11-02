@@ -10,6 +10,7 @@
         extraPackages = with pkgs; [
             rust-analyzer
             nixd
+            nil
             nixfmt-rfc-style
             pyright
         ];
@@ -27,17 +28,12 @@
         ];
         plugins = with pkgs.vimPlugins; [
             indent-blankline-nvim
-            mason-nvim
-            nvim-dap
-            nvim-dap-ui
-            nvim-dap-python
             nvim-lspconfig
-            oxocarbon-nvim
-            rustaceanvim
+            #oxocarbon-nvim
             supermaven-nvim
             vim-airline
             vim-nix
-            vim-just
+            #vim-just
         ];
         extraLuaConfig = ''
             vim.cmd('syntax on')
@@ -95,12 +91,6 @@
 
             -- Supermaven
             require("supermaven-nvim").setup({
-                keymaps = {
-                    accept_suggestion = "<Tab>",
-                    clear_suggestion = "<C-]>",
-                    accept_word = "<C-j>",
-                },
-                ignore_filetypes = { cpp = true }, -- or { "cpp", }
                 color = {
                     suggestion_color = "#ffffff",
                     cterm = 244,
@@ -115,13 +105,21 @@
 
             -- LSP Config
             require("lspconfig").rust_analyzer.setup {
-            -- Server-specific settings. See `:help lspconfig-setup`
+                cmd = { "rust-analyzer" },
+                filetypes = { "rust" },
+                single_file_support = true,
                 settings = {
-                    ['rust-analyzer'] = {},
+                    ['rust-analyzer'] = {
+                        diagnostics = {
+                            enable = true,
+                        }
+                    },
                 },
             }
             require("lspconfig").nixd.setup({
                 cmd = { "nixd" },
+                filetypes = { "nix" },
+                single_file_support = true,
                 settings = {
                     nixd = {
                         nixpkgs = {
@@ -130,10 +128,21 @@
                         formatting = {
                             command = { "nixfmt" },
                         },
+                        options = {
+                            nixos = {
+                                expr = '(builtins.getFlake ("git+file://" + toString ./.)).nixosConfigurations.nixos.options',
+                            },
+                            home_manager = {
+                                expr = '(builtins.getFlake ("git+file://" + toString ./.)).homeConfigurations."rick".options',
+                            },
+                        },
                     },
                 },
             })
-            lspconfig.pyright.setup {
+            require("lspconfig").pyright.setup {
+                cmd = { "pyright-langserver", "--stdio" },
+                filetypes = { "python" },
+                single_file_support = true,
                 settings = {
                     python = {
                         analysis = {

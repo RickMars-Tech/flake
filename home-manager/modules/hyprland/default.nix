@@ -83,7 +83,7 @@ in {
             input = {
                 kb_model = ""; #"pc104";
                 kb_layout = "us"; #"latam";
-                kb_variant = "nodeadkeys";
+                kb_variant = "";
                 kb_options = ""; #"terminate:ctrl_alt_bksp";
                 numlock_by_default = true;
                 accel_profile = "flat";
@@ -136,7 +136,7 @@ in {
                 animate_manual_resizes = true;
                 swallow_regex = "^(foot|kitty|Alacritty)$";
                 swallow_exception_regex = "^(foot|kitty|Alacritty)";
-                vrr = 2; # VRR (Adaptive Sync). 0 - Disabled, 1 - Enabled, 2 - Only FullScreen
+                vrr = 0; # VRR (Adaptive Sync). 0 - Disabled, 1 - Enabled, 2 - Only FullScreen
                 vfr = true;
                 render_ahead_safezone = 1;
                 new_window_takes_over_fullscreen = 2;
@@ -223,6 +223,7 @@ in {
 
                 # LaunchApps
                 #"SUPER, T, exec, kitty"
+                "SUPER, Z, exec, zeditor"
                 "SUPER, T, exec, foot"
                 "SUPER, B, exec, firefox"
                 "CTRL SHIFT, E, exec, nautilus"
@@ -291,8 +292,8 @@ in {
             bindl = [
                 # You can view your switches in hyprctl devices.
                 ",switch:Lid Switch,exec,${pkgs.hyprlock}/bin/hyprlock"
-                #",switch:on:Lid Switch,exec,hyprctl keyword monitor ''eDP-1, disable''"
-                #",switch:off:Lid Switch,exec,hyprctl keyword monitor ''eDP-1,highres,auto,1''"
+                #",switch:on:Lid Switch,exec,hyprctl keyword monitor '', disable''"
+                #",switch:off:Lid Switch,exec,hyprctl keyword monitor '',highres,auto,1''"
 
                 # Audio
                 ",XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"

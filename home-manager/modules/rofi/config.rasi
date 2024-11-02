@@ -1,9 +1,9 @@
 configuration {
-	modi: "window,run,ssh,combi,drun";
+	modi: "window,run,combi,drun";
 	width: 50;
 	lines: 15;
 	columns: 1;
-	font: "UbuntuMono Nerd Font 14";
+	font: "DaddyTimeMono Nerd Font 14";
 	bw: 1;
 	location: 0;
 	padding: 5;
