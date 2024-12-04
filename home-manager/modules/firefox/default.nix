@@ -40,7 +40,7 @@
                 "signon.rememberSignons" = false;
                 "browser.aboutConfig.showWarning" = false;
                 "browser.compactmode.show" = true;
-                "browser.cache.disk.enable" = false; # Be kind to hard drive
+                "browser.cache.disk.enable" = true;
 
                 "mousewheel.default.delta_multiplier_x" = 50;
                 "mousewheel.default.delta_multiplier_y" = 50;
@@ -85,6 +85,6 @@
                 order = [ "DuckDuckGo" "Google" ];
             };
         };
-        package = (pkgs.wrapFirefox (pkgs.firefox-unwrapped.override { pipewireSupport = true;}) {});
+        package = pkgs.firefox;
     };
 }

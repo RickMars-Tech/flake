@@ -9,7 +9,7 @@
         username = "rick";
         homeDirectory = "/home/rick";
         enableNixpkgsReleaseCheck = true;
-        stateVersion = "24.11";
+        stateVersion = "25.05";
     };
     programs.home-manager.enable = true;
 
@@ -38,8 +38,8 @@
     home.pointerCursor = {
         gtk.enable = true;
         #x11.enable = true;
-        package = pkgs.bibata-cursors;
-        name = "Bibata-Modern-Classic";
+        package = pkgs.apple-cursor;#pkgs.bibata-cursors;
+        name = "macOS";#"Bibata-Original-Classic";
         size = 24;
     };
 

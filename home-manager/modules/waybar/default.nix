@@ -8,44 +8,27 @@
                 position = "top"; #"bottom";
                 exclusive = true;
 
-                "modules-left" = [ "custom/nix" "hyprland/workspaces" "hyprland/window" ];
+                "modules-left" = [ "custom/nix" "niri/workspaces" "niri/window" ];
                 "modules-center" = [ "clock" ];
                 "modules-right" = [ "gamemode" "tray" "cpu" "memory" "battery" "temperature" "backlight" "wireplumber" "network" ];
 
                 ##--------------------------
-                ## Hyprland Workspaces
+                ## Workspaces
                 ##--------------------------
-                "hyprland/workspaces" = {
-                    "disable-scroll" = false;
-                    "enable-bar-scroll" = true;
-                    "all-outputs" = true;
-                    "format" = "{icon}";
-                    "on-scroll-up" = "hyprctl dispatch workspace e+1";
-                    "on-scroll-down" = "hyprctl dispatch workspace e-1";
+                "niri/workspaces" = {
+                    "format" = "{}";
                     "format-icons" = {
-                        "1" = "";
-                        "2" = "󱎓";
-                        "3" = "󰈹";
-                        "4" = "󰙯";
-                        "5" = "";
-                        "6" = "󰹉";
-                        "7" = "󰈔";
-                        "8" = "󰋊";
-                        "9" = "";
-                        "10" = "";
-                    };
-	                "persistent-workspaces" = {
-                        "1" = [];
-                        "2" = [];
-                        "3" = [];
-                        "4" = [];
-                        "5" = [];
-                        "6" = [];
+                        "active" = "󰮯";
+                        "default" = "󰊠";
                     };
                 };
 
+                "niri/window" = {
+                    "format" = "{}";
+                };
+
                 "custom/nix" = {
-                    "format" = "";
+                    "format" = " ";
                     "tooltip" = false;
                 };
 
@@ -125,7 +108,7 @@
                     "format-wifi" = "Connected 󰤨 ";
                     "format-ethernet" = "{essid} 󰈀";
                     "format-disconnected" = "󰤮";
-                    "format-alt" = "{essid} 󰈀";
+                    "format-alt" = "{bandwidthTotalBytes} 󰈀";
                     "tooltip" = false;
                 };
 
@@ -144,8 +127,8 @@
                 ## Clock
                 ##--------------------------
                 "clock" = {
-                    "format" = "{:%I:%M} ";
-                    "format-alt" = "{:%d/%m/%y} ";
+                    "format" = " {:%I:%M}";
+                    "format-alt" = " {:%d/%m/%y}";
                     "tooltip" = "true";
                     "tooltip-format" = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
                 };
