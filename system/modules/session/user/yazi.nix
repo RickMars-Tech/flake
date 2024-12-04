@@ -1,7 +1,8 @@
-{ pkgs, ... }: {
+{ pkgs-stable, ... }: {
 
     programs.yazi = {
         enable = true;
+        package = pkgs-stable.yazi;
         settings.yazi = {
             manager = {
                 sort_by = "natural";
@@ -23,7 +24,6 @@
             };
             keymap = "la-latin1";
         };
-        package = pkgs.yazi;
     };
 
 }

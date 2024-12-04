@@ -2,7 +2,7 @@
 
     imports = [
         ./boot.nix
-        ./kernel.nix
+        ./kernel/default.nix
         ./security.nix
         ./systemd.nix
         ./udev.nix

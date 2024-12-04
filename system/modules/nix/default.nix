@@ -1,7 +1,6 @@
 { inputs, ... }: {
 
     imports = [
-         #inputs.nix.nixosModules.default
         ./nix-ld.nix
         ./nix-index.nix
     ];
@@ -13,18 +12,6 @@
             auto-optimise-store = true;
             experimental-features = [ "nix-command" "flakes" ];
             trusted-users = ["rick"];
-            substituters = [
-                "https://cosmic.cachix.org/"
-                #"https://nix-community.cachix.org"
-                #"https://cache.garnix.io"
-                #"https://hyprland.cachix.org"
-            ];
-            trusted-public-keys = [
-                "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
-                #"nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-                #"cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
-                #"hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-            ];
         };
     #= Clean Nix
         gc = {

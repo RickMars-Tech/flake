@@ -1,21 +1,23 @@
-{ ...  }: {
+{ ... }: {
 
 #= TLP (Advanced Power Management for Linux).
     services.tlp = {
         enable = true;
         settings = {
 
+        # Driver.
+            CPU_DRIVER_OPMODE_ON_AC = "passive";
+            CPU_DRIVER_OPMODE_ON_BAT = "passive";
+
         # Governor.
-            CPU_SCALING_GOVERNOR_ON_AC = "schedutil"; #"performance";
-            CPU_SCALING_GOVERNOR_ON_BAT = "powersave"; #"schedutil";
+            CPU_SCALING_GOVERNOR_ON_AC = "performance";
+            CPU_SCALING_GOVERNOR_ON_BAT = "ondemand"; #"schedutil";
 
         # Performance Policy.
             CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
             CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
 
         # CPU.
-            CPU_DRIVER_OPMODE_ON_AC = "active";
-            CPU_DRIVER_OPMODE_ON_BAT = "passive";
             CPU_BOOST_ON_AC = 1;
             CPU_BOOST_ON_BAT = 0;
             CPU_HWP_DYN_BOOST_ON_AC=1;
@@ -41,21 +43,26 @@
             START_CHARGE_THRESH_BAT0 = 95;
             STOP_CHARGE_THRESH_BAT0 = 100;
 
-        # USB
-            #USB_AUTOSUSPEND = 0;
-
         # ACPI
             NATACPI_ENABLE = 1;
             TPACPI_ENABLE = 1;
             TPSMAPI_ENABLE = 1;
 
         # NMI_Watchdog
-            NMI_WATCHDOG = 0;
+            NMI_WATCHDOG = 1;
+
+        # Troubleshooting
+            TLP_DEFAULT_MODE = "BAT";
+            TLP_PERSISTENT_DEFAULT = 1;
         };
     };
     services.power-profiles-daemon.enable = false;
 
     services.thermald = {
+        enable = true;
+    };
+
+    services.preload = {
         enable = true;
     };
 

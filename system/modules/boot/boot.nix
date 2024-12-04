@@ -4,12 +4,12 @@
         loader = {
             systemd-boot = {
                 enable = true;
-                editor = false;
-                consoleMode = "max";
+                editor = true;
+                consoleMode = "keep";
                 configurationLimit = 20;
             };
-            efi.canTouchEfiVariables = false;
-            timeout = 5;
+            efi.canTouchEfiVariables = true;
+            timeout = 3;
         };
         initrd = {
             enable = true;
@@ -17,8 +17,8 @@
             verbose = true;
         };
         tmp = {
+            tmpfsSize = "100%";
             useTmpfs = true;
-            cleanOnBoot = true;
         };
     };
 }

@@ -1,10 +1,13 @@
-{ pkgs, ... }: {
+{ pkgs, inputs, ... }: {
 
 #= Allow unfree packages
     nixpkgs.config.allowUnfree = true;
 
 #= Permitted Insecure Packages
     nixpkgs.config.permittedInsecurePackages = [ ];
+
+#= Fenix 
+    nixpkgs.overlays = [ inputs.fenix.overlays.default ];
 
 #=> Packages Installed in System Profile.
     environment.systemPackages = with pkgs; [
@@ -24,11 +27,13 @@
         */
         nautilus
     #= Main
+        aml
         alsa-lib
         alsa-plugins
         alsa-utils
         cacert
         libsForQt5.ark
+        staruml
         # geogebra6
         #webcord
         #electron
@@ -62,21 +67,30 @@
                 ms-python.vscode-pylance
             ];
         })*/
-        zed-editor
+        #zed-editor
     #= Local Lenguage Model
         #ollama
     #= Game Engine
         #godot_4
     #= Rust
-        rustup
+        (fenix.complete.withComponents [
+            "cargo"
+            "clippy"
+            "rust-src"
+            "rustc"
+            "rustfmt"
+        ])
+        rust-analyzer-nightly
     #= C/C++
-        boost
+        #boost
         cmake
+        flex
         gccgo
         glib
         glibc
         glibmm
         libgcc
+        ncurses
         SDL2
         SDL2_image
         SDL2_ttf
@@ -101,10 +115,10 @@
         pyright
         kdePackages.qttools
     #= XDG
-        xdg-utils-cxx
+        xdg-utils
         xdg-launch
+        xdg-user-dirs
     #= (Neo)Vim Extra Packages
-        rust-analyzer
         nixd
         nixfmt-rfc-style
         pyright
@@ -115,8 +129,9 @@
         eza
         fzf
         fastfetch
+        git
         gitoxide
-        htop-vim
+        bottom
         lynx
         macchanger
         ripgrep
@@ -124,7 +139,6 @@
         uutils-coreutils-noprefix
         busybox
         woeusb
-        zfxtop
     #= Fish Plugins
         #fishPlugins.done
         #fishPlugins.fzf-fish
@@ -152,6 +166,7 @@
     #= Appimages
         #appimagekit
         appimage-run
+        gearlever
     #= Torrent
         qbittorrent
     #= Image Editors
@@ -186,7 +201,9 @@
     # H.264 encoder/decoder plugin for mediastreamer2
         mediastreamer-openh264
     # H264/AVC 
-        x264 
+        av1an
+        openh264
+        x264
     # H.265/HEVC
         x265
     # WebM VP8/VP9 codec SDK
@@ -200,16 +217,16 @@
     # JPEG
         libjpeg
     # FFMPEG
-        ffmpeg-full
-        ffmpeg-headless
-        ffmpegthumbnailer
+        #ffmpeg-full
+        #ffmpeg-headless
+        #ffmpegthumbnailer
     #= Media Player
-        (pkgs.mpv-unwrapped.wrapper {
-            mpv = pkgs.mpv-unwrapped.override {
-                ffmpeg = pkgs.ffmpeg-full;
-                waylandSupport = true;
-            };
-        })
+        #(pkgs.mpv-unwrapped.wrapper {
+        #    mpv = pkgs.mpv-unwrapped.override {
+        #        ffmpeg = pkgs.ffmpeg-full;
+        #        waylandSupport = true;
+        #    };
+        #})
     #= Wine
         bottles
     ];

@@ -23,7 +23,7 @@
         hyprland-protocols
         hyprcursor # The hyprland cursor format, library and utilitie
         hyprpicker # Wlroots-compatible Wayland color picker that does not suck
-        cage
+        #cage
         # Notification Deamon
         dunst
         libnotify
@@ -54,7 +54,7 @@
         wlroots
         wayland-utils
         xwayland
-        xwayland-run
+        #xwayland-run
         xwaylandvideobridge
     ];
 }

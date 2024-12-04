@@ -4,7 +4,7 @@
     programs.nix-ld = {
         enable = true;
         #package = pkgs.nix-ld;
-        libraries = with pkgs; pkgs.steam-run.fhsenv.args.multiPkgs pkgs ++ [
+        libraries = with pkgs; [ #steam-run.fhsenv.args.multiPkgs pkgs ++ [
             #python312Packages.pipenv-poetry-migrate
             #python312Packages.pipx
             #python312Packages.pydevd

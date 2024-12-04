@@ -35,13 +35,13 @@
         };
 
         #==> MemorySafe for Sudo <==#
-        sudo = {
+        sudo-rs = {
             enable = true;
             execWheelOnly = true;
-            extraConfig = ''
+            /*extraConfig = ''
                 Defaults pwfeedback
                 Defaults insults
-            '';
+            '';*/
         };
     };
 }

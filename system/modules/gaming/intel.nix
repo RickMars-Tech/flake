@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }: {
+{ pkgs, lib, ... }: {
 
     #=> OpenGL, Drivers and more... 
     hardware = {
@@ -7,18 +7,19 @@
             extraPackages = with pkgs; [
                 mesa.drivers
                 libdrm
-                intel-ocl # For Intel
-                #intel-vaapi-driver # For Intel
-                intel-compute-runtime # For Intel
-                intel-media-driver # For Intel
-                intel-graphics-compiler # For Intel
+                intel-media-sdk
+                intel-ocl
+                intel-vaapi-driver
+                intel-compute-runtime
+                intel-media-driver
+                intel-graphics-compiler
             ];
             enable32Bit = true;
             extraPackages32 = with pkgs.driversi686Linux; [
                 mesa.drivers
                 #glxinfo
-                intel-vaapi-driver # For Intel
-                intel-media-driver # For Intel
+                intel-vaapi-driver
+                intel-media-driver
             ];
         };
         intel-gpu-tools.enable = true;

@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, lib, ... }: {
 
 #=> Steam <=#
     programs.steam = {
@@ -23,8 +23,12 @@
                 ];
         };
     };
-    #= Enable Steam Hardware Udev Rules
-    hardware.steam-hardware.enable = true;
+    #= Enable/Disable Steam Hardware Udev Rules
+    hardware.steam-hardware.enable = lib.mkDefault false;
+
+    environment.systemPackages = with pkgs; [
+        adwsteamgtk
+    ];
 
 #=> Gamescope <=#
     programs.gamescope = {

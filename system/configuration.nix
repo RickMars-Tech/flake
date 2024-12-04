@@ -9,6 +9,12 @@
         ./modules/default.nix
     ];
 
+    fileSystems."/tmp" = {
+        device = "tmpfs";
+        fsType = "tmpfs";
+        options = [ "size=8G" ];
+    };
+
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

@@ -12,7 +12,7 @@
         ./packages.nix
         ./powermanagment.nix
         ./printing.nix
-        ./shell.nix
+        #./shell.nix
         ./virtualization.nix
     ];
 }

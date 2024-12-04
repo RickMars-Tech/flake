@@ -2,16 +2,13 @@
 
     imports = [
         #./cosmic.nix
-        ./hyprland.nix
+        #./hyprland.nix
         ./pipewire.nix
+        ./niri.nix
         ./waybar.nix
     ];
-
-#= Disable X11
     services.xserver.enable = false;
-
-#= XWayland
-    programs.xwayland.enable = true;
+    programs.xwayland.enable = false;
 
 #= XDG
     xdg = {
@@ -19,7 +16,9 @@
             enable = true;
             config.common.default = "gtk";
             extraPortals = with pkgs; [
+                xdg-desktop-portal
                 xdg-desktop-portal-gtk
+                xdg-desktop-portal-gnome
                 libsForQt5.xdg-desktop-portal-kde
                 lxqt.xdg-desktop-portal-lxqt
             ];

@@ -45,9 +45,9 @@
     hardware.pulseaudio.enable = false;
 
     environment.systemPackages = with pkgs; [
-        helvum
+        #helvum
         pavucontrol
-        pwvucontrol
+        #pwvucontrol
     ];
 
 }

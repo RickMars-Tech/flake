@@ -1,6 +1,6 @@
 { pkgs, lib, ... }: {
 
-#= NetworkD
+#= NetworkD(Iwd).
     systemd.network = {
         enable = true;
         networks = {
@@ -66,18 +66,12 @@
         ];
     };
     environment.systemPackages = with pkgs; [ iwgtk ]; # GTK Front-end for IWD
-
-#= DNS
-    services.resolved = {
-        enable = true;
-        dnssec = "false";
-        dnsovertls = "true";
-    };
+    services.resolved.enable = false;
 
 #= Bluetooth
     hardware.bluetooth = {
         enable = true; # enables support for Bluetooth
-        powerOnBoot = true; # powers up the default Bluetooth controller on boot
+        powerOnBoot = false; # powers up the default Bluetooth controller on boot
     };
     #= Pairing Bluetooth devices
     services.blueman.enable = true;

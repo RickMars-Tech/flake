@@ -6,6 +6,7 @@
         packages = with pkgs; [ 
             dunst
             flatpak
+            niri
             greetd.greetd
             greetd.tuigreet
         ];

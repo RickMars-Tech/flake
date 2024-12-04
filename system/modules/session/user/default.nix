@@ -27,14 +27,17 @@
             "qemu"
             "input"
         ];
-        shell = pkgs.fish;
+        shell = pkgs.nushell; #pkgs.fish;
     };
 #=> Fonts Config
     fonts = {
         packages = with pkgs; [
             noto-fonts
             montserrat
-            (nerdfonts.override { fonts = [ "DaddyTimeMono" "Meslo" "JetBrainsMono" "UbuntuMono" ]; })
+            nerd-fonts.daddy-time-mono
+            nerd-fonts.meslo-lg
+            nerd-fonts.jetbrains-mono
+            nerd-fonts.ubuntu-mono
             source-han-sans
             jost
             material-design-icons
@@ -71,5 +74,4 @@
 #= USB
     services.gvfs.enable = true;
     services.udisks2.enable = true;
-    services.devmon.enable = true;
 }

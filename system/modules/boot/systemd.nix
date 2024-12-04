@@ -1,8 +1,8 @@
 { pkgs, ... }: {
 
-#==> TmpFiles 
     systemd = {
-        tmpfiles.rules = [
+        enableCgroupAccounting = false;
+        /*tmpfiles.rules = [
         # https://wiki.archlinux.org/title/Gaming#Make_the_changes_permanent.
             "w     /proc/sys/vm/compaction_proactiveness - - - - 0"
             "w     /proc/sys/vm/watermark_boost_factor - - - - 1"
@@ -23,8 +23,7 @@
         # https://wiki.archlinux.org/title/Professional_audio#System_configuration
             "w     /sys/class/rtc/rtc0/max_user_freq - - - -  3072"
             "w     /proc/sys/dev/hpet/max-user-freq  - - - -  3072"
-        ];
-
+        ];*/
 
     #=> Polkit Service.
         user.services.polkit-gnome-authentication-agent-1 = {
@@ -56,6 +55,7 @@
         extraConfig = ''
             [Manager]
             DefaultLimitNOFILE=2048:2097152
+            DefaultTimeoutStopSec=10s
         '';
         user.extraConfig = ''
             [Manager]
@@ -63,7 +63,7 @@
         '';
     };
 
-#==> Jourdnald
+#==> JourdnalD
     services.journald = {
         storage = "persistent";
         rateLimitBurst = 10000;
