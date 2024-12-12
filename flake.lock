@@ -352,20 +352,6 @@
         "url": "https://flakehub.com/f/NixOS/nix/%3D2.24.10"
       }
     },
-    "nixos-hardware": {
-      "locked": {
-        "lastModified": 1733066523,
-        "narHash": "sha256-aQorWITXZu7b095UwnpUvcGt9dNJie/GO9r4hZfe2sU=",
-        "rev": "fe01780d356d70fd119a19277bff71d3e78dad00",
-        "revCount": 2037,
-        "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/NixOS/nixos-hardware/0.1.2037%2Brev-fe01780d356d70fd119a19277bff71d3e78dad00/019382d0-fda5-7218-98f7-b1f15eafb024/source.tar.gz"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://flakehub.com/f/NixOS/nixos-hardware/%2A.tar.gz"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1709083642,
@@ -545,7 +531,6 @@
         "magic-nix-cache": "magic-nix-cache",
         "nix": "nix_2",
         "nix-flatpak": "nix-flatpak",
-        "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_5",
         "nixpkgs-stable": "nixpkgs-stable"
       }

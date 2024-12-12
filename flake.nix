@@ -6,7 +6,6 @@
         nix.url = "https://flakehub.com/f/DeterminateSystems/nix/2.0";
         nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1.0.tar.gz";
         nixpkgs-stable.url = "https://flakehub.com/f/NixOS/nixpkgs/0.2405.636292.tar.gz";
-        nixos-hardware.url = "https://flakehub.com/f/NixOS/nixos-hardware/*.tar.gz";
 
         #chaotic.url = "https://flakehub.com/f/chaotic-cx/nyx/*.tar.gz";
         
@@ -40,7 +39,6 @@
         nix,
         nixpkgs,
         nixpkgs-stable,
-        nixos-hardware,
         self,
         ...
     }: let 
@@ -66,17 +64,8 @@
                 #lix.nixosModules.default
                 nix.nixosModules.default
 
-                #==> Niri <==#
-                #niri.nixosModules.niri
-
-                #==> Chaotic <==#
-                #chaotic.nixosModules.default
-
                 #==> Flatpak <==#
                 nix-flatpak.nixosModules.nix-flatpak
-
-                #==> Thinkpad Module <==#
-                nixos-hardware.nixosModules.lenovo-thinkpad-t420
 
                 #==> Home-Manager <==#
                 home-manager.nixosModules.home-manager
@@ -85,7 +74,7 @@
                     _module.args = { inherit inputs; };
                     home-manager.useGlobalPkgs = true;
                     home-manager.useUserPackages = true;
-                    home-manager.users.rick = import ./home-manager/home.nix;
+                    home-manager.users.${username} = import ./home-manager/home.nix;
                     home-manager.extraSpecialArgs = {
                         inherit username;
                         inherit inputs;
